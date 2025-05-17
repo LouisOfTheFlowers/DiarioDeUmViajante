@@ -1,0 +1,7 @@
+{
+  "name": "DiarioDoViajante",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
