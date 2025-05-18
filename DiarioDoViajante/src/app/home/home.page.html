@@ -1,20 +1,33 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="light" class="ion-no-border">
+    <ion-title class="ion-text-center">Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <br>
+  <br>
+  <br>
+  <h1 class="login-title">Bem-vindo<br />Caro Viajante</h1>
+    <div class="login-wrapper">
+    
+    <div class="custom-input">
+      <label>E-mail:</label>
+      <ion-input [(ngModel)]="email" type="email" class="rounded-input"></ion-input>
+    </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="custom-input">
+      <label>Password:</label>
+      <ion-input [(ngModel)]="password" type="password" class="rounded-input"></ion-input>
+    </div>
+
+    <ion-button expand="block" class="login-button" (click)="login()">
+      <span class="login-button-text">Entrar</span>
+    </ion-button>
+
+    <div class="login-links">
+      <a href="#">Esqueceu a palavra-passe?</a>
+      <a href="#">Registar-se</a>
+    </div>
   </div>
 </ion-content>
