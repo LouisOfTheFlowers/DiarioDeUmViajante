@@ -1,0 +1,129 @@
+.top-controls-decor {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.switch-decor {
+  width: 60px;
+  height: 32px;
+}
+
+ion-toggle.custom-toggle {
+  width: 100%;
+  height: 100%;
+  --handle-width: 24px;
+  --handle-height: 24px;
+  --handle-border-radius: 50%;
+  --track-border-radius: 999px;
+  --track-height: 32px;
+  --track-width: 60px;
+
+  --track-background: url('/assets/clouds.jpg') no-repeat center / cover;
+  --handle-background: #ffd700;
+  transition: all 0.3s ease;
+}
+
+.select-decor {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  ion-select.custom-select {
+    border-radius: 12px;
+    background: #ffffff;
+    color: #000000;
+    text-align: left;
+
+    --background: #ffffff;
+    --color: #000000;
+    --placeholder-color: #444;
+    --padding-start: 10px;
+    --padding-end: 28px;
+    --highlight-color-focused: #000;
+
+    // remove tentativas anteriores
+    border: none;
+    box-shadow: none;
+  }
+
+  // ✅ Aplica o estilo visível à parte interna real do ion-select
+  ion-select.custom-select::part(native) {
+    border: 1px solid #000;
+    border-radius: 12px;
+    padding: 4px 12px;
+    background: #fff;
+    color: #000;
+  }
+}
+
+
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+  padding-top: 2px;
+}
+
+.custom-input {
+  width: 90%;
+  max-width: 400px;
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'ABeeZee', sans-serif;
+    color: #000;
+  }
+
+  .rounded-input {
+    --border-radius: 20px;
+    --background: #B4AFAF;
+    padding-left: 16px;
+    font-family: 'ABeeZee', sans-serif;
+    --padding-start: 12px;
+  }
+}
+
+.login-button {
+  width: 90%;
+  max-width: 400px;
+  height: 40px;
+  --border-radius: 20px;
+  margin-top: 10px;
+  --color: #000000;
+  --background: #000000;
+}
+
+.login-button-text {
+  color: #3c00ff;
+  font-weight: 600;
+}
+
+.login-links {
+  margin-top: 20px;
+  text-align: center;
+
+  a {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'ABeeZee', sans-serif;
+    font-size: 16px;
+    color: #280f96;
+    text-decoration: none;
+  }
+}
+
+.Login:hover {
+  filter: brightness(0.9);
+}
