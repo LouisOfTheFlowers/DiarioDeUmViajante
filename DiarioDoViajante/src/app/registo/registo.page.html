@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="top-controls-decor">
+  <div class="switch-decor">
+    <ion-toggle
+      [(ngModel)]="darkMode"
+      (ionChange)="toggleTheme()"
+      mode="ios"
+      class="custom-toggle"
+    ></ion-toggle>
+  </div>
+
+  <div class="select-decor">
+  <ion-select
+  interface="popover"
+  [(ngModel)]="linguaSelecionada"
+  placeholder="Select"
+  class="custom-select"
+>
+    <ion-select-option value="pt">Português</ion-select-option>
+    <ion-select-option value="en">English</ion-select-option>
+    <ion-select-option value="es">Espanhol</ion-select-option>
+  </ion-select>
+</div>
+</div>
+
+  <div class="login-wrapper">
+
+    <div class="custom-input">
+      <label>E-mail:</label>
+      <ion-input type="email" class="rounded-input" [(ngModel)]="email"></ion-input>
+    </div>
+
+    <div class="custom-input">
+      <label>Password:</label>
+      <ion-input type="password" class="rounded-input" [(ngModel)]="password"></ion-input>
+    </div>
+
+    <div class="custom-input">
+      <label>Confirmar Password:</label>
+      <ion-input type="password" class="rounded-input" [(ngModel)]="confirmPassword"></ion-input>
+    </div>
+
+    <ion-button expand="block" class="login-button" (click)="registar()">
+      <span class="login-button-text">REGISTAR</span>
+    </ion-button>
+  </div>
+</ion-content>

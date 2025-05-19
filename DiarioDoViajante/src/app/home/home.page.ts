@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomePage {
   email: string = '';
   password: string = '';
 
-  constructor(private navCtrl: NavController, private alertCtrl: AlertController) {}
+  constructor(private navCtrl: NavController, private alertCtrl: AlertController, private router: Router) {}
   async login() {
     const validEmail = 'viagante@gmail.com';
     const validPassword = '123';
@@ -27,4 +28,8 @@ export class HomePage {
       await alert.present();
     }
 }
+
+irParaRegisto() {
+    this.router.navigate(['/registo']);
+  }
 }

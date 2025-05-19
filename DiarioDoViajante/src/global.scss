@@ -40,3 +40,9 @@ body, ion-content {
   background: #ffffff !important;
   color: #000 !important;
 }
+
+body.dark ion-toggle.custom-toggle {
+  --track-background: url('/assets/estrelas.png') no-repeat center / cover;
+  --handle-background: #e0e0e0;
+}
+
