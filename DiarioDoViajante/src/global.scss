@@ -46,3 +46,59 @@ body.dark ion-toggle.custom-toggle {
   --handle-background: #e0e0e0;
 }
 
+
+
+
+
+
+
+//Tabzinha linda bonitinha toda fofinha :) pff nao mudem muito
+
+
+/* Tab bar estilo fundo preto */
+ion-toolbar.custom-tab-bar {
+  --background: #111 !important;
+  background: #111 !important;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  min-height: 64px;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+}
+
+/* Botões da tab bar: ícone branco, sem fundo */
+ion-toolbar.custom-tab-bar ion-button {
+  color: #fff !important;
+  --color: #fff !important;
+  --background: transparent !important;
+  font-size: 28px;
+  border-radius: 50%;
+  margin: 0 auto;
+  transition: background 0.2s;
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Botão selecionado: círculo branco, ícone preto */
+ion-toolbar.custom-tab-bar ion-button.tab-selected {
+  background: #fff !important;
+  --background: #fff !important;
+  color: #111 !important;
+  --color: #111 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+/* Ícone do botão selecionado: cor preta */
+ion-toolbar.custom-tab-bar ion-button.tab-selected ion-icon {
+  color: #111 !important;
+  font-size: 28px;
+}
+
+/* Ícone dos outros botões: cor branca */
+ion-toolbar.custom-tab-bar ion-button:not(.tab-selected) ion-icon {
+  color: #fff !important;
+  font-size: 28px;
+}
+

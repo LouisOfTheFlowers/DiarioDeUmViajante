@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'registo',
     loadChildren: () => import('./registo/registo.module').then(m => m.RegistoPageModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
+  },
+
 
 ];
 
