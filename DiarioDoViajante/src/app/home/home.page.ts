@@ -14,7 +14,7 @@ export class HomePage {
 
   constructor(private navCtrl: NavController, private alertCtrl: AlertController, private router: Router) {}
   async login() {
-    const validEmail = 'viagante@gmail.com';
+    const validEmail = '123';
     const validPassword = '123';
 
     if (this.email === validEmail && this.password === validPassword) {

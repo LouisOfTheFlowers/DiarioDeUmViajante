@@ -1,0 +1,52 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .logout-link {
+    color: #3880ff;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
+
+.setting-section {
+  margin-bottom: 30px;
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  ion-toggle,
+  ion-select {
+    float: right;
+    width: auto;
+  }
+}
+
+ion-toggle.custom-toggle {
+  --handle-width: 24px;
+  --handle-height: 24px;
+  --handle-border-radius: 50%;
+  --track-border-radius: 999px;
+  --track-height: 32px;
+  --track-width: 60px;
+
+  --track-background: url('/assets/clouds.jpg') no-repeat center / cover;
+  --handle-background: #ffd700;
+  transition: all 0.3s ease;
+}

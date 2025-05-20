@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- Botão invisível para centrar o título -->
+    <ion-buttons slot="start">
+      <ion-button style="opacity: 0; pointer-events: none;">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Definições</ion-title>
+
+    <!-- Botão de logout -->
+    <ion-buttons slot="end">
+      <ion-button color="danger" routerLink="/home">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="setting-section">
+    <div class="setting-text">
+      <h2>Tema da aplicação</h2>
+      <p>Escolhe entre modo claro ou escuro</p>
+    </div>
+    <div class="setting-control">
+      <ion-toggle class="custom-toggle" [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+    </div>
+  </div>
+
+  <div class="setting-section">
+    <div class="setting-text">
+      <h2>Utilização de dados móveis</h2>
+      <p>Gere a quantidade de dados móveis que usas</p>
+    </div>
+    <div class="setting-control">
+      <ion-select interface="popover" placeholder="Select" [(ngModel)]="mobileData">
+        <ion-select-option value="low">Pouco</ion-select-option>
+        <ion-select-option value="medium">Médio</ion-select-option>
+        <ion-select-option value="high">Muito</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+  <div class="setting-section">
+    <div class="setting-text">
+      <h2>Idioma</h2>
+      <p>Selecione o idioma pretendido</p>
+    </div>
+    <div class="setting-control">
+      <ion-select interface="popover" placeholder="Select" [(ngModel)]="language">
+        <ion-select-option value="pt">Português</ion-select-option>
+        <ion-select-option value="en">Inglês</ion-select-option>
+        <ion-select-option value="es">Espanhol</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="custom-tab-bar">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-start">
+          <ion-button fill="clear" routerLink="/dashboard" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" routerLink="/perfil" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="person"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button fill="clear" routerLink="/settings" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
