@@ -1,0 +1,76 @@
+.setting-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.setting-text {
+  flex-grow: 1;
+  min-width: 0;
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #000000;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #000000;
+    margin-bottom: 0;
+  }
+}
+
+.setting-control {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 120px;
+}
+
+/* Estilo do toggle personalizado */
+ion-toggle.custom-toggle {
+  --handle-width: 24px;
+  --handle-height: 24px;
+  --handle-border-radius: 50%;
+  --track-border-radius: 999px;
+  --track-height: 32px;
+  --track-width: 60px;
+  --track-background: url('/assets/clouds.jpg') no-repeat center / cover;
+  --handle-background: #ffd700;
+  transition: all 0.3s ease;
+}
+
+/* Estilo visual dos selects */
+ion-select {
+  --border-radius: 12px;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: #000000;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --background: #ffffff;
+  --color: #000000;
+  --placeholder-color: #000000;
+  align-items: right !important;
+  text-align: right !important;
+  justify-content: right !important;
+}
+
+ion-select::part(text),
+ion-select::part(placeholder),
+.alert-radio-label {
+  color: black !important;
+}
+
+/* Centralizar título no header */
+ion-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-weight: bold;
+}
