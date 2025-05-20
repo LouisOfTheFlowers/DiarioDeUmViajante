@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button style="opacity: 0; pointer-events: none;">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="danger" routerLink="/home">
+        <ion-icon slot="icon-only" name="power"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="profile-banner">
+    <div class="banner-title">Perfil</div>
+  </div>
+
+  <ion-item lines="none" class="user-item">
+    <ion-icon slot="start" name="person-outline"></ion-icon>
+    <ion-label>Utilizador</ion-label>
+    <ion-icon slot="end" name="chevron-down-outline"></ion-icon>
+  </ion-item>
+
+  <div class="button-grid">
+    <ion-button expand="block" fill="solid" color="light" routerLink="/registar" class="icon-button">
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+      Registar Viagem
+    </ion-button>
+
+    <ion-button expand="block" fill="solid" color="light" routerLink="/historico" class="icon-button">
+      <ion-icon slot="start" name="refresh-outline"></ion-icon>
+      Histórico de Viagens
+    </ion-button>
+
+    <ion-button expand="block" fill="solid" color="light" routerLink="/avaliacoes" class="icon-button">
+      <ion-icon slot="start" name="star-outline"></ion-icon>
+      Avaliações
+    </ion-button>
+
+    <ion-button expand="block" fill="solid" color="light" routerLink="/fotografias" class="icon-button">
+      <ion-icon slot="start" name="camera-outline"></ion-icon>
+      Fotografias
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="custom-tab-bar">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-start">
+          <ion-button fill="clear" routerLink="/dashboard" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" routerLink="/perfil" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="person"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button fill="clear" routerLink="/settings" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
