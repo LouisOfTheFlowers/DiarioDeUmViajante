@@ -65,12 +65,3 @@ ion-select::part(placeholder),
 .alert-radio-label {
   color: black !important;
 }
-
-/* Centralizar título no header */
-ion-title {
-  position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-weight: bold;
-}

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/perfil">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Registo de Viagens</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="empty-state" style="text-align: center; margin-top: 40px;">
+    <img src="assets/images/sadface.png" alt="Sem viagens" style="width: 120px; margin-bottom: 16px;" />
+    <p style="font-size: 1.1em; color: #444;">De momento não tem viagem adicionadas</p>
+  </div>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 70px;">
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-footer>
+  <ion-toolbar class="custom-tab-bar">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-start">
+          <ion-button fill="clear" routerLink="/dashboard" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" routerLink="/perfil" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="person"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button fill="clear" routerLink="/settings" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

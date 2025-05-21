@@ -30,7 +30,17 @@
 .button-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  column-gap: 12px; 
+  row-gap: -24px;     
+}
+
+.button-grid ion-button {
+  width: 100%;
+  min-height: 48px;
+  font-size: 1.1em;
+  border-radius: 16px;
+  margin-bottom: 0;
+  padding: 12px 0;
 }
 
 .icon-button {
