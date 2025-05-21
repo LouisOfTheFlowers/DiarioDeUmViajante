@@ -26,6 +26,18 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'avaliacoes',
+    loadChildren: () => import('./avaliacoes/avaliacoes.module').then( m => m.AvaliacoesPageModule)
+  },
+  {
+    path: 'registoviagem',
+    loadChildren: () => import('./registoviagem/registoviagem.module').then( m => m.RegistoviagemPageModule)
+  },
+  {
+    path: 'registar-viagem',
+    loadChildren: () => import('./registar-viagem/registar-viagem.module').then( m => m.RegistarViagemPageModule)
+  },
 
 
 
