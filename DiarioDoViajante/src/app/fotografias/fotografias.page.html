@@ -1,0 +1,141 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/perfil">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Fotografias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <!-- Banner/Header -->
+  <div style="position: relative; margin-bottom: 24px;">
+    <img src="assets/fotografias.png" alt="Fotografias" style="width: 100%; border-radius: 24px; height: 90px; object-fit: cover;">
+    <div style="position: absolute; left: 24px; bottom: 16px; color: #111; font-size: 2em; font-weight: 600; text-shadow: 0 2px 8px #fff;">
+      Fotografias
+    </div>
+  </div>
+
+  <!-- Filtros + botão adicionar -->
+  <div class="filtros-wrapper">
+    <ion-select placeholder="Proprietário" interface="popover">
+      <ion-select-option value="me">Eu</ion-select-option>
+      <ion-select-option value="outros">Outros</ion-select-option>
+    </ion-select>
+
+    <ion-select placeholder="Data de modificação" interface="popover">
+      <ion-select-option value="recente">Mais recente</ion-select-option>
+      <ion-select-option value="antigo">Mais antigo</ion-select-option>
+    </ion-select>
+
+    <ion-button fill="outline" class="botao-adicionar" routerLink="/fotografias/adicionar">
+      Adicionar nova
+      <ion-icon name="add" slot="end"></ion-icon>
+    </ion-button>
+  </div>
+
+  <!-- Tabs -->
+  <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)" style="margin-bottom: 24px;">
+    <ion-segment-button value="fotos">
+      <ion-label>Fotografias</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="albuns">
+      <ion-label>Álbuns</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- GALERIA: Fotografias -->
+  <div *ngIf="selectedTab === 'fotos'">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="4" size-lg="3">
+          <ion-card>
+            <img src="assets/colleseu.png" />
+            <ion-card-content>
+              <ion-label>Colosseo.png</ion-label><br />
+              <small>Imagem ≈ 2mb</small>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="6" size-md="4" size-lg="3">
+          <ion-card>
+            <img src="assets/Fontanaditrevi.png" />
+            <ion-card-content>
+              <ion-label>Fontana di Trevi.png</ion-label><br />
+              <small>Imagem ≈ 1mb</small>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="6" size-md="4" size-lg="3">
+          <ion-card>
+            <img src="assets/pontAlexandre3.png" />
+            <ion-card-content>
+              <ion-label>Pont Alexandre III.png</ion-label><br />
+              <small>Imagem ≈ 2mb</small>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- GALERIA: Álbuns -->
+  <div *ngIf="selectedTab === 'albuns'">
+    <ion-grid>
+      <ion-row>
+       <ion-col size="6" size-md="3" size-lg="2" class="ion-text-center">
+
+          <div class="album-card selecionado">
+            <img src="assets/colleseu.png" class="foto-dentro-pasta" />
+            <ion-icon name="folder" class="pasta-icone"></ion-icon>
+            <div class="album-info">
+              <ion-label>Roma</ion-label><br />
+              <small>Álbum ≈ 3mb</small>
+            </div>
+          </div>
+        </ion-col>
+
+        <ion-col size="6" size-md="4">
+          <div class="album-card">
+            <img src="assets/pontAlexandre3.png" class="foto-dentro-pasta" />
+            <ion-icon name="folder" class="pasta-icone"></ion-icon>
+            <div class="album-info">
+              <ion-label>Paris</ion-label><br />
+              <small>Álbum ≈ 2mb</small>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="custom-tab-bar">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-start">
+          <ion-button fill="clear" routerLink="/dashboard" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" routerLink="/perfil" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="person"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button fill="clear" routerLink="/settings" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>
