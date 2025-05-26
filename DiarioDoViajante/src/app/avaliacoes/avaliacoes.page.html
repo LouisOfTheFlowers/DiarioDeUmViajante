@@ -15,8 +15,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-
-  <!-- Banner/Header image with overlay text -->
   <div style="position: relative; margin-bottom: 24px;">
     <img src="/assets/banner1.webp" alt="Avaliações" style="width: 100%; border-radius: 24px; height: 90px; object-fit: cover;">
     <div style="position: absolute; left: 24px; bottom: 16px; color: #111; font-size: 2em; font-weight: 600; text-shadow: 0 2px 8px #fff;">
@@ -24,58 +22,48 @@
     </div>
   </div>
 
-  <!-- Avaliação Restaurante -->
-  <!-- ...existing code... -->
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    placeholder="Procurar restaurante/hotel..."
+    showClearButton="always">
+  </ion-searchbar>
 
-<!-- Avaliação Restaurante -->
-<!-- Avaliação Restaurante -->
-<ion-card *ngIf="filter === 'all' || filter === 'restaurante'" style="background: transparent;">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4" style="display: flex; align-items: center;">
-        <img src="assets/restaurante.png" alt="Restaurante" style="width: 100%; border-radius: 8px;">
-      </ion-col>
-      <ion-col size="8">
-        <div style="font-size: 1.1em; font-weight: 500;">Restaurante</div>
-        <div style="margin-top: 8px;">
-          <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
-            <ion-icon
-              [name]="restauranteRating >= star ? 'star' : 'star-outline'"
-              style="font-size: 2em; color: #111; cursor: pointer;"
-              (click)="setRestauranteRating(star)">
-            </ion-icon>
-          </ng-container>
+  <div *ngIf="avaliacoes.length === 0" class="empty-state" style="text-align: center; margin-top: 40px;">
+    <img src="assets/images/sadface.png" alt="Sem avaliações" style="width: 120px; margin-bottom: 16px;" />
+    <p style="font-size: 1.1em; color: #444;">De momento não tem avaliações registadas</p>
+  </div>
+
+  <div *ngIf="avaliacoesFiltradas.length > 0">
+    <ion-card *ngFor="let avaliacao of avaliacoesFiltradas; let i = index" style="margin-bottom: 18px;">
+      <ion-card-header>
+        <ion-card-title style="font-size: 1.2em;">{{ avaliacao.nome }}</ion-card-title>
+        <ion-card-subtitle>{{ avaliacao.categoria }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ avaliacao.comentario }}</p>
+        <div>
+          <ion-icon *ngFor="let star of [1,2,3,4,5]"
+                    [name]="avaliacao.rating >= star ? 'star' : 'star-outline'"
+                    style="color: #FFD600;"></ion-icon>
         </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-card>
-
-<!-- Avaliação Hotel -->
-<ion-card *ngIf="filter === 'all' || filter === 'hotel'" style="background: transparent;">
-  <ion-grid>
-    <ion-row>
-      <ion-col size="4" style="display: flex; align-items: center;">
-        <img src="assets/hotel.png" alt="Hotel" style="width: 100%; border-radius: 8px;">
-      </ion-col>
-      <ion-col size="8">
-        <div style="font-size: 1.1em; font-weight: 500;">Hotel</div>
-        <div style="margin-top: 8px;">
-          <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
-            <ion-icon
-              [name]="hotelRating >= star ? 'star' : 'star-outline'"
-              style="font-size: 2em; color: #111; cursor: pointer;"
-              (click)="setHotelRating(star)">
-            </ion-icon>
-          </ng-container>
+        <div *ngIf="avaliacao.foto" style="text-align:center; margin: 12px 0;">
+          <img [src]="avaliacao.foto" alt="Foto" style="max-width: 180px; border-radius: 12px;" />
         </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-card>
-<!-- ...existing code... -->
-
+        <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <ion-button color="danger" (click)="eliminarAvaliacao(i)">
+            <ion-icon slot="icon-only" name="trash-outline" style="font-size: 1.5em;"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 70px;">
+  <ion-fab-button routerLink="/registar-avaliacao">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 
 <ion-footer>
   <ion-toolbar class="custom-tab-bar">

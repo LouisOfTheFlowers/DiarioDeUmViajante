@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 interface Viagem {
   destino: string;
@@ -18,30 +19,35 @@ export class HistoricoViagemPage implements OnInit {
   viagens: Viagem[] = [];
   searchTerm: string = '';
   precoFiltro: 'nenhum' | 'asc' | 'desc' | 'maisRecente' | 'maisAntigo' = 'nenhum';
+  private _storage: Storage | null = null;
 
-  constructor(private actionSheetCtrl: ActionSheetController) {}
+  constructor(
+    private actionSheetCtrl: ActionSheetController,
+    private storage: Storage
+  ) {}
 
-  ngOnInit() {
-    this.carregarViagens();
+  async ngOnInit() {
+    this._storage = await this.storage.create();
+    await this.carregarViagens();
   }
 
-  ionViewWillEnter() {
-    this.carregarViagens();
+  async ionViewWillEnter() {
+    await this.carregarViagens();
   }
 
-  carregarViagens() {
-    const viagensGuardadas = localStorage.getItem('viagens');
+  async carregarViagens() {
+    const viagensGuardadas = await this._storage?.get('viagens');
     if (viagensGuardadas) {
-      this.viagens = JSON.parse(viagensGuardadas);
+      this.viagens = viagensGuardadas;
     } else {
       this.viagens = [];
     }
   }
 
-  eliminarViagem(index: number) {
+  async eliminarViagem(index: number) {
     if (confirm('Tem a certeza que deseja eliminar esta viagem?')) {
       this.viagens.splice(index, 1);
-      localStorage.setItem('viagens', JSON.stringify(this.viagens));
+      await this._storage?.set('viagens', this.viagens);
     }
   }
 
@@ -94,12 +100,46 @@ export class HistoricoViagemPage implements OnInit {
     } else if (this.precoFiltro === 'desc') {
       filtradas = [...filtradas].sort((a, b) => (b.preco ?? 0) - (a.preco ?? 0));
     } else if (this.precoFiltro === 'maisRecente') {
-      filtradas = [...filtradas].reverse(); // Últimas adicionadas primeiro
+      filtradas = [...filtradas].reverse();
     } else if (this.precoFiltro === 'maisAntigo') {
-      // Mantém a ordem original (primeiras adicionadas primeiro)
       filtradas = [...filtradas];
     }
 
     return filtradas;
+  }
+
+  async exportarViagens() {
+    const viagens = await this._storage?.get('viagens') || [];
+    const dataStr = JSON.stringify(viagens, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'viagens.json';
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+
+  async importarViagens(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e: any) => {
+      try {
+        const viagensImportadas = JSON.parse(e.target.result);
+        if (Array.isArray(viagensImportadas)) {
+          this.viagens = viagensImportadas;
+          await this._storage?.set('viagens', this.viagens);
+        } else {
+          alert('Ficheiro inválido!');
+        }
+      } catch {
+        alert('Erro ao ler ficheiro!');
+      }
+    };
+    reader.readAsText(file);
   }
 }

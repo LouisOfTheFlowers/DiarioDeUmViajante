@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Storage } from '@ionic/storage-angular';
 
 interface Viagem {
   destino: string;
@@ -22,13 +23,15 @@ export class RegistarViagemPage implements OnInit {
   transportes: string[] = []; // array para vários transportes
 
   viagens: Viagem[] = []; // Array para guardar as viagens
+  private _storage: Storage | null = null;
 
-  constructor(private location: Location) {}
+  constructor(private storage: Storage, private location: Location) {}
 
-  ngOnInit() {
-    const viagensGuardadas = localStorage.getItem('viagens');
+  async ngOnInit() {
+    this._storage = await this.storage.create();
+    const viagensGuardadas = await this._storage.get('viagens');
     if (viagensGuardadas) {
-      this.viagens = JSON.parse(viagensGuardadas);
+      this.viagens = viagensGuardadas;
     }
   }
 
@@ -39,7 +42,7 @@ export class RegistarViagemPage implements OnInit {
     this.transportes = [];
   }
 
-  confirmarViagem() {
+  async confirmarViagem() {
     const novaViagem: Viagem = {
       destino: this.destino,
       percurso: this.percurso,
@@ -47,7 +50,7 @@ export class RegistarViagemPage implements OnInit {
       transportes: this.transportes
     };
     this.viagens.push(novaViagem);
-    localStorage.setItem('viagens', JSON.stringify(this.viagens));
+    await this._storage?.set('viagens', this.viagens);
     this.destino = '';
     this.percurso = '';
     this.preco = null;
@@ -56,6 +59,27 @@ export class RegistarViagemPage implements OnInit {
 
   voltarAtras() {
     this.location.back();
+  }
+
+  async importarViagens(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e: any) => {
+      try {
+        const viagensImportadas = JSON.parse(e.target.result);
+        if (Array.isArray(viagensImportadas)) {
+          this.viagens = viagensImportadas;
+          await this._storage?.set('viagens', this.viagens);
+        } else {
+          alert('Ficheiro inválido!');
+        }
+      } catch {
+        alert('Erro ao ler ficheiro!');
+      }
+    };
+    reader.readAsText(file);
   }
 }
 
