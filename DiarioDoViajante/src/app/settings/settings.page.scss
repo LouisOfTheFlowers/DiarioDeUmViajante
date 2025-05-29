@@ -54,14 +54,9 @@ ion-select {
   --padding-end: 10px;
   --background: #ffffff;
   --color: #000000;
-  --placeholder-color: #000000;
+  --placeholder-color: #ffffff;
   align-items: right !important;
   text-align: right !important;
   justify-content: right !important;
 }
 
-ion-select::part(text),
-ion-select::part(placeholder),
-.alert-radio-label {
-  color: black !important;
-}

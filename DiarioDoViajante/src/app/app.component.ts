@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+    const saved = localStorage.getItem('darkMode') === 'true';
+    if (saved) {
+      document.body.classList.add('dark-theme');
+    }
+  }
 }

@@ -1,9 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="voltarAtras()">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Registar Viagem</ion-title>
   </ion-toolbar>
@@ -30,7 +28,7 @@
 </ion-item>
 
 <ion-item class="custom-input" lines="none">
-  <ion-select [(ngModel)]="transportes" placeholder="Transportes" multiple="true">
+  <ion-select [(ngModel)]="transportes" placeholder="Transportes" multiple="true" >
     <ion-select-option value="carro">Carro</ion-select-option>
     <ion-select-option value="comboio">Comboio</ion-select-option>
     <ion-select-option value="autocarro">Autocarro</ion-select-option>

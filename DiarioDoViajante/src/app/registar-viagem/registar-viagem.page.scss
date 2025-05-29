@@ -13,14 +13,21 @@ ion-content {
     color: #000;
     font-size: 20px;
   }
-
-  ion-input,
-  ion-select {
-    color: #000;
-    font-size: 16px;
-    opacity: 1;
-  }
+  .alert-radio-label.sc-ion-alert-md {
+  color: white !important;
 }
+
+.alert-button.sc-ion-alert-md {
+  color: white !important;
+}
+
+
+  
+   
+  
+
+}
+
 
 /* Botão confirmar */
 .confirmar-button {

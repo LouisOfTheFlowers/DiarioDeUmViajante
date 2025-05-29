@@ -1,9 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/avaliacoes">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="/dashboard" text=""></ion-back-button>  
     </ion-buttons>
     <ion-title>Registar Avaliação</ion-title>
   </ion-toolbar>
@@ -12,7 +10,7 @@
 <ion-content class="ion-padding">
 
   <ion-item class="custom-input" lines="none">
-    <ion-select [(ngModel)]="categoria" placeholder="Categoria">
+    <ion-select [(ngModel)]="categoria" placeholder="Categoria" interface="alert">
       <ion-select-option value="Restaurante">Restaurante</ion-select-option>
       <ion-select-option value="Hotel">Hotel</ion-select-option>
     </ion-select>
@@ -25,7 +23,7 @@
   </ion-item>
 
   <ion-item class="custom-input" lines="none">
-    <ion-textarea [(ngModel)]="comentario" placeholder="Comentário"></ion-textarea>
+    <ion-input [(ngModel)]="comentario" placeholder="Comentário"></ion-input>
     <ion-icon slot="start" name="chatbubble-ellipses"></ion-icon>
   </ion-item>
 
@@ -43,13 +41,12 @@
   </ion-item>
 
   <ion-item class="custom-input" lines="none">
-    <ion-button
+    <ion-button class="adicionar-foto-button"
       fill="clear"
       expand="block"
-      (click)="escolherFoto()"
-      style="width: 100%; text-align: left; --background: transparent; --box-shadow: none;">
+      (click)="escolherFoto()">
       <ion-icon slot="start" name="camera"></ion-icon>
-      <span style="color: #000;">Adicionar Fotografia</span>
+      <span>Adicionar Fotografia</span>
     </ion-button>
   </ion-item>
 

@@ -1,11 +1,9 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/perfil">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="perfil" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Avaliações</ion-title>
+    <ion-title>Avaliações</ion-title> 
     <ion-buttons slot="end">
       <ion-button (click)="openFilter()">
         <ion-icon slot="icon-only" name="options-outline"></ion-icon>

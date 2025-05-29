@@ -17,7 +17,7 @@
       <p>Escolhe entre modo claro ou escuro</p>
     </div>
     <div class="setting-control">
-      <ion-toggle class="custom-toggle" [(ngModel)]="darkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+      <ion-toggle class="custom-toggle" [(ngModel)]="darkMode" (ionChange)="toggleDarkMode($event)"></ion-toggle>
     </div>
   </div>
 

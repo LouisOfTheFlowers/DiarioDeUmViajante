@@ -1,9 +1,7 @@
-<ion-header [translucent]="true">
+<ion-header >
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/perfil">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
     </ion-buttons>
     <ion-title>Fotografias</ion-title>
   </ion-toolbar>
@@ -21,15 +19,7 @@
 
   <!-- Filtros + botão adicionar -->
   <div class="filtros-wrapper">
-    <ion-select placeholder="Proprietário" interface="popover">
-      <ion-select-option value="me">Eu</ion-select-option>
-      <ion-select-option value="outros">Outros</ion-select-option>
-    </ion-select>
-
-    <ion-select placeholder="Data de modificação" interface="popover">
-      <ion-select-option value="recente">Mais recente</ion-select-option>
-      <ion-select-option value="antigo">Mais antigo</ion-select-option>
-    </ion-select>
+  
 
     <ion-button fill="outline" class="botao-adicionar" routerLink="/fotografias/adicionar">
       Adicionar nova

@@ -3,7 +3,7 @@ ion-content {
 }
 
 .custom-input {
-  --background: #f2f2f2;
+  --background: #ffffff;
   border-radius: 16px;
   margin-bottom: 16px;
   padding-inline-start: 12px;
@@ -12,13 +12,10 @@ ion-content {
     color: #000;
     font-size: 20px;
   }
+  
+ 
 
-  ion-input,
-  ion-textarea {
-    color: #000;
-    font-size: 16px;
-    opacity: 1;
-  }
+  
 }
 
 .confirmar-button {
@@ -31,19 +28,16 @@ ion-content {
   font-weight: 500;
 }
 
+
 span {
   margin-left: 12px;
   color: #000;
 }
 
-ion-select, ion-select::part(text), ion-select::part(placeholder) {
-  color: #000 !important;
-}
 
-ion-select {
-  --color: #000 !important;
-  --placeholder-color: #000 !important;
-}
+
+
+
 
 ion-item.custom-input ion-button[fill="clear"] {
   --background: transparent;

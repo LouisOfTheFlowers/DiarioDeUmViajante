@@ -9,52 +9,13 @@
 }
 
 // Estilo do botão "Adicionar nova"
-.botao-adicionar {
-  background: #eaeaea;
-  --background: #eaeaea;
-  --color: #000;
-justify-content: right !important;
-align-items: right !important;
-  text-align: right !important;
-  margin-left: auto;
-  display: absolute;
-  font-weight: 500;
-  text-transform: none;
-  flex-grow: 1;
-  max-width: 200px;
-}
+
 
 // Estilo dos ion-select
-ion-select {
-  
-  --background: #f2f2f2;
-  --color: #000;
-  --placeholder-color: #000000;
-  --border-radius: 12px;
-  padding: 8px 16px;
-  min-width: 120px;
-  border-radius: 16px;
-}
+
 
 // Tabs (Fotografias / Álbuns)
-ion-segment {
-  background: transparent;
 
-  ion-segment-button {
-    --indicator-color: #ffffff;
-    --color-checked: #000;
-    color: #000000;
-    font-weight: 500;
-  }
-
-  ion-segment-button.ion-activated {
-    color: #000;
-  }
-    ion-segment-button:not(.ion-activated) {
-        color: #000;
-    }
-  
-}
 ion-select::part(text)
  {
   color: black !important;
@@ -77,19 +38,20 @@ ion-card {
   ion-card-content {
     padding: 12px;
     font-size: 14px;
-    color: #111;
+    color: #ffffff;
 
     ion-label {
       font-weight: 500;
       font-size: 15px;
       display: block;
-      color: #000;
+      color: #ffffff;
     }
 
     small {
       color: #888;
     }
   }
+ 
 
 }
 .album-card {
@@ -98,7 +60,7 @@ ion-card {
   padding-top: 32px;
   padding-bottom: 12px;
   border-radius: 12px;
-  background: #fff;
+  background: transparent;
   border: 2px solid transparent;
   transition: border 0.3s ease;
   display: flex;

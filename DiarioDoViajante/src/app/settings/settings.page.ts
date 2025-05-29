@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-settings',
@@ -8,14 +6,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./settings.page.scss'],
   standalone: false,
 })
-export class SettingsPage {
+export class SettingsPage implements OnInit {
   darkMode = false;
   mobileData = '';
   language = '';
 
-  toggleDarkMode() {
-    document.body.classList.toggle('dark', this.darkMode);
+  toggleDarkMode(event: any) {
+    const isDark = event.detail.checked;
+    document.body.classList.toggle('dark-theme', isDark);
+    localStorage.setItem('darkMode', isDark ? 'true' : 'false');
   }
 
-
+  ngOnInit() {
+    const saved = localStorage.getItem('darkMode') === 'true';
+    this.darkMode = saved;
+    if (saved) {
+      document.body.classList.add('dark-theme');
+    }
+  }
 }

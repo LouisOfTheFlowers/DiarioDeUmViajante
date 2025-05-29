@@ -1,2 +1,42 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+.dark-theme,
+.dark-theme :root {
+  --ion-color-primary: #428cff;
+  --ion-color-primary-rgb: 66,140,255;
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+  --ion-toolbar-background: #1f1f1f;
+  --ion-item-background: #1f1f1f;
+
+
+  --ion-color-darkmode: #474f49;
+	--ion-color-darkmode-rgb: 71,79,73;
+	--ion-color-darkmode-contrast: #ffffff;
+	--ion-color-darkmode-contrast-rgb: 255,255,255;
+	--ion-color-darkmode-shade: #3e4640;
+	--ion-color-darkmode-tint: #59615b;
+}
+
+.dark-theme ion-content {
+  --background: var(--ion-background-color);
+  color: var(--ion-text-color);
+}
+
+
+
+.dark-theme ion-toolbar,
+.dark-theme ion-item {
+  --background: var(--ion-toolbar-background);
+  color: var(--ion-text-color);
+}
+.select-interface-option {
+  color: #ffffff !important;
+}
+.ion-color-darkmode {
+	--ion-color-base: var(--ion-color-darkmode);
+	--ion-color-base-rgb: var(--ion-color-darkmode-rgb);
+	--ion-color-contrast: var(--ion-color-darkmode-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-darkmode-contrast-rgb);
+	--ion-color-shade: var(--ion-color-darkmode-shade);
+	--ion-color-tint: var(--ion-color-darkmode-tint);
+}
+
