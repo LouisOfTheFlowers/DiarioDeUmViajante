@@ -54,7 +54,7 @@
 }
 
 .login-button-text {
-  color: #3c00ff;
+  color: #3c00ff !important;
   font-weight: 600;
 }
 
@@ -67,7 +67,7 @@
     margin-bottom: 8px;
     font-family: 'ABeeZee', sans-serif;
     font-size: 16px;
-    color: #280f96;
+    color: #2f06e6;
     text-decoration: none;
   }
 }
@@ -75,3 +75,7 @@
   filter: brightness(0.9);
 }
 
+body.dark .custom-input label,
+body.dark-theme .custom-input label {
+  color: #fff !important;
+}

@@ -6,3 +6,7 @@ ion-content {
   width: 120px;
   margin-bottom: 16px;
 }
+
+ion-button[color="danger"] ion-icon[name="trash-outline"] {
+  color: #000 !important;
+}

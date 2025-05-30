@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Storage } from '@ionic/storage-angular';
+import { AlertController } from '@ionic/angular';
 
 interface Viagem {
   destino: string;
@@ -25,7 +26,11 @@ export class RegistarViagemPage implements OnInit {
   viagens: Viagem[] = [];
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage, private location: Location) {}
+  constructor(
+    private storage: Storage,
+    private location: Location,
+    private alertCtrl: AlertController
+  ) {}
 
   async ngOnInit() {
     this._storage = await this.storage.create();
@@ -43,6 +48,23 @@ export class RegistarViagemPage implements OnInit {
   }
 
   async confirmarViagem() {
+    // Verifica se todos os campos estão preenchidos
+    if (
+      !this.destino ||
+      !this.percurso ||
+      this.preco === null ||
+      this.preco === undefined ||
+      this.transportes.length === 0
+    ) {
+      const alert = await this.alertCtrl.create({
+        header: 'Atenção',
+        message: 'Tem de preencher todos os campos!',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+
     const novaViagem: Viagem = {
       destino: this.destino,
       percurso: this.percurso,
@@ -75,10 +97,10 @@ export class RegistarViagemPage implements OnInit {
           this.viagens = viagensImportadas;
           await this._storage?.set('viagens', this.viagens);
         } else {
-          alert('Ficheiro inválido!');
+          this.apresentarAlerta('Ficheiro inválido!');
         }
       } catch {
-        alert('Erro ao ler ficheiro!');
+        this.apresentarAlerta('Erro ao ler ficheiro!');
       }
     };
     reader.readAsText(file);
@@ -96,5 +118,15 @@ export class RegistarViagemPage implements OnInit {
     a.click();
 
     window.URL.revokeObjectURL(url);
+  }
+
+  private async apresentarAlerta(mensagem: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Atenção',
+      message: mensagem,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }

@@ -3,61 +3,57 @@
  * ----------------------------------------------------------------------------
  */
 
-/* Core CSS required for Ionic components to work properly */
+/* =========================
+   IMPORTS IONIC CSS BASE
+   ========================= */
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
-
-/* Dark mode base */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-/* Light mode default */
+/* =========================
+   LIGHT MODE (DEFAULT)
+   ========================= */
 body,
 ion-content {
   --background: #ffffff !important;
   background: #ffffff !important;
   color: #000 !important;
 }
-/* src/theme/variables.scss */
 
+/* =========================
+   ROOT VARIÁVEIS E ALERTAS
+   ========================= */
 :root {
-  /* Global CSS variables already here... */
-
-  // Custom global overrides
   --ion-color-step-850: #ffffff; // optional
 
-  // Custom alert styles
+  /* Custom alert styles */
   .alert-radio-label.sc-ion-alert-md {
     color: rgb(255, 255, 255) !important;
   }
-
   .alert-button.sc-ion-alert-md {
-    color: white !important;
+    color: #fff !important; // preto no light mode
   }
 }
 
-
-/* Toggle decorativo */
+/* =========================
+   TOGGLE DECORATIVO
+   ========================= */
 body.dark ion-toggle.custom-toggle {
   --track-background: url('/assets/estrelas.png') no-repeat center / cover;
   --handle-background: #e0e0e0;
 }
 
-
-/* ======================================= */
-/*           TAB BAR ESTILO FIXO           */
-/* ======================================= */
+/* =========================
+   TAB BAR ESTILO FIXO
+   ========================= */
 ion-toolbar.custom-tab-bar {
   --background: #000000 !important;
   background: #000000 !important;
@@ -66,32 +62,6 @@ ion-toolbar.custom-tab-bar {
   border-radius: 0 !important;
   padding-bottom: env(safe-area-inset-bottom);
 }
- ion-select::placeholder {
-  --color: #000000 !important;
-  --placeholder-color: #000000 !important;
-  --highlight-color-focused: #000000 !important;
-  --highlight-color-valid: #000000 !important;
-}
-
- ion-input {
-  color: #000000 !important;
-  --placeholder-color: #000000 !important;
-}
-.botao-adicionar {
- 
-  --background: #eaeaea;
-  --color: #000;
-justify-content: right !important;
-align-items: right !important;
-  text-align: right !important;
-  margin-left: auto;  
-  display: absolute;
-  font-weight: 500;
-  text-transform: none;
-  flex-grow: 1;
-  max-width: 200px;
-}
-
 ion-toolbar.custom-tab-bar ion-button {
   color: #fff !important;
   --color: #fff !important;
@@ -106,8 +76,6 @@ ion-toolbar.custom-tab-bar ion-button {
   align-items: center;
   justify-content: center;
 }
-
-
 ion-toolbar.custom-tab-bar ion-button.tab-selected {
   background: #fff !important;
   --background: #fff !important;
@@ -115,81 +83,115 @@ ion-toolbar.custom-tab-bar ion-button.tab-selected {
   --color: #111 !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
 }
-ion-select-option {
-  color: #000000 !important; 
-}
-
 ion-toolbar.custom-tab-bar ion-button.tab-selected ion-icon {
   color: #111 !important;
   font-size: 28px;
 }
-span{
-  color : #000000 !important;
- }
-
-
 ion-toolbar.custom-tab-bar ion-button:not(.tab-selected) ion-icon {
   color: #fff !important;
   font-size: 28px;
 }
- ion-action-sheet,
- .action-sheet-group,
- .action-sheet-title,
- .action-sheet-button,
- .action-sheet-subtitle,
- .action-sheet-button,
- .action-sheet-option {
-  --color: #ffffff !important;
-  color: #ffffff !important;
-}
 
- .action-sheet-button.ion-activated {
-  background: #333 !important;
-  color: #ffffff !important;
+/* =========================
+   INPUTS E SELECTS
+   ========================= */
+ion-select::placeholder {
+  --color: #000000 !important;
+  --placeholder-color: #000000 !important;
+  --highlight-color-focused: #000000 !important;
+  --highlight-color-valid: #000000 !important;
 }
-ion-card{
-  --background: #282424 !important;
-  background: #282424 !important;
-  color: #ffffff !important;
-  border-radius:5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+ion-input {
+  color: #000000 !important;
+  --placeholder-color: #000000 !important;
+}
+ion-select-option {
+  color: #000000 !important;
 }
 ion-select::part(text),
 ion-select::part(placeholder) {
   color: #000000 !important;
 }
 
+/* =========================
+   BOTÃO ADICIONAR
+   ========================= */
+.botao-adicionar {
+  --background: #eaeaea;
+  --color: #000;
+  justify-content: right !important;
+  align-items: right !important;
+  text-align: right !important;
+  margin-left: auto;
+  display: absolute;
+  font-weight: 500;
+  text-transform: none;
+  flex-grow: 1;
+  max-width: 200px;
+}
+
+/* =========================
+   CARDS
+   ========================= */
+ion-card {
+  --background: #282424 !important;
+  background: #282424 !important;
+  color: #ffffff !important;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================
+   ACTION SHEET
+   ========================= */
+ion-action-sheet,
+.action-sheet-group,
+.action-sheet-title,
+.action-sheet-button,
+.action-sheet-subtitle,
+.action-sheet-option {
+  --color: #ffffff !important;
+  color: #ffffff !important;
+}
+.action-sheet-button.ion-activated {
+  background: #333 !important;
+  color: #ffffff !important;
+}
+
+/* =========================
+   SEGMENT
+   ========================= */
 ion-segment {
   background: transparent;
-
   ion-segment-button {
     --indicator-color: #ffffff;
     --color-checked: #000;
     color: #000000;
     font-weight: 500;
   }
-
   ion-segment-button.ion-activated {
     color: #000;
   }
-    ion-segment-button:not(.ion-activated) {
-        color: #000;
-    }
- 
+  ion-segment-button:not(.ion-activated) {
+    color: #000;
+  }
 }
 
+/* =========================
+   SPAN
+   ========================= */
+span {
+  color: #000000 !important;
+}
 
-
-/* ======================================= */
-/*        DARK MODE PERSONALIZADO          */
-/* ======================================= */
-
+/* =========================
+   DARK MODE PERSONALIZADO
+   ========================= */
 .dark-theme {
   --ion-color-primary: #428cff;
   --ion-color-primary-rgb: 66,140,255;
-  --ion-background-color: var(--ion-color-darkmode); // fundo escuro
-  --ion-text-color: #ffffff;       // texto claro
- 
+  --ion-background-color: var(--ion-color-darkmode);
+  --ion-text-color: #ffffff;
   --ion-item-background: var(--ion-color-darkmode);
 }
 
@@ -198,28 +200,15 @@ ion-segment {
 .dark-theme ion-content,
 .dark-theme ion-item,
 .dark-theme ion-label,
-
-
-
-
-
-
-
- 
- 
-
-
-
 .dark-theme ion-toggle {
   --background: var(--ion-color-darkmode) !important;
   --color: #0d0d0d !important;
   background: transparent !important;
-  --color: #0d0d0d !important;
   color: #ffffff !important;
 }
- .dark-theme p{
+.dark-theme p {
   color: #ffffff !important;
- }
+}
 .dark-theme ion-select {
   --background: transparent !important;
   --placeholder-color: #ffffff !important;
@@ -227,83 +216,84 @@ ion-segment {
   --highlight-color-focused: #ffffff !important;
   --highlight-color-valid: #ffffff !important;
 }
-
 .dark-theme ion-select::part(placeholder),
 .dark-theme ion-select::part(text) {
   color: #ffffff !important;
-  
 }
 .dark-theme ion-icon {
-  color : #ffffff !important;
- }
-
- .dark-theme span{
-  color : #ffffff !important;
- }
-
-
-
-
+  color: #ffffff !important;
+  background: transparent;
+}
+.dark-theme span {
+  color: #ffffff !important;
+}
 .dark-theme ion-select-option {
   color: #ffffff !important;
-   .dark-theme ion-select::part(text) {
+}
+.dark-theme ion-select::part(text) {
   color: #ffffff !important;
   font-weight: 500;
 }
 .dark-theme ion-select::part(placeholder),
 .dark-theme .alert-radio-label {
-  color: rgb(255, 255, 255) !important; 
+  color: rgb(255, 255, 255) !important;
 }
-}
-
-
-
-
-
-
-.dark-theme ion-button{
+.dark-theme ion-button {
   --background: rgb(0, 0, 0) !important;
   --color: #ffffff !important;
   color: #ffffff !important;
   font-weight: 500;
 }
-
-
-
-.dark-theme ion-icon{
-  background: transparent;
-}
-
 .dark-theme ion-segment {
   background: transparent;
-
   ion-segment-button {
     --indicator-color: #363030;
     --color-checked: #000;
     color: #000000;
     font-weight: 500;
   }
-
   ion-segment-button.ion-activated {
     color: #ffffff;
   }
-    ion-segment-button:not(.ion-activated) {
-        color: #ffffff;
-    }
-  
+  ion-segment-button:not(.ion-activated) {
+    color: #ffffff;
+  }
 }
-
- 
 .dark-theme ion-item ion-label {
   color: #ffffff !important;
 }
-
-
-
-
-.dark-theme ion-input{
+.dark-theme ion-input {
   color: #ffffff !important;
   --placeholder-color: #ffffff !important;
+}
+.dark-theme .filtro,
+.dark-theme ion-button.filtro {
+  --background: transparent !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.filtro {
+  background: transparent!important;
+}
+.dark-theme .alert-button.sc-ion-alert-md {
+  color: #fff !important; // branco no dark mode
+}
+.alert-button-inner.sc-ion-alert-md {
+  color: #fff !important;
+}
+.dark-theme ion-button[color="danger"],
+.dark-theme ion-button[color="danger"] ion-icon {
+  --color: #ff5c5c !important;
+  color: #ff5c5c !important;
+}
+
+.dark-theme ion-button[color="danger"]:hover,
+.dark-theme ion-button[color="danger"]:active {
+  filter: brightness(0.9);
+}
+body.dark .custom-input label,
+body.dark-theme .custom-input label {
+  color: #cfcfcf !important;
 }
 
 

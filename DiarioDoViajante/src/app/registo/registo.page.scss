@@ -39,7 +39,11 @@ ion-toggle.custom-toggle {
     color: #000000;
     text-align: left;
 
-    --background: #ffffff;
+    --background: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+
     --color: #000000;
     --placeholder-color: #444;
     --padding-start: 10px;
@@ -126,4 +130,11 @@ ion-toggle.custom-toggle {
 
 .Login:hover {
   filter: brightness(0.9);
+}
+
+ion-title.header-title {
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
 }

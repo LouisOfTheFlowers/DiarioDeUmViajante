@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registar-avaliacao',
@@ -17,7 +18,7 @@ export class RegistarAvaliacaoPage {
   foto: string | null = null;
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage, private router: Router) {}
+  constructor(private storage: Storage, private router: Router, private alertCtrl: AlertController) {}
 
   async ngOnInit() {
     this._storage = await this.storage.create();
@@ -39,7 +40,12 @@ export class RegistarAvaliacaoPage {
 
   async confirmarAvaliacao() {
     if (!this.categoria || !this.nome || !this.comentario || !this.rating) {
-      alert('Preencha todos os campos!');
+      const alert = await this.alertCtrl.create({
+        header: 'Atenção',
+        message: 'Tem de preencher todos os campos!',
+        buttons: ['OK'],
+      });
+      await alert.present();
       return;
     }
     const novaAvaliacao = {
