@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Histórico de Viagens</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirFiltro()">
+        <ion-icon slot="icon-only" name="options-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    placeholder="Procurar destino..."
+    showClearButton="always">
+  </ion-searchbar>
+
+  <div *ngIf="viagens.length === 0" class="empty-state" style="text-align: center; margin-top: 40px;">
+    <img src="assets/images/sadface.png" alt="Sem viagens" style="width: 120px; margin-bottom: 16px;" />
+    <p style="font-size: 1.1em; color: #444;">De momento não tem viagens no histórico</p>
+  </div>
+
+  <div *ngIf="viagens.length > 0">
+    <ion-card *ngFor="let viagem of viagensFiltradas; let i = index" style="margin-bottom: 18px;">
+      <ion-card-header>
+        <ion-card-title style="font-size: 1.2em;">{{ viagem.destino }}</ion-card-title>
+        <ion-card-subtitle>{{ viagem.percurso }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Preço:</strong> {{ viagem.preco }} €</p>
+        <p><strong>Transportes:</strong> {{ viagem.transportes.join(', ') }}</p>
+        <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <ion-button color="danger" (click)="eliminarViagem(i)">
+            <ion-icon slot="icon-only" name="trash-outline" style="font-size: 1.5em;"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 70px;">
+  <ion-fab-button routerLink="/registar-viagem">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-footer>
+  <ion-toolbar class="custom-tab-bar">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-start">
+          <ion-button fill="clear" routerLink="/dashboard" routerLinkActive="tab-selected" [routerLinkActiveOptions]="{ exact: true }">
+            <ion-icon slot="icon-only" name="home"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-center">
+          <ion-button fill="clear" routerLink="/perfil" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="person"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col class="ion-text-end">
+          <ion-button fill="clear" routerLink="/settings" routerLinkActive="tab-selected">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

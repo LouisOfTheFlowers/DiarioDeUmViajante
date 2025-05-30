@@ -1,13 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/registoviagem">
-        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
-      </ion-button>
+      <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title style="color: #ffffff; text-align: center; width: 100%; font-size: 18px;">
-      Registar Viagem
-    </ion-title>
+    <ion-title>Registar Viagem</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -32,7 +28,7 @@
 </ion-item>
 
 <ion-item class="custom-input" lines="none">
-  <ion-select [(ngModel)]="transporte" placeholder="Transporte">
+  <ion-select [(ngModel)]="transportes" placeholder="Transportes" multiple="true" >
     <ion-select-option value="carro">Carro</ion-select-option>
     <ion-select-option value="comboio">Comboio</ion-select-option>
     <ion-select-option value="autocarro">Autocarro</ion-select-option>
@@ -41,7 +37,7 @@
   <ion-icon slot="start" name="bus"></ion-icon>
 </ion-item>
 
-  <ion-button expand="block" class="confirmar-button">
+  <ion-button expand="block" class="confirmar-button" (click)="confirmarViagem()">
     Confirmar
   </ion-button>
 

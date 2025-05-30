@@ -2,9 +2,8 @@ ion-content {
   --background: #ffffff;
 }
 
-/* Estilo dos inputs */
 .custom-input {
-  --background: #f2f2f2;
+  --background: #ffffff;
   border-radius: 16px;
   margin-bottom: 16px;
   padding-inline-start: 12px;
@@ -13,23 +12,12 @@ ion-content {
     color: #000;
     font-size: 20px;
   }
-  .alert-radio-label.sc-ion-alert-md {
-  color: white !important;
-}
-
-.alert-button.sc-ion-alert-md {
-  color: white !important;
-}
-
+  
+ 
 
   
-   
-  
-
 }
 
-
-/* Botão confirmar */
 .confirmar-button {
   margin-top: 32px;
   border-radius: 30px;
@@ -38,4 +26,23 @@ ion-content {
   --background: #d9d9d9;
   color: #000;
   font-weight: 500;
+}
+
+
+span {
+  margin-left: 12px;
+  color: #000;
+}
+
+
+
+
+
+
+ion-item.custom-input ion-button[fill="clear"] {
+  --background: transparent;
+  --box-shadow: none;
+  width: 100%;
+  justify-content: flex-start;
+  padding-left: 0;
 }

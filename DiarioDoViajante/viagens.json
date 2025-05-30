@@ -1,0 +1,19 @@
+[
+  {
+    "destino": "Italia",
+    "percurso": "Porto-Madrid-Roma",
+    "preco": 340.65,
+    "transportes": [
+      "comboio",
+      "avião"
+    ]
+  },
+  {
+    "destino": "Japao",
+    "percurso": "Porto-Roma-Tokyo",
+    "preco": 789.54,
+    "transportes": [
+      "avião"
+    ]
+  }
+]

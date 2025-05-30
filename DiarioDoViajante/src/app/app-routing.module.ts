@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
-  },  {
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
@@ -31,13 +32,21 @@ const routes: Routes = [
     loadChildren: () => import('./avaliacoes/avaliacoes.module').then( m => m.AvaliacoesPageModule)
   },
   {
-    path: 'registoviagem',
-    loadChildren: () => import('./registoviagem/registoviagem.module').then( m => m.RegistoviagemPageModule)
-  },
-  {
     path: 'registar-viagem',
     loadChildren: () => import('./registar-viagem/registar-viagem.module').then( m => m.RegistarViagemPageModule)
   },
+  {
+    path: 'fotografias',
+    loadChildren: () => import('./fotografias/fotografias.module').then( m => m.FotografiasPageModule)
+  },
+  {
+    path: 'historico-viagem',
+    loadChildren: () => import('./historico-viagem/historico-viagem.module').then( m => m.HistoricoViagemPageModule)
+  },  {
+    path: 'registar-avaliacao',
+    loadChildren: () => import('./registar-avaliacao/registar-avaliacao.module').then( m => m.RegistarAvaliacaoPageModule)
+  },
+
 
 
 

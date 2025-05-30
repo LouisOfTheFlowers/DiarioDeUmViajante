@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { Storage } from '@ionic/storage-angular';
+
+interface Viagem {
+  destino: string;
+  percurso: string;
+  preco: number | null;
+  transportes: string[]; // array!
+}
 
 @Component({
   selector: 'app-registar-viagem',
@@ -11,17 +20,81 @@ export class RegistarViagemPage implements OnInit {
   destino: string = '';
   percurso: string = '';
   preco: number | null = null;
-  transporte: string = '';
+  transportes: string[] = [];
 
-  constructor() {}
+  viagens: Viagem[] = [];
+  private _storage: Storage | null = null;
 
-  ngOnInit() {}
+  constructor(private storage: Storage, private location: Location) {}
+
+  async ngOnInit() {
+    this._storage = await this.storage.create();
+    const viagensGuardadas = await this._storage.get('viagens');
+    if (viagensGuardadas) {
+      this.viagens = viagensGuardadas;
+    }
+  }
 
   ionViewWillEnter() {
     this.destino = '';
     this.percurso = '';
     this.preco = null;
-    this.transporte = '';
+    this.transportes = [];
+  }
+
+  async confirmarViagem() {
+    const novaViagem: Viagem = {
+      destino: this.destino,
+      percurso: this.percurso,
+      preco: this.preco,
+      transportes: this.transportes
+    };
+    this.viagens.push(novaViagem);
+    await this._storage?.set('viagens', this.viagens);
+    await this.exportarViagens();
+
+    this.destino = '';
+    this.percurso = '';
+    this.preco = null;
+    this.transportes = [];
+  }
+
+  voltarAtras() {
+    this.location.back();
+  }
+
+  async importarViagens(event: any) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = async (e: any) => {
+      try {
+        const viagensImportadas = JSON.parse(e.target.result);
+        if (Array.isArray(viagensImportadas)) {
+          this.viagens = viagensImportadas;
+          await this._storage?.set('viagens', this.viagens);
+        } else {
+          alert('Ficheiro inválido!');
+        }
+      } catch {
+        alert('Erro ao ler ficheiro!');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  async exportarViagens() {
+    const viagens = await this._storage?.get('viagens') || [];
+    const dataStr = JSON.stringify(viagens, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'viagens.json';
+    a.click();
+
+    window.URL.revokeObjectURL(url);
   }
 }
-

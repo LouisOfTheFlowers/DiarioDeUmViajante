@@ -3,21 +3,20 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { IonicModule } from '@ionic/angular';
 
-import { RegistarViagemPageRoutingModule } from './registar-viagem-routing.module';
+import { RegistarAvaliacaoPageRoutingModule } from './registar-avaliacao-routing.module';
 
-import { RegistarViagemPage } from './registar-viagem.page';
+import { RegistarAvaliacaoPage } from './registar-avaliacao.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegistarViagemPageRoutingModule,
+    RegistarAvaliacaoPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [RegistarViagemPage]
+  declarations: [RegistarAvaliacaoPage]
 })
-export class RegistarViagemPageModule {}
+export class RegistarAvaliacaoPageModule {}
