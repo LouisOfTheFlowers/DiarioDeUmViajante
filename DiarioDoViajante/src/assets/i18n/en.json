@@ -1,0 +1,18 @@
+{
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "THEME": "App theme",
+    "CHOOSE_THEME": "Choose between light or dark mode",
+    "DATA_USAGE": "Mobile data usage",
+    "DATA_USAGE_DESC": "Manage the amount of mobile data you use",
+    "LANGUAGE": "Language",
+    "SELECT_LANGUAGE": "Select your preferred language",
+    "SELECT": "Select",
+    "LOW": "Low",
+    "MEDIUM": "Medium",
+    "HIGH": "High",
+    "PORTUGUESE": "Portuguese",
+    "ENGLISH": "English",
+    "SPANISH": "Spanish"
+  }
+}

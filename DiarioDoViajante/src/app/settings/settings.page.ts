@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-settings',
@@ -10,6 +13,11 @@ export class SettingsPage implements OnInit {
   darkMode = false;
   mobileData = '';
   language = '';
+  traducao = '';
+
+  constructor(
+  private translate: TranslateService
+) {}
 
   toggleDarkMode(event: any) {
     const isDark = event.detail.checked;
@@ -24,4 +32,9 @@ export class SettingsPage implements OnInit {
       document.body.classList.add('dark-theme');
     }
   }
+
+  trocarIdioma(novoIdioma: string) {
+  if (!novoIdioma) return;
+  this.translate.use(novoIdioma);
+}
 }

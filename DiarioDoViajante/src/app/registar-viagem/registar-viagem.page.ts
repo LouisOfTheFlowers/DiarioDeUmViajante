@@ -20,9 +20,9 @@ export class RegistarViagemPage implements OnInit {
   destino: string = '';
   percurso: string = '';
   preco: number | null = null;
-  transportes: string[] = []; // array para vários transportes
+  transportes: string[] = [];
 
-  viagens: Viagem[] = []; // Array para guardar as viagens
+  viagens: Viagem[] = [];
   private _storage: Storage | null = null;
 
   constructor(private storage: Storage, private location: Location) {}
@@ -51,6 +51,8 @@ export class RegistarViagemPage implements OnInit {
     };
     this.viagens.push(novaViagem);
     await this._storage?.set('viagens', this.viagens);
+    await this.exportarViagens();
+
     this.destino = '';
     this.percurso = '';
     this.preco = null;
@@ -81,5 +83,18 @@ export class RegistarViagemPage implements OnInit {
     };
     reader.readAsText(file);
   }
-}
 
+  async exportarViagens() {
+    const viagens = await this._storage?.get('viagens') || [];
+    const dataStr = JSON.stringify(viagens, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'viagens.json';
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  }
+}

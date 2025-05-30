@@ -1,0 +1,18 @@
+{
+  "SETTINGS": {
+    "TITLE": "Definições",
+    "THEME": "Tema da aplicação",
+    "CHOOSE_THEME": "Escolhe entre modo claro ou escuro",
+    "DATA_USAGE": "Utilização de dados móveis",
+    "DATA_USAGE_DESC": "Gere a quantidade de dados móveis que usas",
+    "LANGUAGE": "Idioma",
+    "SELECT_LANGUAGE": "Selecione o idioma pretendido",
+    "SELECT": "Português",
+    "LOW": "Pouco",
+    "MEDIUM": "Médio",
+    "HIGH": "Muito",
+    "PORTUGUESE": "Português",
+    "ENGLISH": "Inglês",
+    "SPANISH": "Espanhol"
+  }
+}
