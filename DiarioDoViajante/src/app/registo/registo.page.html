@@ -1,57 +1,76 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button defaultHref="/" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Registo</ion-title>
+    <ion-title>Registo</ion-title> <!-- Texto fixo -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
   <div class="top-controls-decor">
-  <div class="switch-decor">
-    <ion-toggle
-      [(ngModel)]="darkMode"
-      (ionChange)="toggleTheme()"
-      mode="ios"
-      class="custom-toggle"
-    ></ion-toggle>
+    <div class="switch-decor">
+      <ion-toggle
+      
+        [(ngModel)]="darkMode"
+        (ionChange)="toggleDarkMode($event)" 
+        mode="ios"
+        class="custom-toggle">
+      </ion-toggle>
+    </div>
   </div>
 
-  <div class="select-decor">
-  <ion-select
-  interface="popover"
-  [(ngModel)]="linguaSelecionada"
-  placeholder="Select"
-  class="custom-select"
->
-    <ion-select-option value="pt">Português</ion-select-option>
-    <ion-select-option value="en">English</ion-select-option>
-    <ion-select-option value="es">Espanhol</ion-select-option>
-  </ion-select>
-</div>
-</div>
+  <div class="setting-control">
+    <ion-select placeholder="Language" class="Language" [(ngModel)]="linguaSelecionada">
+      <ion-select-option value="pt">Português</ion-select-option>
+      <ion-select-option value="en">English</ion-select-option>
+      <ion-select-option value="es">Español</ion-select-option>
+    </ion-select>
+  </div>
+  <br><br><br><br>
 
+  <form [formGroup]="registoForm" (ngSubmit)="registar()">
   <div class="login-wrapper">
+    <div class="custom-input">
+      <label>Username:</label> 
+      <ion-input formControlName="username" type="text" class="rounded-input"></ion-input>
+      <div *ngIf="registoForm.get('username')?.touched && registoForm.get('username')?.invalid" class="error-message">
+        Username é obrigatório
+      </div>
+    </div>
 
     <div class="custom-input">
-      <label>E-mail:</label>
-      <ion-input type="email" class="rounded-input" [(ngModel)]="email"></ion-input>
+      <label>Email:</label>
+      <ion-input formControlName="email" type="email" class="rounded-input"></ion-input>
+      <div *ngIf="registoForm.get('email')?.touched && registoForm.get('email')?.errors">
+        <div *ngIf="registoForm.get('email')?.errors?.['required']" class="error-message">Email é obrigatório</div>
+        <div *ngIf="registoForm.get('email')?.errors?.['email']" class="error-message">Email inválido</div>
+      </div>
     </div>
 
     <div class="custom-input">
       <label>Password:</label>
-      <ion-input type="password" class="rounded-input" [(ngModel)]="password"></ion-input>
+      <ion-input formControlName="password" type="password" class="rounded-input"></ion-input>
+      <div *ngIf="registoForm.get('password')?.touched && registoForm.get('password')?.errors">
+        <div *ngIf="registoForm.get('password')?.errors?.['required']" class="error-message">Password é obrigatória</div>
+        <div *ngIf="registoForm.get('password')?.errors?.['minlength']" class="error-message">Password deve ter no mínimo 6 caracteres</div>
+      </div>
     </div>
 
     <div class="custom-input">
-      <label>Confirmar Password:</label>
-      <ion-input type="password" class="rounded-input" [(ngModel)]="confirmPassword"></ion-input>
+      <label>Confirm Password:</label>
+      <ion-input formControlName="confirmPassword" type="password" class="rounded-input"></ion-input>
+      <div *ngIf="registoForm.get('confirmPassword')?.touched && registoForm.get('confirmPassword')?.invalid" class="error-message">
+        Confirmação de password é obrigatória
+      </div>
     </div>
 
-    <ion-button expand="block" class="login-button" (click)="registar()">
-      <span class="login-button-text">REGISTAR</span>
+    <ion-button expand="block" type="submit" class="login-button" [disabled]="registoForm.invalid">
+      <span class="login-button-text">Registar</span>
     </ion-button>
   </div>
+</form>
+
+
 </ion-content>

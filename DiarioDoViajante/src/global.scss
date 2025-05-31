@@ -50,6 +50,11 @@ body.dark ion-toggle.custom-toggle {
   --track-background: url('/assets/estrelas.png') no-repeat center / cover;
   --handle-background: #e0e0e0;
 }
+ion-button .login-button-text {
+  color: #ffffff !important;
+}
+
+
 
 /* =========================
    TAB BAR ESTILO FIXO
@@ -76,6 +81,12 @@ ion-toolbar.custom-tab-bar ion-button {
   align-items: center;
   justify-content: center;
 }
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 ion-toolbar.custom-tab-bar ion-button.tab-selected {
   background: #fff !important;
   --background: #fff !important;
@@ -112,6 +123,31 @@ ion-select::part(text),
 ion-select::part(placeholder) {
   color: #000000 !important;
 }
+ion-action-sheet {
+  --button-color: #ffffff; /* Buttons text color */
+  --header-color: #ffffff; /* Header text color */
+}
+h2{
+  color: #ffffff !important;
+  
+}
+ion-alert {
+  --button-background: #000000 !important; /* fundo preto */
+  --button-color: #ffffff !important; /* texto branco */
+}
+
+
+
+
+
+
+/* Force inside spans */
+.action-sheet-title,
+.action-sheet-button-inner {
+  color: #ffffff !important;
+}
+
+
 
 /* =========================
    BOTÃO ADICIONAR
@@ -180,9 +216,7 @@ ion-segment {
 /* =========================
    SPAN
    ========================= */
-span {
-  color: #000000 !important;
-}
+
 
 /* =========================
    DARK MODE PERSONALIZADO

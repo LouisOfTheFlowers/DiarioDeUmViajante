@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { RegistoPageRoutingModule } from './registo-routing.module';
 
 import { RegistoPage } from './registo.page';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -15,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     RegistoPageRoutingModule,
     TranslateModule
   ],
