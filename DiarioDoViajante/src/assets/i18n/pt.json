@@ -8,11 +8,114 @@
     "LANGUAGE": "Idioma",
     "SELECT_LANGUAGE": "Selecione o idioma pretendido",
     "SELECT": "Português",
+    "SELECT1": "Selecionar",
     "LOW": "Pouco",
     "MEDIUM": "Médio",
     "HIGH": "Muito",
     "PORTUGUESE": "Português",
     "ENGLISH": "Inglês",
     "SPANISH": "Espanhol"
-  }
+  },
+
+  "PERFIL": {
+    "TITLE": "Perfil",
+    "USER": "Utilizador",
+    "REGISTRO_VIAGENS": "Registo de Viagens",
+    "HISTORICO_VIAGENS": "Histórico de Viagens",
+    "AVALIACOES": "Avaliações",
+    "FOTOGRAFIAS": "Fotografias"
+  },
+
+  "AVALIACOES": {
+  "TITLE": "Avaliações",
+  "SEARCH_PLACEHOLDER": "Procurar restaurante/hotel...",
+  "EMPTY_ALT": "Sem avaliações",
+  "EMPTY_TEXT": "De momento não tem avaliações registadas",
+  "PHOTO_ALT": "Foto",
+  "CONFIRM_DELETE": "Tem a certeza que deseja eliminar esta avaliação?",
+  "FILTER_HEADER": "Filtrar por",
+  "FILTER_ALL": "Todos",
+  "FILTER_RESTAURANT": "Restaurante",
+  "FILTER_HOTEL": "Hotel",
+  "FILTER_CANCEL": "Cancelar",
+  "INVALID_FILE": "Ficheiro inválido!",
+  "READ_ERROR": "Erro ao ler ficheiro!",
+  "NEW_REVIEW": "Nova Avaliação",
+  "INPUT_CATEGORY": "Categoria (ex: Restaurante)",
+  "INPUT_NAME": "Seu Nome",
+  "INPUT_COMMENT": "Comentário",
+  "INPUT_RATING": "Rating (1-5)",
+  "CANCEL": "Cancelar",
+  "ADD": "Adicionar",
+  "RESTAURANT": "Restaurante",
+  "HOTEL": "Hotel"
+},
+
+"DASHBOARD": {
+  "TITLE": "Recomendações",
+  "SEARCH_PLACEHOLDER": "Procurar destino...",
+  "MORE_INFO": "Saber Mais"
+},
+
+"ROMA": "Roma",
+"ROMA_DESC": "Roma, uma cidade eterna, encanta os turistas com sua história, monumentos grandiosos, gastronomia irresistível e charme incomparável. O Coliseu, o Vaticano e a Fontana di Trevi são inesquecíveis!",
+"PARIS": "Paris",
+"PARIS_DESC": "Paris, a Cidade Luz, cativa os turistas com sua história, monumentos icônicos, culinária requintada e charme romântico. Torre Eiffel, Louvre, inesquecível!",
+
+"FOTOGRAFIAS": {
+  "TITLE": "Fotografias",
+  "ADD_NEW": "Adicionar nova",
+  "PHOTOS": "Fotografias",
+  "ALBUMS": "Álbuns",
+  "COLOSSEO": "Colosseo.png",
+  "FONTANA": "Fontana di Trevi.png",
+  "PONT_ALEXANDRE": "Pont Alexandre III.png",
+  "IMAGE_SIZE_2MB": "Imagem ≈ 2mb",
+  "IMAGE_SIZE_1MB": "Imagem ≈ 1mb",
+  "ALBUM_SIZE_3MB": "Álbum ≈ 3mb",
+  "ALBUM_SIZE_2MB": "Álbum ≈ 2mb"
+},
+
+"HISTORICO_VIAGENS": {
+  "TITLE": "Histórico de Viagens",
+  "SEARCH_PLACEHOLDER": "Procurar destino...",
+  "EMPTY_ALT": "Sem viagens",
+  "EMPTY_TEXT": "De momento não tem viagens no histórico",
+  "PRECO": "Preço",
+  "TRANSPORTES": "Transportes",
+  "CONFIRM_DELETE": "Tem a certeza que deseja eliminar esta viagem?",
+  "FILTER_HEADER": "Ordenar/Filtrar viagens",
+  "FILTER_NONE": "Nenhum",
+  "FILTER_PRICE_ASC": "Preço ↑",
+  "FILTER_PRICE_DESC": "Preço ↓",
+  "FILTER_MOST_RECENT": "Mais recente",
+  "FILTER_OLDEST": "Mais antigo",
+  "FILTER_CANCEL": "Cancelar",
+  "INVALID_FILE": "Ficheiro inválido!",
+  "READ_ERROR": "Erro ao ler ficheiro!"
+},
+
+"LOGIN": {
+  "TITLE": "Iniciar sessão",
+  "WELCOME": "Bem-vindo",
+  "TRAVELER": "Caro Viajante",
+  "EMAIL": "E-mail:",
+  "PASSWORD": "Password:",
+  "ENTER": "Entrar",
+  "FORGOT_PASSWORD": "Esqueceu a palavra-passe?",
+  "REGISTER": "Registar-se"
+},
+
+"REGISTAR_AVALIACAO": {
+  "TITLE": "Registar Avaliação",
+  "CATEGORY": "Categoria",
+  "RESTAURANT": "Restaurante",
+  "HOTEL": "Hotel",
+  "NAME_PLACEHOLDER": "Nome do {{categoria}}",
+  "LOCAL": "local",
+  "COMMENT": "Comentário",
+  "ADD_PHOTO": "Adicionar Fotografia",
+  "PHOTO_ALT": "Foto da avaliação",
+  "CONFIRM": "Confirmar"
+}
 }

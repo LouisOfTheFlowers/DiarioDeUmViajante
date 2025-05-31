@@ -8,12 +8,15 @@ import { RegistoPageRoutingModule } from './registo-routing.module';
 
 import { RegistoPage } from './registo.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegistoPageRoutingModule
+    RegistoPageRoutingModule,
+    TranslateModule
   ],
   declarations: [RegistoPage]
 })

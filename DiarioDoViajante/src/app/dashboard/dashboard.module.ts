@@ -9,12 +9,15 @@ import { DashboardPageRoutingModule } from './dashboard-routing.module';
 import { DashboardPage } from './dashboard.page';
 import { FilterDestinosPipe } from './filter-destinos.pipe';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DashboardPageRoutingModule
+    DashboardPageRoutingModule,
+    TranslateModule
   ],
   declarations: [DashboardPage, FilterDestinosPipe]
 })

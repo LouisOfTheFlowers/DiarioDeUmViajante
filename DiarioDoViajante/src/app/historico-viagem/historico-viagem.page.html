@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Histórico de Viagens</ion-title>
+    <ion-title>{{ 'HISTORICO_VIAGENS.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button class="filtro" (click)="abrirFiltro()">
         <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -15,13 +15,13 @@
 <ion-content>
   <ion-searchbar
     [(ngModel)]="searchTerm"
-    placeholder="Procurar destino..."
+    placeholder="{{ 'HISTORICO_VIAGENS.SEARCH_PLACEHOLDER' | translate }}"
     showClearButton="always">
   </ion-searchbar>
 
   <div *ngIf="viagens.length === 0" class="empty-state" style="text-align: center; margin-top: 40px;">
-    <img src="assets/images/sadface.png" alt="Sem viagens" style="width: 120px; margin-bottom: 16px;" />
-    <p style="font-size: 1.1em; color: #444;">De momento não tem viagens no histórico</p>
+    <img src="assets/images/sadface.png" alt="{{ 'HISTORICO_VIAGENS.EMPTY_ALT' | translate }}" style="width: 120px; margin-bottom: 16px;" />
+    <p style="font-size: 1.1em; color: #444;">{{ 'HISTORICO_VIAGENS.EMPTY_TEXT' | translate }}</p>
   </div>
 
   <div *ngIf="viagens.length > 0">
@@ -31,8 +31,8 @@
         <ion-card-subtitle>{{ viagem.percurso }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>Preço:</strong> {{ viagem.preco }} €</p>
-        <p><strong>Transportes:</strong> {{ viagem.transportes.join(', ') }}</p>
+        <p><strong>{{ 'HISTORICO_VIAGENS.PRECO' | translate }}:</strong> {{ viagem.preco }} €</p>
+        <p><strong>{{ 'HISTORICO_VIAGENS.TRANSPORTES' | translate }}:</strong> {{ viagem.transportes.join(', ') }}</p>
         <div style="display: flex; gap: 12px; margin-top: 12px;">
           <ion-button color="danger" (click)="eliminarViagem(i)">
             <ion-icon slot="icon-only" name="trash-outline" style="font-size: 1.5em;"></ion-icon>

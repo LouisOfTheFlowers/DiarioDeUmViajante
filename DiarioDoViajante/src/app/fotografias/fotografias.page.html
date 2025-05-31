@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Fotografias</ion-title>
+    <ion-title>{{ 'FOTOGRAFIAS.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,18 +11,16 @@
 
   <!-- Banner/Header -->
   <div style="position: relative; margin-bottom: 24px;">
-    <img src="assets/fotografias.png" alt="Fotografias" style="width: 100%; border-radius: 24px; height: 90px; object-fit: cover;">
+    <img src="assets/fotografias.png" alt="{{ 'FOTOGRAFIAS.TITLE' | translate }}" style="width: 100%; border-radius: 24px; height: 90px; object-fit: cover;">
     <div style="position: absolute; left: 24px; bottom: 16px; color: #111; font-size: 2em; font-weight: 600; text-shadow: 0 2px 8px #fff;">
-      Fotografias
+      {{ 'FOTOGRAFIAS.TITLE' | translate }}
     </div>
   </div>
 
   <!-- Filtros + botão adicionar -->
   <div class="filtros-wrapper">
-  
-
     <ion-button fill="outline" class="botao-adicionar" routerLink="/fotografias/adicionar">
-      Adicionar nova
+      {{ 'FOTOGRAFIAS.ADD_NEW' | translate }}
       <ion-icon name="add" slot="end"></ion-icon>
     </ion-button>
   </div>
@@ -30,10 +28,10 @@
   <!-- Tabs -->
   <ion-segment [(ngModel)]="selectedTab" (ionChange)="segmentChanged($event)" style="margin-bottom: 24px;">
     <ion-segment-button value="fotos">
-      <ion-label>Fotografias</ion-label>
+      <ion-label>{{ 'FOTOGRAFIAS.PHOTOS' | translate }}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="albuns">
-      <ion-label>Álbuns</ion-label>
+      <ion-label>{{ 'FOTOGRAFIAS.ALBUMS' | translate }}</ion-label>
     </ion-segment-button>
   </ion-segment>
 
@@ -45,8 +43,8 @@
           <ion-card>
             <img src="assets/colleseu.png" />
             <ion-card-content>
-              <ion-label>Colosseo.png</ion-label><br />
-              <small>Imagem ≈ 2mb</small>
+              <ion-label>{{ 'FOTOGRAFIAS.COLOSSEO' | translate }}</ion-label><br />
+              <small>{{ 'FOTOGRAFIAS.IMAGE_SIZE_2MB' | translate }}</small>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -55,8 +53,8 @@
           <ion-card>
             <img src="assets/Fontanaditrevi.png" />
             <ion-card-content>
-              <ion-label>Fontana di Trevi.png</ion-label><br />
-              <small>Imagem ≈ 1mb</small>
+              <ion-label>{{ 'FOTOGRAFIAS.FONTANA' | translate }}</ion-label><br />
+              <small>{{ 'FOTOGRAFIAS.IMAGE_SIZE_1MB' | translate }}</small>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -65,8 +63,8 @@
           <ion-card>
             <img src="assets/pontAlexandre3.png" />
             <ion-card-content>
-              <ion-label>Pont Alexandre III.png</ion-label><br />
-              <small>Imagem ≈ 2mb</small>
+              <ion-label>{{ 'FOTOGRAFIAS.PONT_ALEXANDRE' | translate }}</ion-label><br />
+              <small>{{ 'FOTOGRAFIAS.IMAGE_SIZE_2MB' | translate }}</small>
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -79,13 +77,12 @@
     <ion-grid>
       <ion-row>
        <ion-col size="6" size-md="3" size-lg="2" class="ion-text-center">
-
           <div class="album-card selecionado">
             <img src="assets/colleseu.png" class="foto-dentro-pasta" />
             <ion-icon name="folder" class="pasta-icone"></ion-icon>
             <div class="album-info">
-              <ion-label>Roma</ion-label><br />
-              <small>Álbum ≈ 3mb</small>
+              <ion-label>{{ 'ROMA' | translate }}</ion-label><br />
+              <small>{{ 'FOTOGRAFIAS.ALBUM_SIZE_3MB' | translate }}</small>
             </div>
           </div>
         </ion-col>
@@ -95,8 +92,8 @@
             <img src="assets/pontAlexandre3.png" class="foto-dentro-pasta" />
             <ion-icon name="folder" class="pasta-icone"></ion-icon>
             <div class="album-info">
-              <ion-label>Paris</ion-label><br />
-              <small>Álbum ≈ 2mb</small>
+              <ion-label>{{ 'PARIS' | translate }}</ion-label><br />
+              <small>{{ 'FOTOGRAFIAS.ALBUM_SIZE_2MB' | translate }}</small>
             </div>
           </div>
         </ion-col>

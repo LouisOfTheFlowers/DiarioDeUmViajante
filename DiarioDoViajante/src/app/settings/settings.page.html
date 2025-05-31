@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Definições</ion-title>
+    <ion-title>{{ 'SETTINGS.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button color="danger" routerLink="/home">
         <ion-icon slot="icon-only" name="power"></ion-icon>
@@ -27,7 +27,9 @@
       <p>{{ 'SETTINGS.DATA_USAGE_DESC' | translate }}</p>
     </div>
     <div class="setting-control">
-      <ion-select interface="popover" placeholder="{{ 'SETTINGS.SELECT' | translate }}" [(ngModel)]="mobileData">
+      <ion-select interface="popover" placeholder="{{ 'SETTINGS.SELECT1' | translate }}"
+        [(ngModel)]="mobileData"
+        (ionChange)="changeMobileData($event.detail.value)">
         <ion-select-option value="low">{{ 'SETTINGS.LOW' | translate }}</ion-select-option>
         <ion-select-option value="medium">{{ 'SETTINGS.MEDIUM' | translate }}</ion-select-option>
         <ion-select-option value="high">{{ 'SETTINGS.HIGH' | translate }}</ion-select-option>
@@ -41,10 +43,10 @@
       <p>{{ 'SETTINGS.SELECT_LANGUAGE' | translate }}</p>
     </div>
     <div class="setting-control">
-      <ion-select interface="popover" placeholder="{{ 'SETTINGS.SELECT' | translate }}" [(ngModel)]="language" (ionChange)="trocarIdioma(language)">
-        <ion-select-option value="pt">{{ 'SETTINGS.PORTUGUESE' | translate }}</ion-select-option>
-        <ion-select-option value="en">{{ 'SETTINGS.ENGLISH' | translate }}</ion-select-option>
-        <ion-select-option value="es">{{ 'SETTINGS.SPANISH' | translate }}</ion-select-option>
+      <ion-select [(ngModel)]="selectedLang" (ionChange)="changeLang($event.detail.value)">
+        <ion-select-option value="pt">Português</ion-select-option>
+        <ion-select-option value="en">English</ion-select-option>
+        <ion-select-option value="es">Español</ion-select-option>
       </ion-select>
     </div>
   </div>

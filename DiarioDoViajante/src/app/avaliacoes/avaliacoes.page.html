@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="perfil" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Avaliações</ion-title> 
+    <ion-title>{{ 'AVALIACOES.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button class="filtro" (click)="openFilter()">
         <ion-icon slot="icon-only" name="options-outline"></ion-icon>
@@ -14,28 +14,28 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <div style="position: relative; margin-bottom: 24px;">
-    <img src="/assets/banner1.webp" alt="Avaliações" style="width: 100%; border-radius: 24px; height: 90px; object-fit: cover;">
+    <img src="/assets/banner1.webp" alt="{{ 'AVALIACOES.TITLE' | translate }}" style="width: 100%; border-radius: 24px; height: 90px; object-fit: cover;">
     <div style="position: absolute; left: 24px; bottom: 16px; color: #111; font-size: 2em; font-weight: 600; text-shadow: 0 2px 8px #fff;">
-      Avaliações
+      {{ 'AVALIACOES.TITLE' | translate }}
     </div>
   </div>
 
   <ion-searchbar
     [(ngModel)]="searchTerm"
-    placeholder="Procurar restaurante/hotel..."
+    placeholder="{{ 'AVALIACOES.SEARCH_PLACEHOLDER' | translate }}"
     showClearButton="always">
   </ion-searchbar>
 
   <div *ngIf="avaliacoes.length === 0" class="empty-state" style="text-align: center; margin-top: 40px;">
-    <img src="assets/images/sadface.png" alt="Sem avaliações" style="width: 120px; margin-bottom: 16px;" />
-    <p style="font-size: 1.1em; color: #444;">De momento não tem avaliações registadas</p>
+    <img src="assets/images/sadface.png" alt="{{ 'AVALIACOES.EMPTY_ALT' | translate }}" style="width: 120px; margin-bottom: 16px;" />
+    <p style="font-size: 1.1em; color: #444;">{{ 'AVALIACOES.EMPTY_TEXT' | translate }}</p>
   </div>
 
   <div *ngIf="avaliacoesFiltradas.length > 0">
     <ion-card *ngFor="let avaliacao of avaliacoesFiltradas; let i = index" style="margin-bottom: 18px;">
       <ion-card-header>
         <ion-card-title style="font-size: 1.2em;">{{ avaliacao.nome }}</ion-card-title>
-        <ion-card-subtitle>{{ avaliacao.categoria }}</ion-card-subtitle>
+        <ion-card-subtitle>{{ 'AVALIACOES.' + avaliacao.categoria.toUpperCase() | translate }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
         <p>{{ avaliacao.comentario }}</p>
@@ -45,7 +45,7 @@
                     style="color: #FFD600;"></ion-icon>
         </div>
         <div *ngIf="avaliacao.foto" style="text-align:center; margin: 12px 0;">
-          <img [src]="avaliacao.foto" alt="Foto" style="max-width: 180px; border-radius: 12px;" />
+          <img [src]="avaliacao.foto" alt="{{ 'AVALIACOES.PHOTO_ALT' | translate }}" style="max-width: 180px; border-radius: 12px;" />
         </div>
         <div style="display: flex; gap: 12px; margin-top: 12px;">
           <ion-button color="danger" (click)="eliminarAvaliacao(i)">

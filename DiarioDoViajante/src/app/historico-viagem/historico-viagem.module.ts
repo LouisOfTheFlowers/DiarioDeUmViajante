@@ -8,12 +8,15 @@ import { HistoricoViagemPageRoutingModule } from './historico-viagem-routing.mod
 
 import { HistoricoViagemPage } from './historico-viagem.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoricoViagemPageRoutingModule
+    HistoricoViagemPageRoutingModule,
+    TranslateModule
   ],
   declarations: [HistoricoViagemPage]
 })

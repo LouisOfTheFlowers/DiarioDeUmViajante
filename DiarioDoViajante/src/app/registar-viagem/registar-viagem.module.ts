@@ -10,13 +10,16 @@ import { RegistarViagemPageRoutingModule } from './registar-viagem-routing.modul
 
 import { RegistarViagemPage } from './registar-viagem.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RegistarViagemPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [RegistarViagemPage]
 })
