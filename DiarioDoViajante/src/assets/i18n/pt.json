@@ -95,17 +95,6 @@
   "READ_ERROR": "Erro ao ler ficheiro!"
 },
 
-"LOGIN": {
-    "TITLE": "Iniciar sessão",
-    "WELCOME": "Bem-vindo",
-    "TRAVELER": "Caro Viajante",
-    "USERNAME": "Nome de Utilizador",  
-    "PASSWORD": "Palavra-passe",
-    "ENTER": "Entrar",
-    "FORGOT_PASSWORD": "Esqueceu a palavra-passe?",
-    "REGISTER": "Registar-se"
-},
-
 "REGISTAR_AVALIACAO": {
   "TITLE": "Registar Avaliação",
   "CATEGORY": "Categoria",
@@ -117,5 +106,46 @@
   "ADD_PHOTO": "Adicionar Fotografia",
   "PHOTO_ALT": "Foto da avaliação",
   "CONFIRM": "Confirmar"
+},
+
+"REGISTAR_VIAGEM": {
+  "TITLE": "Registar Viagem",
+  "DESTINO": "Destino",
+  "PERCURSO": "Percurso",
+  "PRECO": "Preço",
+  "TRANSPORTES": "Transportes",
+  "CARRO": "Carro",
+  "COMBOIO": "Comboio",
+  "AUTOCARRO": "Autocarro",
+  "AVIAO": "Avião",
+  "CONFIRMAR": "Confirmar"
+},
+
+"REGISTO": {
+  "TITLE": "Registo",
+  "LANGUAGE": "Idioma",
+  "USERNAME": "Username:",
+  "USERNAME_REQUIRED": "Username é obrigatório",
+  "EMAIL": "Email:",
+  "EMAIL_REQUIRED": "Email é obrigatório",
+  "EMAIL_INVALID": "Email inválido",
+  "PASSWORD": "Password:",
+  "PASSWORD_REQUIRED": "Password é obrigatória",
+  "PASSWORD_MINLENGTH": "Password deve ter no mínimo 6 caracteres",
+  "CONFIRM_PASSWORD": "Confirmar Password:",
+  "CONFIRM_PASSWORD_REQUIRED": "Confirmação de password é obrigatória",
+  "REGISTER": "Registar"
+},
+
+"LOGIN": {
+  "TITLE": "Login",
+  "WELCOME": "Bem-vindo Viajante",
+  "USERNAME": "Username:",
+  "USERNAME_REQUIRED": "Username é obrigatório",
+  "PASSWORD": "Password:",
+  "PASSWORD_REQUIRED": "Password é obrigatória",
+  "ENTER": "Entrar",
+  "FORGOT_PASSWORD": "Esqueceu a palavra-passe?",
+  "REGISTER": "Registar-se"
 }
 }

@@ -24,8 +24,9 @@
 body,
 ion-content {
   --background: #ffffff !important;
-  background: #ffffff !important;
-  color: #000 !important;
+  --text-color: #000000 !important;
+  background: var(--background) !important;
+  color: var(--text-color) !important;
 }
 
 /* =========================
@@ -227,11 +228,19 @@ ion-segment {
   --ion-background-color: var(--ion-color-darkmode);
   --ion-text-color: #ffffff;
   --ion-item-background: var(--ion-color-darkmode);
+
+  --background: var(--ion-color-darkmode) !important;
+  --text-color: #ffffff !important;
 }
 
 /* NÃO aplicar ao HEADER */
 .dark-theme body,
-.dark-theme ion-content,
+.dark-theme ion-content{
+  --background: var(--ion-color-darkmode) !important;
+  --text-color: #ffffff !important;
+  background: var(--background) !important;
+  color: var(--text-color) !important;
+}
 .dark-theme ion-item,
 .dark-theme ion-label,
 .dark-theme ion-toggle {
@@ -329,7 +338,3 @@ body.dark .custom-input label,
 body.dark-theme .custom-input label {
   color: #cfcfcf !important;
 }
-
-
-
-

@@ -3,42 +3,42 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Registar Viagem</ion-title>
+    <ion-title>{{ 'REGISTAR_VIAGEM.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
 
 <ion-item class="custom-input" lines="none">
-  <ion-input [(ngModel)]="destino" placeholder="Destino" type="text">
+  <ion-input [(ngModel)]="destino" [placeholder]="'REGISTAR_VIAGEM.DESTINO' | translate" type="text">
     <ion-icon slot="start" name="location"></ion-icon>
   </ion-input>
 </ion-item>
 
 <ion-item class="custom-input" lines="none">
-  <ion-input [(ngModel)]="percurso" placeholder="Percurso" type="text">
+  <ion-input [(ngModel)]="percurso" [placeholder]="'REGISTAR_VIAGEM.PERCURSO' | translate" type="text">
     <ion-icon slot="start" name="map"></ion-icon>
   </ion-input>
 </ion-item>
 
 <ion-item class="custom-input" lines="none">
-  <ion-input [(ngModel)]="preco" placeholder="Preço" type="number">
+  <ion-input [(ngModel)]="preco" [placeholder]="'REGISTAR_VIAGEM.PRECO' | translate" type="number">
     <ion-icon slot="start" name="cash"></ion-icon>
   </ion-input>
 </ion-item>
 
 <ion-item class="custom-input" lines="none">
-  <ion-select [(ngModel)]="transportes" placeholder="Transportes" multiple="true" >
-    <ion-select-option value="carro">Carro</ion-select-option>
-    <ion-select-option value="comboio">Comboio</ion-select-option>
-    <ion-select-option value="autocarro">Autocarro</ion-select-option>
-    <ion-select-option value="avião">Avião</ion-select-option>
+  <ion-select [(ngModel)]="transportes" [placeholder]="'REGISTAR_VIAGEM.TRANSPORTES' | translate" multiple="true" >
+    <ion-select-option value="carro">{{ 'REGISTAR_VIAGEM.CARRO' | translate }}</ion-select-option>
+    <ion-select-option value="comboio">{{ 'REGISTAR_VIAGEM.COMBOIO' | translate }}</ion-select-option>
+    <ion-select-option value="autocarro">{{ 'REGISTAR_VIAGEM.AUTOCARRO' | translate }}</ion-select-option>
+    <ion-select-option value="aviao">{{ 'REGISTAR_VIAGEM.AVIAO' | translate }}</ion-select-option>
   </ion-select>
   <ion-icon slot="start" name="bus"></ion-icon>
 </ion-item>
 
   <ion-button expand="block" class="confirmar-button" (click)="confirmarViagem()">
-    Confirmar
+    {{ 'REGISTAR_VIAGEM.CONFIRMAR' | translate }}
   </ion-button>
 
 </ion-content>

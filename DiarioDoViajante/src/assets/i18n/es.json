@@ -94,17 +94,6 @@
   "READ_ERROR": "¡Error al leer el archivo!"
 },
 
-"LOGIN": {
-  "TITLE": "Iniciar sesión",
-  "WELCOME": "Bienvenido",
-  "TRAVELER": "Querido Viajero",
-  "EMAIL": "Correo electrónico:",
-  "PASSWORD": "Contraseña:",
-  "ENTER": "Entrar",
-  "FORGOT_PASSWORD": "¿Olvidó su contraseña?",
-  "REGISTER": "Registrarse"
-},
-
 "REGISTAR_AVALIACAO": {
   "TITLE": "Registrar Valoración",
   "CATEGORY": "Categoría",
@@ -116,5 +105,46 @@
   "ADD_PHOTO": "Añadir Fotografía",
   "PHOTO_ALT": "Foto de la valoración",
   "CONFIRM": "Confirmar"
+},
+
+"REGISTAR_VIAGEM": {
+  "TITLE": "Registrar Viaje",
+  "DESTINO": "Destino",
+  "PERCURSO": "Recorrido",
+  "PRECO": "Precio",
+  "TRANSPORTES": "Transportes",
+  "CARRO": "Coche",
+  "COMBOIO": "Tren",
+  "AUTOCARRO": "Autobús",
+  "AVIAO": "Avión",
+  "CONFIRMAR": "Confirmar"
+},
+
+"REGISTO": {
+  "TITLE": "Registro",
+  "LANGUAGE": "Idioma",
+  "USERNAME": "Usuario:",
+  "USERNAME_REQUIRED": "El usuario es obligatorio",
+  "EMAIL": "Correo electrónico:",
+  "EMAIL_REQUIRED": "El correo electrónico es obligatorio",
+  "EMAIL_INVALID": "Correo electrónico inválido",
+  "PASSWORD": "Contraseña:",
+  "PASSWORD_REQUIRED": "La contraseña es obligatoria",
+  "PASSWORD_MINLENGTH": "La contraseña debe tener al menos 6 caracteres",
+  "CONFIRM_PASSWORD": "Confirmar Contraseña:",
+  "CONFIRM_PASSWORD_REQUIRED": "La confirmación de la contraseña es obligatoria",
+  "REGISTER": "Registrar"
+},
+
+"LOGIN": {
+  "TITLE": "Iniciar sesión",
+  "WELCOME": "Bienvenido Viajero",
+  "USERNAME": "Usuario:",
+  "USERNAME_REQUIRED": "El usuario es obligatorio",
+  "PASSWORD": "Contraseña:",
+  "PASSWORD_REQUIRED": "La contraseña es obligatoria",
+  "ENTER": "Entrar",
+  "FORGOT_PASSWORD": "¿Olvidó la contraseña?",
+  "REGISTER": "Registrarse"
 }
 }
