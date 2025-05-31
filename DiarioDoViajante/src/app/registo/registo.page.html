@@ -30,7 +30,7 @@
   </div>
   <br><br><br><br>
 
-  <form [formGroup]="registoForm" (ngSubmit)="registar()">
+  <form *ngIf="registoForm" [formGroup]="registoForm" (ngSubmit)="registar()">
   <div class="login-wrapper">
     <div class="custom-input">
       <label>Username:</label> 
