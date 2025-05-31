@@ -35,6 +35,10 @@ export class RegistoPage implements OnInit {
     if (saved) {
       document.body.classList.add('dark-theme');
     }
+
+    const lang = localStorage.getItem('lang') || 'pt';
+  this.linguaSelecionada = lang;
+  this.translate.use(lang);
   }
 
   createForm() {
@@ -103,5 +107,12 @@ export class RegistoPage implements OnInit {
     const isDark = event.detail.checked;
     document.body.classList.toggle('dark-theme', isDark);
     localStorage.setItem('darkMode', isDark ? 'true' : 'false');
+  }
+
+  trocarIdioma(novoIdioma: string) {
+    if (!novoIdioma) return;
+    this.linguaSelecionada = novoIdioma;
+    this.translate.use(novoIdioma);
+    localStorage.setItem('lang', novoIdioma);
   }
 }

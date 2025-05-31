@@ -1,39 +1,39 @@
 <ion-header>
   <ion-toolbar color="light" class="ion-no-border">
-    <ion-title class="ion-text-center">Login</ion-title>
+    <ion-title class="ion-text-center">{{ 'LOGIN.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
  
-  <h1 class="login-title">Bem-vindo<br />Viajante</h1>
- <br><br><br><br><br><br>
+  <h1 class="login-title">{{ 'LOGIN.WELCOME' | translate }}</h1>
+  <br><br><br><br><br><br>
   <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="login()">
 
     <div class="login-wrapper">
       <div class="custom-input">
-        <label>Username:</label> 
+        <label>{{ 'LOGIN.USERNAME' | translate }}</label> 
         <ion-input formControlName="username" type="text" class="rounded-input"></ion-input>
         <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid" class="error-message">
-          Username é obrigatório
+          {{ 'LOGIN.USERNAME_REQUIRED' | translate }}
         </div>
       </div>
 
       <div class="custom-input">
-        <label>Password:</label>
+        <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
         <ion-input formControlName="password" type="password" class="rounded-input"></ion-input>
         <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="error-message">
-          Password é obrigatória
+          {{ 'LOGIN.PASSWORD_REQUIRED' | translate }}
         </div>
       </div>
 
       <ion-button expand="block" type="submit" class="login-button" [disabled]="loginForm.invalid">
-        <span class="login-button-text">Entrar</span>
+        <span class="login-button-text">{{ 'LOGIN.ENTER' | translate }}</span>
       </ion-button>
 
       <div class="login-links">
-        <a href="#">Esqueceu a palavra-passe?</a>
-        <a (click)="irParaRegisto()">Registar-se</a>
+        <a href="#">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+        <a (click)="irParaRegisto()">{{ 'LOGIN.REGISTER' | translate }}</a>
       </div>
     </div>
   </form>

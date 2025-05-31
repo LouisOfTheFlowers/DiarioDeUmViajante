@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 
 interface Avaliacao {
@@ -31,7 +31,11 @@ export class AvaliacoesPage {
     private storage: Storage,
     private alertCtrl: AlertController,
     private translate: TranslateService
-  ) {}
+  ) {
+  this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+    console.log('Idioma mudado para:', event.lang);
+  });
+}
 
   async ngOnInit() {
     this._storage = await this.storage.create();
@@ -80,6 +84,8 @@ export class AvaliacoesPage {
   }
 
 async openFilter() {
+  await firstValueFrom(this.translate.stream('AVALIACOES.FILTER_HEADER'));
+
   const translations = await firstValueFrom(
     this.translate.get([
       'AVALIACOES.FILTER_HEADER',
@@ -114,7 +120,6 @@ async openFilter() {
 
   await actionSheet.present();
 }
-
 
   async adicionarAvaliacao(avaliacao: Avaliacao) {
     // Corrige categoria antes de guardar
