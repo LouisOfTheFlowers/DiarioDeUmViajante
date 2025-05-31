@@ -48,8 +48,17 @@ export class RegistarAvaliacaoPage {
       await alert.present();
       return;
     }
+
+    // Guarda a categoria como "restaurant" ou "hotel"
+    let categoriaKey = this.categoria;
+    if (categoriaKey.toLowerCase() === 'restaurante') {
+      categoriaKey = 'restaurant';
+    } else if (categoriaKey.toLowerCase() === 'hotel') {
+      categoriaKey = 'hotel';
+    }
+
     const novaAvaliacao = {
-      categoria: this.categoria,
+      categoria: categoriaKey,
       nome: this.nome,
       comentario: this.comentario,
       rating: this.rating,

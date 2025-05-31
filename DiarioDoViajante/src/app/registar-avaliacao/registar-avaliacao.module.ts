@@ -9,13 +9,16 @@ import { RegistarAvaliacaoPageRoutingModule } from './registar-avaliacao-routing
 
 import { RegistarAvaliacaoPage } from './registar-avaliacao.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     RegistarAvaliacaoPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [RegistarAvaliacaoPage]
 })

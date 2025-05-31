@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Recomendações</ion-title>
+    <ion-title>{{ 'DASHBOARD.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button color="danger" routerLink="/home">
         <ion-icon slot="icon-only" name="power"></ion-icon>
@@ -12,14 +12,14 @@
 <ion-content>
   <ion-searchbar
     [(ngModel)]="searchTerm"
-    placeholder="Procurar destino..."
+    placeholder="{{ 'DASHBOARD.SEARCH_PLACEHOLDER' | translate }}"
     showClearButton="always">
   </ion-searchbar>
 
   <ng-container *ngFor="let destino of destinos | filterDestinos:searchTerm">
     <ion-card>
       <ion-card-header>
-        <ion-card-title style="font-size: 1.2em;">{{ destino.titulo }}</ion-card-title>
+        <ion-card-title style="font-size: 1.2em;">{{ destino.titulo | translate }}</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-grid>
@@ -28,9 +28,9 @@
               <img [src]="destino.imagem" [alt]="destino.titulo" style="width: 100%; border-radius: 8px;">
             </ion-col>
             <ion-col size="8">
-              <p style="font-size: 0.95em;">{{ destino.descricao }}</p>
+              <p style="font-size: 0.95em;">{{ destino.descricao | translate }}</p>
               <ion-button size="small" color="medium" (click)="abrirWikipedia(destino.wikipedia)">
-                Saber Mais
+                {{ 'DASHBOARD.MORE_INFO' | translate }}
               </ion-button>
             </ion-col>
           </ion-row>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 
 interface Avaliacao {
   categoria: string;
@@ -20,21 +22,32 @@ interface Avaliacao {
 export class AvaliacoesPage {
   avaliacoes: Avaliacao[] = [];
   searchTerm: string = '';
-  filter: 'all' | 'restaurante' | 'hotel' = 'all';
+  filter: 'all' | 'restaurant' | 'hotel' = 'all';
 
   private _storage: Storage | null = null;
 
   constructor(
     private actionSheetCtrl: ActionSheetController,
     private storage: Storage,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private translate: TranslateService
   ) {}
 
   async ngOnInit() {
     this._storage = await this.storage.create();
-    const avaliacoesGuardadas = await this._storage.get('avaliacoes');
+    let avaliacoesGuardadas = await this._storage.get('avaliacoes');
     if (avaliacoesGuardadas) {
+      // Corrige categorias antigas
+      avaliacoesGuardadas = avaliacoesGuardadas.map((a: Avaliacao) => {
+        if (a.categoria?.toLowerCase() === 'restaurante') {
+          a.categoria = 'restaurant';
+        } else if (a.categoria?.toLowerCase() === 'hotel') {
+          a.categoria = 'hotel';
+        }
+        return a;
+      });
       this.avaliacoes = avaliacoesGuardadas;
+      await this._storage.set('avaliacoes', avaliacoesGuardadas); // Atualiza o storage!
     }
   }
 
@@ -49,48 +62,70 @@ export class AvaliacoesPage {
     }
 
     // Filtro por categoria
-    if (this.filter === 'restaurante') {
-      filtradas = filtradas.filter(a => a.categoria?.toLowerCase() === 'restaurante');
+    if (this.filter === 'restaurant') {
+      filtradas = filtradas.filter(a => a.categoria === 'restaurant');
     } else if (this.filter === 'hotel') {
-      filtradas = filtradas.filter(a => a.categoria?.toLowerCase() === 'hotel');
+      filtradas = filtradas.filter(a => a.categoria === 'hotel');
     }
 
     return filtradas;
   }
 
   async eliminarAvaliacao(index: number) {
-    if (confirm('Tem a certeza que deseja eliminar esta avaliação?')) {
+    const confirmMsg = this.translate.instant('AVALIACOES.CONFIRM_DELETE');
+    if (confirm(confirmMsg)) {
       this.avaliacoes.splice(index, 1);
       await this._storage?.set('avaliacoes', this.avaliacoes);
     }
   }
 
-  async openFilter() {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Filtrar por',
-      buttons: [
-        {
-          text: 'Todos',
-          handler: () => { this.filter = 'all'; }
-        },
-        {
-          text: 'Restaurante',
-          handler: () => { this.filter = 'restaurante'; }
-        },
-        {
-          text: 'Hotel',
-          handler: () => { this.filter = 'hotel'; }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        }
-      ]
-    });
-    await actionSheet.present();
-  }
+async openFilter() {
+  const translations = await firstValueFrom(
+    this.translate.get([
+      'AVALIACOES.FILTER_HEADER',
+      'AVALIACOES.FILTER_ALL',
+      'AVALIACOES.FILTER_RESTAURANT',
+      'AVALIACOES.FILTER_HOTEL',
+      'AVALIACOES.FILTER_CANCEL'
+    ])
+  );
+
+  const actionSheet = await this.actionSheetCtrl.create({
+    header: translations['AVALIACOES.FILTER_HEADER'],
+    buttons: [
+      {
+        text: translations['AVALIACOES.FILTER_ALL'],
+        handler: () => { this.filter = 'all'; }
+      },
+      {
+        text: translations['AVALIACOES.FILTER_RESTAURANT'],
+        handler: () => { this.filter = 'restaurant'; }
+      },
+      {
+        text: translations['AVALIACOES.FILTER_HOTEL'],
+        handler: () => { this.filter = 'hotel'; }
+      },
+      {
+        text: translations['AVALIACOES.FILTER_CANCEL'],
+        role: 'cancel'
+      }
+    ]
+  });
+
+  await actionSheet.present();
+}
+
 
   async adicionarAvaliacao(avaliacao: Avaliacao) {
+    // Corrige categoria antes de guardar
+    let categoriaKey = avaliacao.categoria;
+    if (categoriaKey?.toLowerCase() === 'restaurante') {
+      categoriaKey = 'restaurant';
+    } else if (categoriaKey?.toLowerCase() === 'hotel') {
+      categoriaKey = 'hotel';
+    }
+    avaliacao.categoria = categoriaKey;
+
     this.avaliacoes.push(avaliacao);
     await this._storage?.set('avaliacoes', this.avaliacoes);
   }
@@ -116,36 +151,60 @@ export class AvaliacoesPage {
     const reader = new FileReader();
     reader.onload = async (e: any) => {
       try {
-        const avaliacoesImportadas = JSON.parse(e.target.result);
+        let avaliacoesImportadas = JSON.parse(e.target.result);
         if (Array.isArray(avaliacoesImportadas)) {
+          // Corrige categorias importadas
+          avaliacoesImportadas = avaliacoesImportadas.map(a => {
+            if (a.categoria?.toLowerCase() === 'restaurante') {
+              a.categoria = 'restaurant';
+            } else if (a.categoria?.toLowerCase() === 'hotel') {
+              a.categoria = 'hotel';
+            }
+            return a;
+          });
           this.avaliacoes = avaliacoesImportadas;
           await this._storage?.set('avaliacoes', this.avaliacoes);
         } else {
-          alert('Ficheiro inválido!');
+          alert(this.translate.instant('AVALIACOES.INVALID_FILE'));
         }
       } catch {
-        alert('Erro ao ler ficheiro!');
+        alert(this.translate.instant('AVALIACOES.READ_ERROR'));
       }
     };
     reader.readAsText(file);
   }
 
   async abrirAdicionarAvaliacao() {
+    const header = this.translate.instant('AVALIACOES.NEW_REVIEW');
+    const inputCategoria = this.translate.instant('AVALIACOES.INPUT_CATEGORY');
+    const inputNome = this.translate.instant('AVALIACOES.INPUT_NAME');
+    const inputComentario = this.translate.instant('AVALIACOES.INPUT_COMMENT');
+    const inputRating = this.translate.instant('AVALIACOES.INPUT_RATING');
+    const btnCancel = this.translate.instant('AVALIACOES.CANCEL');
+    const btnAdd = this.translate.instant('AVALIACOES.ADD');
+
     const alert = await this.alertCtrl.create({
-      header: 'Nova Avaliação',
+      header,
       inputs: [
-        { name: 'categoria', type: 'text', placeholder: 'Categoria (ex: Restaurante)' },
-        { name: 'nome', type: 'text', placeholder: 'Seu Nome' },
-        { name: 'comentario', type: 'text', placeholder: 'Comentário' },
-        { name: 'rating', type: 'number', min: 1, max: 5, placeholder: 'Rating (1-5)' }
+        { name: 'categoria', type: 'text', placeholder: inputCategoria },
+        { name: 'nome', type: 'text', placeholder: inputNome },
+        { name: 'comentario', type: 'text', placeholder: inputComentario },
+        { name: 'rating', type: 'number', min: 1, max: 5, placeholder: inputRating }
       ],
       buttons: [
-        { text: 'Cancelar', role: 'cancel' },
+        { text: btnCancel, role: 'cancel' },
         {
-          text: 'Adicionar',
+          text: btnAdd,
           handler: async (data) => {
+            // Corrige categoria antes de guardar
+            let categoriaKey = data.categoria;
+            if (categoriaKey?.toLowerCase() === 'restaurante') {
+              categoriaKey = 'restaurant';
+            } else if (categoriaKey?.toLowerCase() === 'hotel') {
+              categoriaKey = 'hotel';
+            }
             const novaAvaliacao = {
-              categoria: data.categoria,
+              categoria: categoriaKey,
               nome: data.nome,
               comentario: data.comentario,
               rating: Number(data.rating),
@@ -158,5 +217,14 @@ export class AvaliacoesPage {
       ]
     });
     await alert.present();
+  }
+
+  getCategoriaTraduzida(categoria: string) {
+    if (categoria.toLowerCase() === 'restaurante') {
+      return this.translate.instant('AVALIACOES.RESTAURANT');
+    } else if (categoria.toLowerCase() === 'hotel') {
+      return this.translate.instant('AVALIACOES.HOTEL');
+    }
+    return categoria;
   }
 }

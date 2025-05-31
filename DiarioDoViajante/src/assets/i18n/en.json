@@ -7,12 +7,116 @@
     "DATA_USAGE_DESC": "Manage the amount of mobile data you use",
     "LANGUAGE": "Language",
     "SELECT_LANGUAGE": "Select your preferred language",
-    "SELECT": "Select",
+    "SELECT1": "Select",
     "LOW": "Low",
     "MEDIUM": "Medium",
     "HIGH": "High",
     "PORTUGUESE": "Portuguese",
     "ENGLISH": "English",
     "SPANISH": "Spanish"
-  }
+  },
+
+  "PERFIL": {
+  "TITLE": "Profile",
+  "USER": "User",
+  "REGISTRO_VIAGENS": "Trip Registration",
+  "HISTORICO_VIAGENS": "Trip History",
+  "AVALIACOES": "Reviews",
+  "FOTOGRAFIAS": "Photographs"
+},
+
+"AVALIACOES": {
+  "TITLE": "Reviews",
+  "SEARCH_PLACEHOLDER": "Search restaurant/hotel...",
+  "EMPTY_ALT": "No reviews",
+  "EMPTY_TEXT": "You currently have no registered reviews",
+  "PHOTO_ALT": "Photo",
+  "AVALIACOES": {
+  "CONFIRM_DELETE": "Are you sure you want to delete this review?",
+  "FILTER_HEADER": "Filter by",
+  "FILTER_ALL": "All",
+  "FILTER_RESTAURANT": "Restaurant",
+  "FILTER_HOTEL": "Hotel",
+  "FILTER_CANCEL": "Cancel",
+  "INVALID_FILE": "Invalid file!",
+  "READ_ERROR": "Error reading file!",
+  "NEW_REVIEW": "New Review",
+  "INPUT_CATEGORY": "Category (e.g. Restaurant)",
+  "INPUT_NAME": "Your Name",
+  "INPUT_COMMENT": "Comment",
+  "INPUT_RATING": "Rating (1-5)",
+  "CANCEL": "Cancel",
+  "ADD": "Add",
+  "RESTAURANT": "Restaurant",
+  "HOTEL": "Hotel"
+}
+},
+
+"DASHBOARD": {
+  "TITLE": "Recommendations",
+  "SEARCH_PLACEHOLDER": "Search destination...",
+  "MORE_INFO": "Learn More"
+},
+
+"ROMA": "Rome",
+"ROMA_DESC": "Rome, the eternal city, enchants tourists with its history, grand monuments, irresistible cuisine, and unique charm. The Colosseum, the Vatican, and the Trevi Fountain are unforgettable!",
+"PARIS": "Paris",
+"PARIS_DESC": "Paris, the City of Light, captivates tourists with its history, iconic monuments, exquisite cuisine, and romantic charm. Eiffel Tower, Louvre, unforgettable!",
+
+"FOTOGRAFIAS": {
+  "TITLE": "Photographs",
+  "ADD_NEW": "Add new",
+  "PHOTOS": "Photos",
+  "ALBUMS": "Albums",
+  "COLOSSEO": "Colosseo.png",
+  "FONTANA": "Fontana di Trevi.png",
+  "PONT_ALEXANDRE": "Pont Alexandre III.png",
+  "IMAGE_SIZE_2MB": "Image ≈ 2mb",
+  "IMAGE_SIZE_1MB": "Image ≈ 1mb",
+  "ALBUM_SIZE_3MB": "Album ≈ 3mb",
+  "ALBUM_SIZE_2MB": "Album ≈ 2mb"
+},
+
+"HISTORICO_VIAGENS": {
+  "TITLE": "Trip History",
+  "SEARCH_PLACEHOLDER": "Search destination...",
+  "EMPTY_ALT": "No trips",
+  "EMPTY_TEXT": "You currently have no trips in your history",
+  "PRECO": "Price",
+  "TRANSPORTES": "Transports",
+  "CONFIRM_DELETE": "Are you sure you want to delete this trip?",
+  "FILTER_HEADER": "Sort/Filter trips",
+  "FILTER_NONE": "None",
+  "FILTER_PRICE_ASC": "Price ↑",
+  "FILTER_PRICE_DESC": "Price ↓",
+  "FILTER_MOST_RECENT": "Most recent",
+  "FILTER_OLDEST": "Oldest",
+  "FILTER_CANCEL": "Cancel",
+  "INVALID_FILE": "Invalid file!",
+  "READ_ERROR": "Error reading file!"
+},
+
+"LOGIN": {
+  "TITLE": "Login",
+  "WELCOME": "Welcome",
+  "TRAVELER": "Dear Traveler",
+  "EMAIL": "E-mail:",
+  "PASSWORD": "Password:",
+  "ENTER": "Login",
+  "FORGOT_PASSWORD": "Forgot password?",
+  "REGISTER": "Register"
+},
+
+"REGISTAR_AVALIACAO": {
+  "TITLE": "Register Review",
+  "CATEGORY": "Category",
+  "RESTAURANT": "Restaurant",
+  "HOTEL": "Hotel",
+  "NAME_PLACEHOLDER": "Name of the {{categoria}}",
+  "LOCAL": "place",
+  "COMMENT": "Comment",
+  "ADD_PHOTO": "Add Photo",
+  "PHOTO_ALT": "Review photo",
+  "CONFIRM": "Confirm"
+}
 }

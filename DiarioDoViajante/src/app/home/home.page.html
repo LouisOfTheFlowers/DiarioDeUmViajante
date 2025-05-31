@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="light" class="ion-no-border">
-    <ion-title class="ion-text-center">Login</ion-title>
+    <ion-title class="ion-text-center">{{ 'LOGIN.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,26 +8,25 @@
   <br>
   <br>
   <br>
-  <h1 class="login-title">Bem-vindo<br />Caro Viajante</h1>
-    <div class="login-wrapper">
-    
+  <h1 class="login-title">{{ 'LOGIN.WELCOME' | translate }}<br />{{ 'LOGIN.TRAVELER' | translate }}</h1>
+  <div class="login-wrapper">
     <div class="custom-input">
-      <label>E-mail:</label>
+      <label>{{ 'LOGIN.EMAIL' | translate }}</label>
       <ion-input [(ngModel)]="email" type="email" class="rounded-input"></ion-input>
     </div>
 
     <div class="custom-input">
-      <label>Password:</label>
+      <label>{{ 'LOGIN.PASSWORD' | translate }}</label>
       <ion-input [(ngModel)]="password" type="password" class="rounded-input"></ion-input>
     </div>
 
     <ion-button expand="block" class="login-button" (click)="login()">
-      <span class="login-button-text">Entrar</span>
+      <span class="login-button-text">{{ 'LOGIN.ENTER' | translate }}</span>
     </ion-button>
 
     <div class="login-links">
-      <a href="#">Esqueceu a palavra-passe?</a>
-      <a (click)="irParaRegisto()">Registar-se</a>
+      <a href="#">{{ 'LOGIN.FORGOT_PASSWORD' | translate }}</a>
+      <a (click)="irParaRegisto()">{{ 'LOGIN.REGISTER' | translate }}</a>
     </div>
   </div>
 </ion-content>

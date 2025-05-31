@@ -8,12 +8,15 @@ import { FotografiasPageRoutingModule } from './fotografias-routing.module';
 
 import { FotografiasPage } from './fotografias.page';
 
+import { TranslateModule } from '@ngx-translate/core';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    FotografiasPageRoutingModule
+    FotografiasPageRoutingModule,
+    TranslateModule
   ],
   declarations: [FotografiasPage]
 })

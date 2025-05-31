@@ -14,6 +14,7 @@ export class SettingsPage implements OnInit {
   mobileData = '';
   language = '';
   traducao = '';
+  selectedLang: string = 'pt';
 
   constructor(
   private translate: TranslateService
@@ -31,10 +32,26 @@ export class SettingsPage implements OnInit {
     if (saved) {
       document.body.classList.add('dark-theme');
     }
+    const lang = localStorage.getItem('lang') || 'pt';
+    this.selectedLang = lang;
+    this.translate.use(lang); // <-- força o ngx-translate a usar o idioma guardado
+    const mobileData = localStorage.getItem('mobileData') || '';
+    this.mobileData = mobileData;
   }
 
   trocarIdioma(novoIdioma: string) {
   if (!novoIdioma) return;
   this.translate.use(novoIdioma);
+}
+
+changeLang(lang: string) {
+  this.selectedLang = lang;
+  this.translate.use(lang);
+  localStorage.setItem('lang', lang);
+}
+
+changeMobileData(value: string) {
+  this.mobileData = value;
+  localStorage.setItem('mobileData', value);
 }
 }

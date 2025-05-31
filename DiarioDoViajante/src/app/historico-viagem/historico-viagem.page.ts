@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 interface Viagem {
   destino: string;
@@ -23,7 +24,8 @@ export class HistoricoViagemPage implements OnInit {
 
   constructor(
     private actionSheetCtrl: ActionSheetController,
-    private storage: Storage
+    private storage: Storage,
+    private translate: TranslateService
   ) {}
 
   async ngOnInit() {
@@ -45,38 +47,47 @@ export class HistoricoViagemPage implements OnInit {
   }
 
   async eliminarViagem(index: number) {
-    if (confirm('Tem a certeza que deseja eliminar esta viagem?')) {
+    const confirmMsg = this.translate.instant('HISTORICO_VIAGENS.CONFIRM_DELETE');
+    if (confirm(confirmMsg)) {
       this.viagens.splice(index, 1);
       await this._storage?.set('viagens', this.viagens);
     }
   }
 
   async abrirFiltro() {
+    const header = this.translate.instant('HISTORICO_VIAGENS.FILTER_HEADER');
+    const btnNone = this.translate.instant('HISTORICO_VIAGENS.FILTER_NONE');
+    const btnAsc = this.translate.instant('HISTORICO_VIAGENS.FILTER_PRICE_ASC');
+    const btnDesc = this.translate.instant('HISTORICO_VIAGENS.FILTER_PRICE_DESC');
+    const btnRecent = this.translate.instant('HISTORICO_VIAGENS.FILTER_MOST_RECENT');
+    const btnOld = this.translate.instant('HISTORICO_VIAGENS.FILTER_OLDEST');
+    const btnCancel = this.translate.instant('HISTORICO_VIAGENS.FILTER_CANCEL');
+
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Ordenar/Filtar viagens',
+      header,
       buttons: [
         {
-          text: 'Nenhum',
+          text: btnNone,
           handler: () => { this.precoFiltro = 'nenhum'; }
         },
         {
-          text: 'Preço ↑',
+          text: btnAsc,
           handler: () => { this.precoFiltro = 'asc'; }
         },
         {
-          text: 'Preço ↓',
+          text: btnDesc,
           handler: () => { this.precoFiltro = 'desc'; }
         },
         {
-          text: 'Mais recente',
+          text: btnRecent,
           handler: () => { this.precoFiltro = 'maisRecente'; }
         },
         {
-          text: 'Mais antigo',
+          text: btnOld,
           handler: () => { this.precoFiltro = 'maisAntigo'; }
         },
         {
-          text: 'Cancelar',
+          text: btnCancel,
           role: 'cancel'
         }
       ]
@@ -134,10 +145,10 @@ export class HistoricoViagemPage implements OnInit {
           this.viagens = viagensImportadas;
           await this._storage?.set('viagens', this.viagens);
         } else {
-          alert('Ficheiro inválido!');
+          alert(this.translate.instant('HISTORICO_VIAGENS.INVALID_FILE'));
         }
       } catch {
-        alert('Erro ao ler ficheiro!');
+        alert(this.translate.instant('HISTORICO_VIAGENS.READ_ERROR'));
       }
     };
     reader.readAsText(file);

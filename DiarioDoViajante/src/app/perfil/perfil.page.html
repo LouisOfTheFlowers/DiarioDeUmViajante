@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Perfil</ion-title>
+    <ion-title>{{ 'PERFIL.TITLE' | translate }}</ion-title>
     <ion-buttons slot="end">
       <ion-button color="danger" routerLink="/home">
         <ion-icon slot="icon-only" name="power"></ion-icon>
@@ -11,34 +11,34 @@
 
 <ion-content class="ion-padding">
   <div class="profile-banner">
-    <div class="banner-title">Perfil</div>
+    <div class="banner-title">{{ 'PERFIL.TITLE' | translate }}</div>
   </div>
 
   <ion-item lines="none" class="user-item">
     <ion-icon slot="start" name="person-outline"></ion-icon>
-    <ion-label>Utilizador</ion-label>
+    <ion-label>{{ 'PERFIL.USER' | translate }}</ion-label>
     <ion-icon slot="end" name="chevron-down-outline"></ion-icon>
   </ion-item>
 
   <div class="button-grid">
     <ion-button expand="block" fill="solid" color="light" routerLink="/registar-viagem" class="icon-button">
       <ion-icon slot="start" name="create-outline"></ion-icon>
-      Registo de Viagens
+      {{ 'PERFIL.REGISTRO_VIAGENS' | translate }}
     </ion-button>
 
     <ion-button expand="block" fill="solid" color="light" routerLink="/historico-viagem" class="icon-button">
       <ion-icon slot="start" name="refresh-outline"></ion-icon>
-      Histórico de Viagens
+      {{ 'PERFIL.HISTORICO_VIAGENS' | translate }}
     </ion-button>
 
     <ion-button expand="block" fill="solid" color="light" routerLink="/avaliacoes" class="icon-button">
       <ion-icon slot="start" name="star-outline"></ion-icon>
-      Avaliações
+      {{ 'PERFIL.AVALIACOES' | translate }}
     </ion-button>
 
     <ion-button expand="block" fill="solid" color="light" routerLink="/fotografias" class="icon-button">
       <ion-icon slot="start" name="camera-outline"></ion-icon>
-      Fotografias
+      {{ 'PERFIL.FOTOGRAFIAS' | translate }}
     </ion-button>
   </div>
 </ion-content>

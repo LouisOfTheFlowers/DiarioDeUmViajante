@@ -1,18 +1,120 @@
 {
   "SETTINGS": {
-    "TITLE": "Configuración",
+    "TITLE": "Ajustes",
     "THEME": "Tema de la aplicación",
     "CHOOSE_THEME": "Elige entre modo claro u oscuro",
     "DATA_USAGE": "Uso de datos móviles",
     "DATA_USAGE_DESC": "Gestiona la cantidad de datos móviles que usas",
     "LANGUAGE": "Idioma",
     "SELECT_LANGUAGE": "Seleccione el idioma deseado",
-    "SELECT": "Seleccionar",
+    "SELECT1": "Seleccionar",
     "LOW": "Bajo",
     "MEDIUM": "Medio",
     "HIGH": "Alto",
     "PORTUGUESE": "Portugués",
     "ENGLISH": "Inglés",
     "SPANISH": "Español"
-  }
+  },
+
+  "PERFIL": {
+  "TITLE": "Perfil",
+  "USER": "Usuario",
+  "REGISTRO_VIAGENS": "Registro de Viajes",
+  "HISTORICO_VIAGENS": "Historial de Viajes",
+  "AVALIACOES": "Valoraciones",
+  "FOTOGRAFIAS": "Fotografías"
+},
+
+"AVALIACOES": {
+  "TITLE": "Valoraciones",
+  "SEARCH_PLACEHOLDER": "Buscar restaurante/hotel...",
+  "EMPTY_ALT": "Sin valoraciones",
+  "EMPTY_TEXT": "Actualmente no tienes valoraciones registradas",
+  "PHOTO_ALT": "Foto",
+  "CONFIRM_DELETE": "¿Está seguro de que desea eliminar esta valoración?",
+  "FILTER_HEADER": "Filtrar por",
+  "FILTER_ALL": "Todos",
+  "FILTER_RESTAURANT": "Restaurante",
+  "FILTER_HOTEL": "Hotel",
+  "FILTER_CANCEL": "Cancelar",
+  "INVALID_FILE": "¡Archivo inválido!",
+  "READ_ERROR": "¡Error al leer el archivo!",
+  "NEW_REVIEW": "Nueva Valoración",
+  "INPUT_CATEGORY": "Categoría (ej: Restaurante)",
+  "INPUT_NAME": "Su Nombre",
+  "INPUT_COMMENT": "Comentario",
+  "INPUT_RATING": "Puntuación (1-5)",
+  "CANCEL": "Cancelar",
+  "ADD": "Añadir",
+  "RESTAURANT": "Restaurante",
+  "HOTEL": "Hotel"
+},
+
+"DASHBOARD": {
+  "TITLE": "Recomendaciones",
+  "SEARCH_PLACEHOLDER": "Buscar destino...",
+  "MORE_INFO": "Saber más"
+},
+
+"ROMA": "Roma",
+"ROMA_DESC": "Roma, la ciudad eterna, encanta a los turistas con su historia, monumentos grandiosos, gastronomía irresistible y un encanto incomparable. ¡El Coliseo, el Vaticano y la Fontana di Trevi son inolvidables!",
+"PARIS": "París",
+"PARIS_DESC": "París, la Ciudad de la Luz, cautiva a los turistas con su historia, monumentos icónicos, cocina exquisita y encanto romántico. ¡Torre Eiffel, Louvre, inolvidable!",
+
+"FOTOGRAFIAS": {
+  "TITLE": "Fotografías",
+  "ADD_NEW": "Añadir nueva",
+  "PHOTOS": "Fotografías",
+  "ALBUMS": "Álbumes",
+  "COLOSSEO": "Colosseo.png",
+  "FONTANA": "Fontana di Trevi.png",
+  "PONT_ALEXANDRE": "Pont Alexandre III.png",
+  "IMAGE_SIZE_2MB": "Imagen ≈ 2mb",
+  "IMAGE_SIZE_1MB": "Imagen ≈ 1mb",
+  "ALBUM_SIZE_3MB": "Álbum ≈ 3mb",
+  "ALBUM_SIZE_2MB": "Álbum ≈ 2mb"
+},
+
+"HISTORICO_VIAGENS": {
+  "TITLE": "Historial de Viajes",
+  "SEARCH_PLACEHOLDER": "Buscar destino...",
+  "EMPTY_ALT": "Sin viajes",
+  "EMPTY_TEXT": "Actualmente no tienes viajes en el historial",
+  "PRECO": "Precio",
+  "TRANSPORTES": "Transportes",
+  "CONFIRM_DELETE": "¿Está seguro de que desea eliminar este viaje?",
+  "FILTER_HEADER": "Ordenar/Filtrar viajes",
+  "FILTER_NONE": "Ninguno",
+  "FILTER_PRICE_ASC": "Precio ↑",
+  "FILTER_PRICE_DESC": "Precio ↓",
+  "FILTER_MOST_RECENT": "Más reciente",
+  "FILTER_OLDEST": "Más antiguo",
+  "FILTER_CANCEL": "Cancelar",
+  "INVALID_FILE": "¡Archivo inválido!",
+  "READ_ERROR": "¡Error al leer el archivo!"
+},
+
+"LOGIN": {
+  "TITLE": "Iniciar sesión",
+  "WELCOME": "Bienvenido",
+  "TRAVELER": "Querido Viajero",
+  "EMAIL": "Correo electrónico:",
+  "PASSWORD": "Contraseña:",
+  "ENTER": "Entrar",
+  "FORGOT_PASSWORD": "¿Olvidó su contraseña?",
+  "REGISTER": "Registrarse"
+},
+
+"REGISTAR_AVALIACAO": {
+  "TITLE": "Registrar Valoración",
+  "CATEGORY": "Categoría",
+  "RESTAURANT": "Restaurante",
+  "HOTEL": "Hotel",
+  "NAME_PLACEHOLDER": "Nombre del {{categoria}}",
+  "LOCAL": "lugar",
+  "COMMENT": "Comentario",
+  "ADD_PHOTO": "Añadir Fotografía",
+  "PHOTO_ALT": "Foto de la valoración",
+  "CONFIRM": "Confirmar"
+}
 }
