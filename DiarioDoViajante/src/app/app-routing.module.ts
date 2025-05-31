@@ -42,7 +42,8 @@ const routes: Routes = [
   {
     path: 'historico-viagem',
     loadChildren: () => import('./historico-viagem/historico-viagem.module').then( m => m.HistoricoViagemPageModule)
-  },  {
+  },
+  {
     path: 'registar-avaliacao',
     loadChildren: () => import('./registar-avaliacao/registar-avaliacao.module').then( m => m.RegistarAvaliacaoPageModule)
   },

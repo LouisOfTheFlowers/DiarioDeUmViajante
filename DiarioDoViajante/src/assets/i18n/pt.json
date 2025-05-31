@@ -96,14 +96,14 @@
 },
 
 "LOGIN": {
-  "TITLE": "Iniciar sessão",
-  "WELCOME": "Bem-vindo",
-  "TRAVELER": "Caro Viajante",
-  "EMAIL": "E-mail:",
-  "PASSWORD": "Password:",
-  "ENTER": "Entrar",
-  "FORGOT_PASSWORD": "Esqueceu a palavra-passe?",
-  "REGISTER": "Registar-se"
+    "TITLE": "Iniciar sessão",
+    "WELCOME": "Bem-vindo",
+    "TRAVELER": "Caro Viajante",
+    "USERNAME": "Nome de Utilizador",  
+    "PASSWORD": "Palavra-passe",
+    "ENTER": "Entrar",
+    "FORGOT_PASSWORD": "Esqueceu a palavra-passe?",
+    "REGISTER": "Registar-se"
 },
 
 "REGISTAR_AVALIACAO": {

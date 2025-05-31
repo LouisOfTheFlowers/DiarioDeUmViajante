@@ -138,3 +138,15 @@ ion-title.header-title {
   display: block;
   margin: 0 auto;
 }
+ion-select {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  font-size: 14px; /* Reduz o tamanho da letra */
+  height: 32px; /* Reduz a altura */
+  width: 150px; /* Reduz a largura */
+}
+
+
+
