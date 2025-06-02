@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Storage } from '@ionic/storage-angular';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core'; // <-- Importa
 
 interface Viagem {
   destino: string;
   percurso: string;
   preco: number | null;
-  transportes: string[]; // array!
+  transportes: string[];
 }
 
 @Component({
@@ -29,7 +30,8 @@ export class RegistarViagemPage implements OnInit {
   constructor(
     private storage: Storage,
     private location: Location,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private translate: TranslateService // <-- Injeta
   ) {}
 
   async ngOnInit() {
@@ -48,7 +50,6 @@ export class RegistarViagemPage implements OnInit {
   }
 
   async confirmarViagem() {
-    // Verifica se todos os campos estão preenchidos
     if (
       !this.destino ||
       !this.percurso ||
@@ -56,12 +57,9 @@ export class RegistarViagemPage implements OnInit {
       this.preco === undefined ||
       this.transportes.length === 0
     ) {
-      const alert = await this.alertCtrl.create({
-        header: 'Atenção',
-        message: 'Tem de preencher todos os campos!',
-        buttons: ['OK']
-      });
-      await alert.present();
+      await this.apresentarAlerta(
+        this.translate.instant('REGISTAR_AVALIACAO.PREENCHA_TODOS_OS_CAMPOS')
+      );
       return;
     }
 
@@ -97,10 +95,14 @@ export class RegistarViagemPage implements OnInit {
           this.viagens = viagensImportadas;
           await this._storage?.set('viagens', this.viagens);
         } else {
-          this.apresentarAlerta('Ficheiro inválido!');
+          await this.apresentarAlerta(
+            this.translate.instant('HISTORICO_VIAGENS.INVALID_FILE')
+          );
         }
       } catch {
-        this.apresentarAlerta('Erro ao ler ficheiro!');
+        await this.apresentarAlerta(
+          this.translate.instant('HISTORICO_VIAGENS.READ_ERROR')
+        );
       }
     };
     reader.readAsText(file);
@@ -122,9 +124,9 @@ export class RegistarViagemPage implements OnInit {
 
   private async apresentarAlerta(mensagem: string) {
     const alert = await this.alertCtrl.create({
-      header: 'Atenção',
+      header: this.translate.instant('REGISTAR_AVALIACAO.ATENCAO'),
       message: mensagem,
-      buttons: ['OK']
+      buttons: [this.translate.instant('REGISTAR_AVALIACAO.OK')]
     });
 
     await alert.present();

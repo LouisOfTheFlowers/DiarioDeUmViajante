@@ -104,7 +104,10 @@
   "COMMENT": "Comment",
   "ADD_PHOTO": "Add Photo",
   "PHOTO_ALT": "Review photo",
-  "CONFIRM": "Confirm"
+  "CONFIRM": "Confirm",
+  "ATENCAO": "Attention",
+  "PREENCHA_TODOS_OS_CAMPOS": "You must fill in all fields!",
+  "OK": "OK"
 },
 
 "REGISTAR_VIAGEM": {
@@ -133,7 +136,13 @@
   "PASSWORD_MINLENGTH": "Password must be at least 6 characters",
   "CONFIRM_PASSWORD": "Confirm Password:",
   "CONFIRM_PASSWORD_REQUIRED": "Password confirmation is required",
-  "REGISTER": "Register"
+  "REGISTER": "Register",
+  "ERRO": "Error",
+  "PREENCHA_TODOS_OS_CAMPOS": "Please fill in all fields!",
+  "Passwords_Nao_Coincidem": "Passwords do not match!",
+  "OK": "OK",
+  "SUCESSO": "Success",
+  "CONTA_CRIADA_SUCESSO": "Account created successfully!"
 },
 
 "LOGIN": {
@@ -145,6 +154,9 @@
   "PASSWORD_REQUIRED": "Password is required",
   "ENTER": "Enter",
   "FORGOT_PASSWORD": "Forgot password?",
-  "REGISTER": "Register"
+  "REGISTER": "Register",
+  "FILL_ALL_FIELDS": "Please fill in all fields!",
+  "SUCCESS": "Login successful!",
+  "INVALID_CREDENTIALS": "Incorrect username or password!"
 }
 }

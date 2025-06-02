@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { AlertController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core'; // <-- Importa
 
 @Component({
   selector: 'app-registar-avaliacao',
@@ -18,7 +19,12 @@ export class RegistarAvaliacaoPage {
   foto: string | null = null;
   private _storage: Storage | null = null;
 
-  constructor(private storage: Storage, private router: Router, private alertCtrl: AlertController) {}
+  constructor(
+    private storage: Storage,
+    private router: Router,
+    private alertCtrl: AlertController,
+    private translate: TranslateService // <-- Injeta
+  ) {}
 
   async ngOnInit() {
     this._storage = await this.storage.create();
@@ -41,9 +47,9 @@ export class RegistarAvaliacaoPage {
   async confirmarAvaliacao() {
     if (!this.categoria || !this.nome || !this.comentario || !this.rating) {
       const alert = await this.alertCtrl.create({
-        header: 'Atenção',
-        message: 'Tem de preencher todos os campos!',
-        buttons: ['OK'],
+        header: this.translate.instant('REGISTAR_AVALIACAO.ATENCAO'),
+        message: this.translate.instant('REGISTAR_AVALIACAO.PREENCHA_TODOS_OS_CAMPOS'),
+        buttons: [this.translate.instant('REGISTAR_AVALIACAO.OK')],
       });
       await alert.present();
       return;

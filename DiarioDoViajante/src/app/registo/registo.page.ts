@@ -53,8 +53,8 @@ export class RegistoPage implements OnInit {
   async registar() {
     if (this.registoForm.invalid) {
       const alert = await this.alertCtrl.create({
-        header: this.translate.instant('ERRO'),
-        message: this.translate.instant('PREENCHA_TODOS_OS_CAMPOS'),
+        header: this.translate.instant('REGISTO.ERRO'),
+        message: this.translate.instant('REGISTO.PREENCHA_TODOS_OS_CAMPOS'),
         buttons: [this.translate.instant('OK')],
       });
       await alert.present();
@@ -65,8 +65,8 @@ export class RegistoPage implements OnInit {
 
     if (password !== confirmPassword) {
       const alert = await this.alertCtrl.create({
-        header: this.translate.instant('ERRO'),
-        message: this.translate.instant('Passwords_Nao_Coincidem'),
+        header: this.translate.instant('REGISTO.ERRO'),
+        message: this.translate.instant('REGISTO.Passwords_Nao_Coincidem'),
         buttons: [this.translate.instant('OK')],
       });
       await alert.present();
@@ -81,9 +81,9 @@ export class RegistoPage implements OnInit {
     this.generateTxt(users);
 
     const alert = await this.alertCtrl.create({
-      header: this.translate.instant('SUCESSO'),
-      message: this.translate.instant('CONTA_CRIADA_SUCESSO'),
-      buttons: [this.translate.instant('OK')],
+      header: this.translate.instant('REGISTO.SUCESSO'),
+      message: this.translate.instant('REGISTO.CONTA_CRIADA_SUCESSO'),
+      buttons: [this.translate.instant('REGISTO.OK')],
     });
     await alert.present();
 
