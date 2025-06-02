@@ -168,6 +168,36 @@ ion-alert {
 }
 
 /* =========================
+   BOTÃO TRANSPARENTE ADICIONAR FOTO
+   ========================= */
+app-registar-avaliacao .custom-input .adicionar-foto-button {
+  width: 100%;
+  justify-content: flex-start;
+  --background: transparent !important;
+  background: transparent !important;
+  color: var(--ion-color-primary);
+}
+
+/* Garantir que no modo escuro também fique adequado */
+.dark-theme app-registar-avaliacao .custom-input .adicionar-foto-button {
+  --background: transparent !important;
+  background: transparent !important;
+  color: #ffffff;
+}
+
+/* Melhorar o visual do ícone da câmera */
+app-registar-avaliacao .custom-input .adicionar-foto-button ion-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+/* Ajustar o texto do botão */
+app-registar-avaliacao .custom-input .adicionar-foto-button span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* =========================
    CARDS
    ========================= */
 ion-card {
@@ -308,6 +338,7 @@ ion-segment {
 .dark-theme ion-input {
   color: #ffffff !important;
   --placeholder-color: #ffffff !important;
+ 
 }
 .dark-theme .filtro,
 .dark-theme ion-button.filtro {
@@ -337,4 +368,118 @@ ion-segment {
 body.dark .custom-input label,
 body.dark-theme .custom-input label {
   color: #cfcfcf !important;
+}
+
+/* =========================
+   REGISTAR VIAGEM INPUTS
+   ========================= */
+app-registar-viagem .custom-input {
+  --background: #f5f5f5 !important;
+  background: #f5f5f5 !important;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dark mode */
+.dark-theme app-registar-viagem .custom-input {
+  --background: #333333 !important;
+  background: #333333 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Garantir que os ícones fiquem visíveis */
+app-registar-viagem .custom-input ion-icon {
+  margin-right: 8px;
+  opacity: 0.8;
+}
+
+/* Melhorar contraste do texto dentro dos inputs */
+app-registar-viagem .custom-input ion-input,
+app-registar-viagem .custom-input ion-select {
+  --padding-start: 12px;
+  font-weight: 500;
+}
+
+/* =========================
+   REGISTAR AVALIACAO INPUTS
+   ========================= */
+app-registar-avaliacao .custom-input {
+  --background: #f5f5f5 !important;
+  background: #f5f5f5 !important;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dark mode */
+.dark-theme app-registar-avaliacao .custom-input {
+  --background: #333333 !important;
+  background: #333333 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Garantir que os ícones fiquem visíveis */
+app-registar-avaliacao .custom-input ion-icon {
+  margin-right: 8px;
+  opacity: 0.8;
+}
+
+/* Melhorar contraste do texto dentro dos inputs */
+app-registar-avaliacao .custom-input ion-input,
+app-registar-avaliacao .custom-input ion-select,
+app-registar-avaliacao .custom-input ion-button {
+  --padding-start: 12px;
+  font-weight: 500;
+}
+
+/* Ajuste para o botão de adicionar foto dentro do input */
+app-registar-avaliacao .custom-input .adicionar-foto-button {
+  width: 100%;
+  justify-content: flex-start;
+  --background: transparent !important;
+  background: transparent !important;
+  color: var(--ion-color-primary);
+}
+
+/* Garantir que no modo escuro também fique adequado */
+.dark-theme app-registar-avaliacao .custom-input .adicionar-foto-button {
+  --background: transparent !important;
+  background: transparent !important;
+  color: #ffffff;
+}
+
+/* Melhorar o visual do ícone da câmera */
+app-registar-avaliacao .custom-input .adicionar-foto-button ion-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+/* Ajustar o texto do botão */
+app-registar-avaliacao .custom-input .adicionar-foto-button span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* =========================
+   PERFIL PAGE USER ITEM
+   ========================= */
+.user-item {
+  background-color: #f5f5f5 !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.dark-theme .user-item {
+  background-color: #f5f5f5 !important;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+  
+
+/* Remover a linha divisória no final do item */
+.user-item.ion-item {
+  --inner-border-width: 0;
+  --border-width: 0;
 }

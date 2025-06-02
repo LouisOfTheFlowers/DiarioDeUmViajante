@@ -3,12 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core'; // <-- Adiciona isto
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
-  standalone: false, // <-- IMPORTANTE: false porque estamos em App Module clássico
+  standalone: false,
 })
 export class HomePage implements OnInit {
   loginForm!: FormGroup; // <-- Reactive Form
@@ -17,7 +18,8 @@ export class HomePage implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private storage: Storage,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private translate: TranslateService // <-- Adiciona isto
   ) {}
 
   async ngOnInit() {
@@ -35,7 +37,7 @@ export class HomePage implements OnInit {
   async login() {
     if (this.loginForm.invalid) {
       const toast = await this.toastCtrl.create({
-        message: 'Preencha todos os campos!',
+        message: this.translate.instant('LOGIN.FILL_ALL_FIELDS'),
         duration: 2000,
         color: 'danger'
       });
@@ -52,6 +54,9 @@ export class HomePage implements OnInit {
     );
 
     if (userFound) {
+      // Atualiza o utilizador atual no Storage
+      await this.storage.set('currentUser', userFound);
+
       const toast = await this.toastCtrl.create({
         message: 'Login efetuado com sucesso!',
         duration: 150,
@@ -64,7 +69,7 @@ export class HomePage implements OnInit {
       });
     } else {
       const toast = await this.toastCtrl.create({
-        message: 'Username ou Password incorretos!',
+        message: this.translate.instant('LOGIN.INVALID_CREDENTIALS'),
         duration: 2000,
         color: 'danger'
       });

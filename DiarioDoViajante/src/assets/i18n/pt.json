@@ -105,7 +105,10 @@
   "COMMENT": "Comentário",
   "ADD_PHOTO": "Adicionar Fotografia",
   "PHOTO_ALT": "Foto da avaliação",
-  "CONFIRM": "Confirmar"
+  "CONFIRM": "Confirmar",
+  "ATENCAO": "Atenção",
+  "PREENCHA_TODOS_OS_CAMPOS": "Tem de preencher todos os campos!",
+  "OK": "OK"
 },
 
 "REGISTAR_VIAGEM": {
@@ -134,7 +137,13 @@
   "PASSWORD_MINLENGTH": "Password deve ter no mínimo 6 caracteres",
   "CONFIRM_PASSWORD": "Confirmar Password:",
   "CONFIRM_PASSWORD_REQUIRED": "Confirmação de password é obrigatória",
-  "REGISTER": "Registar"
+  "REGISTER": "Registar",
+  "ERRO": "Erro",
+  "PREENCHA_TODOS_OS_CAMPOS": "Preencha todos os campos!",
+  "Passwords_Nao_Coincidem": "As passwords não coincidem!",
+  "OK": "OK",
+  "SUCESSO": "Sucesso",
+  "CONTA_CRIADA_SUCESSO": "Conta criada com sucesso!"
 },
 
 "LOGIN": {
@@ -146,6 +155,9 @@
   "PASSWORD_REQUIRED": "Password é obrigatória",
   "ENTER": "Entrar",
   "FORGOT_PASSWORD": "Esqueceu a palavra-passe?",
-  "REGISTER": "Registar-se"
+  "REGISTER": "Registar-se",
+  "FILL_ALL_FIELDS": "Preencha todos os campos!",
+  "SUCCESS": "Login efetuado com sucesso!",
+  "INVALID_CREDENTIALS": "Username ou Password incorretos!"
 }
 }

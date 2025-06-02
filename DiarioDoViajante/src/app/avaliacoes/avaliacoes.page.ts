@@ -39,7 +39,15 @@ export class AvaliacoesPage {
 
   async ngOnInit() {
     this._storage = await this.storage.create();
-    let avaliacoesGuardadas = await this._storage.get('avaliacoes');
+    await this.carregarAvaliacoes();
+  }
+
+  async ionViewWillEnter() {
+    await this.carregarAvaliacoes();
+  }
+
+  private async carregarAvaliacoes() {
+    let avaliacoesGuardadas = await this._storage?.get('avaliacoes');
     if (avaliacoesGuardadas) {
       // Corrige categorias antigas
       avaliacoesGuardadas = avaliacoesGuardadas.map((a: Avaliacao) => {
@@ -51,7 +59,9 @@ export class AvaliacoesPage {
         return a;
       });
       this.avaliacoes = avaliacoesGuardadas;
-      await this._storage.set('avaliacoes', avaliacoesGuardadas); // Atualiza o storage!
+      await this._storage?.set('avaliacoes', avaliacoesGuardadas); // Atualiza o storage!
+    } else {
+      this.avaliacoes = [];
     }
   }
 
