@@ -18,7 +18,9 @@ export class AppComponent {
   }
 
   initializeApp() {
+    this.translate.addLangs(['pt', 'en', 'es']);
     this.translate.setDefaultLang('pt');
-    this.translate.use('pt');
+    const lang = localStorage.getItem('lang') || 'pt';
+    this.translate.use(lang);
   }
 }
