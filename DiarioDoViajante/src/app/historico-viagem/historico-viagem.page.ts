@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../Services/storage.service'; // Usa o novo serviço
 
+// Define a interface para uma viagem
 interface Viagem {
   destino: string;
   percurso: string;
@@ -10,35 +11,41 @@ interface Viagem {
   transportes: string[];
 }
 
+// Declaração do componente da página de histórico de viagens
 @Component({
-  selector: 'app-historico-viagem',
-  templateUrl: './historico-viagem.page.html',
-  styleUrls: ['./historico-viagem.page.scss'],
-  standalone: false,
+  selector: 'app-historico-viagem', // Seletor do componente
+  templateUrl: './historico-viagem.page.html', // Caminho para o ficheiro HTML do template
+  styleUrls: ['./historico-viagem.page.scss'], // Caminho para o ficheiro de estilos SCSS
+  standalone: false, // Indica se o componente é standalone
 })
 export class HistoricoViagemPage implements OnInit {
+  // Lista de viagens
   viagens: Viagem[] = [];
+  // Termo de pesquisa para filtrar viagens
   searchTerm: string = '';
+  // Filtro de preço ou ordem
   precoFiltro: 'nenhum' | 'asc' | 'desc' | 'maisRecente' | 'maisAntigo' = 'nenhum';
-  private _storage: Storage | null = null;
 
+  // Injeta os serviços necessários no construtor
   constructor(
     private actionSheetCtrl: ActionSheetController,
-    private storage: Storage,
+    private storageService: StorageService, // Usa o novo serviço
     private translate: TranslateService
   ) {}
 
+  // Inicializa e carrega as viagens ao iniciar o componente
   async ngOnInit() {
-    this._storage = await this.storage.create();
     await this.carregarViagens();
   }
 
+  // Sempre que a página é apresentada, recarrega as viagens
   async ionViewWillEnter() {
     await this.carregarViagens();
   }
 
+  // Carrega as viagens do storage
   async carregarViagens() {
-    const viagensGuardadas = await this._storage?.get('viagens');
+    const viagensGuardadas = await this.storageService.get('viagens');
     if (viagensGuardadas) {
       this.viagens = viagensGuardadas;
     } else {
@@ -46,14 +53,16 @@ export class HistoricoViagemPage implements OnInit {
     }
   }
 
+  // Elimina uma viagem pelo índice
   async eliminarViagem(index: number) {
     const confirmMsg = this.translate.instant('HISTORICO_VIAGENS.CONFIRM_DELETE');
     if (confirm(confirmMsg)) {
       this.viagens.splice(index, 1);
-      await this._storage?.set('viagens', this.viagens);
+      await this.storageService.set('viagens', this.viagens);
     }
   }
 
+  // Abre o menu de filtro de preço/ordem
   async abrirFiltro() {
     const header = this.translate.instant('HISTORICO_VIAGENS.FILTER_HEADER');
     const btnNone = this.translate.instant('HISTORICO_VIAGENS.FILTER_NONE');
@@ -95,6 +104,7 @@ export class HistoricoViagemPage implements OnInit {
     await actionSheet.present();
   }
 
+  // Devolve as viagens filtradas pelo termo de pesquisa e filtro selecionado
   get viagensFiltradas() {
     let filtradas = this.viagens;
 
@@ -105,7 +115,7 @@ export class HistoricoViagemPage implements OnInit {
       );
     }
 
-    // Filtros
+    // Aplica o filtro de preço/ordem
     if (this.precoFiltro === 'asc') {
       filtradas = [...filtradas].sort((a, b) => (a.preco ?? 0) - (b.preco ?? 0));
     } else if (this.precoFiltro === 'desc') {
@@ -119,8 +129,9 @@ export class HistoricoViagemPage implements OnInit {
     return filtradas;
   }
 
+  // Exporta as viagens para um ficheiro JSON (download)
   async exportarViagens() {
-    const viagens = await this._storage?.get('viagens') || [];
+    const viagens = await this.storageService.get('viagens') || [];
     const dataStr = JSON.stringify(viagens, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = window.URL.createObjectURL(blob);
@@ -133,6 +144,7 @@ export class HistoricoViagemPage implements OnInit {
     window.URL.revokeObjectURL(url);
   }
 
+  // Importa viagens a partir de um ficheiro JSON selecionado pelo utilizador
   async importarViagens(event: any) {
     const file = event.target.files[0];
     if (!file) return;
@@ -143,7 +155,7 @@ export class HistoricoViagemPage implements OnInit {
         const viagensImportadas = JSON.parse(e.target.result);
         if (Array.isArray(viagensImportadas)) {
           this.viagens = viagensImportadas;
-          await this._storage?.set('viagens', this.viagens);
+          await this.storageService.set('viagens', this.viagens);
         } else {
           alert(this.translate.instant('HISTORICO_VIAGENS.INVALID_FILE'));
         }

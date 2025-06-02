@@ -1,28 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from '@ionic/storage-angular';
+import { StorageService } from '../Services/storage.service'; // Usa o novo serviço
 
+// Declaração do componente da página de perfil
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
-  standalone: false,
+  selector: 'app-perfil', // Seletor do componente
+  templateUrl: './perfil.page.html', // Caminho para o template HTML
+  styleUrls: ['./perfil.page.scss'], // Caminho para o ficheiro de estilos SCSS
+  standalone: false, // Indica se o componente é standalone
 })
 export class PerfilPage implements OnInit {
-  username: string = '';
+  username: string = ''; // Variável para guardar o nome de utilizador
 
-  constructor(private storage: Storage) { }
+  // Injeta o serviço de storage no construtor
+  constructor(private storageService: StorageService) { }
 
+  // Ao iniciar o componente, carrega o nome de utilizador
   async ngOnInit() {
-    await this.storage.create();
     await this.loadUsername();
   }
 
+  // Sempre que a página é apresentada, atualiza o nome de utilizador
   async ionViewWillEnter() {
     await this.loadUsername();
   }
 
+  // Função privada para ir buscar o nome de utilizador ao storage
   private async loadUsername() {
-    const currentUser = await this.storage.get('currentUser');
+    const currentUser = await this.storageService.get('currentUser');
     this.username = currentUser?.username || '';
   }
 }

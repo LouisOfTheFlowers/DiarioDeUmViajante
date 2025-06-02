@@ -1,39 +1,37 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core'; // <-- Importa
+import { Router } from '@angular/router'; // Importa o router para navegação
+import { StorageService } from '../Services/storage.service'; // Usa o novo serviço
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; // Importa funcionalidades da câmara
+import { AlertController } from '@ionic/angular'; // Importa o controlador de alertas do Ionic
+import { TranslateService } from '@ngx-translate/core'; // Importa o serviço de tradução
 
 @Component({
-  selector: 'app-registar-avaliacao',
-  templateUrl: './registar-avaliacao.page.html',
-  styleUrls: ['./registar-avaliacao.page.scss'],
-  standalone: false,
+  selector: 'app-registar-avaliacao', // Seletor do componente
+  templateUrl: './registar-avaliacao.page.html', // Caminho para o template HTML
+  styleUrls: ['./registar-avaliacao.page.scss'], // Caminho para o ficheiro de estilos SCSS
+  standalone: false, // Indica se o componente é standalone
 })
 export class RegistarAvaliacaoPage {
-  categoria: string = '';
-  nome: string = '';
-  comentario: string = '';
-  rating: number = 0;
-  foto: string | null = null;
-  private _storage: Storage | null = null;
+  categoria: string = ''; // Categoria da avaliação (restaurante/hotel)
+  nome: string = ''; // Nome do local avaliado
+  comentario: string = ''; // Comentário do utilizador
+  rating: number = 0; // Avaliação em estrelas
+  foto: string | null = null; // Fotografia associada à avaliação
 
+  // Injeta os serviços necessários no construtor
   constructor(
-    private storage: Storage,
+    private storageService: StorageService, // Usa o novo serviço
     private router: Router,
     private alertCtrl: AlertController,
-    private translate: TranslateService // <-- Injeta
+    private translate: TranslateService // Serviço de tradução
   ) {}
 
-  async ngOnInit() {
-    this._storage = await this.storage.create();
-  }
-
+  // Define o número de estrelas selecionado
   setRating(star: number) {
     this.rating = star;
   }
 
+  // Permite ao utilizador escolher ou tirar uma fotografia
   async escolherFoto() {
     const image = await Camera.getPhoto({
       quality: 80,
@@ -44,7 +42,9 @@ export class RegistarAvaliacaoPage {
     this.foto = image.dataUrl ?? null;
   }
 
+  // Confirma e guarda a avaliação no storage
   async confirmarAvaliacao() {
+    // Valida se todos os campos obrigatórios estão preenchidos
     if (!this.categoria || !this.nome || !this.comentario || !this.rating) {
       const alert = await this.alertCtrl.create({
         header: this.translate.instant('REGISTAR_AVALIACAO.ATENCAO'),
@@ -63,6 +63,7 @@ export class RegistarAvaliacaoPage {
       categoriaKey = 'hotel';
     }
 
+    // Cria o objeto da nova avaliação
     const novaAvaliacao = {
       categoria: categoriaKey,
       nome: this.nome,
@@ -71,9 +72,13 @@ export class RegistarAvaliacaoPage {
       foto: this.foto,
       data: new Date().toISOString(),
     };
-    const avaliacoes = (await this._storage?.get('avaliacoes')) || [];
+
+    // Vai buscar as avaliações já guardadas e adiciona a nova
+    const avaliacoes = (await this.storageService.get('avaliacoes')) || [];
     avaliacoes.push(novaAvaliacao);
-    await this._storage?.set('avaliacoes', avaliacoes);
+    await this.storageService.set('avaliacoes', avaliacoes);
+
+    // Navega para a página de avaliações após guardar
     this.router.navigate(['/avaliacoes']);
   }
 }

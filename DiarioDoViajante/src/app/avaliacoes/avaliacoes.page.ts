@@ -1,9 +1,11 @@
+// Importa os módulos e serviços necessários do Angular, Ionic e ngx-translate
 import { Component } from '@angular/core';
 import { ActionSheetController, AlertController } from '@ionic/angular';
-import { Storage } from '@ionic/storage-angular';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
+import { StorageService } from '../Services/storage.service'; // Importa o novo serviço de storage
 
+// Define a interface para uma avaliação
 interface Avaliacao {
   categoria: string;
   nome: string;
@@ -13,6 +15,7 @@ interface Avaliacao {
   data: string;
 }
 
+// Declaração do componente da página de avaliações
 @Component({
   selector: 'app-avaliacoes',
   templateUrl: './avaliacoes.page.html',
@@ -20,36 +23,41 @@ interface Avaliacao {
   standalone: false
 })
 export class AvaliacoesPage {
+  // Lista de avaliações
   avaliacoes: Avaliacao[] = [];
+  // Termo de pesquisa para filtrar avaliações
   searchTerm: string = '';
+  // Filtro de categoria (todas, restaurante ou hotel)
   filter: 'all' | 'restaurant' | 'hotel' = 'all';
 
-  private _storage: Storage | null = null;
-
+  // Injeta os serviços necessários no construtor
   constructor(
     private actionSheetCtrl: ActionSheetController,
-    private storage: Storage,
+    private storageService: StorageService, // Usa o novo serviço
     private alertCtrl: AlertController,
     private translate: TranslateService
   ) {
-  this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-    console.log('Idioma mudado para:', event.lang);
-  });
-}
+    // Subscreve à mudança de idioma
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log('Idioma mudado para:', event.lang);
+    });
+  }
 
+  // Inicializa e carrega as avaliações ao iniciar o componente
   async ngOnInit() {
-    this._storage = await this.storage.create();
     await this.carregarAvaliacoes();
   }
 
+  // Sempre que a página é apresentada, recarrega as avaliações
   async ionViewWillEnter() {
     await this.carregarAvaliacoes();
   }
 
+  // Carrega as avaliações do storage e faz correção de categorias antigas
   private async carregarAvaliacoes() {
-    let avaliacoesGuardadas = await this._storage?.get('avaliacoes');
+    let avaliacoesGuardadas = await this.storageService.get('avaliacoes');
     if (avaliacoesGuardadas) {
-      // Corrige categorias antigas
+      // Corrige categorias antigas para os valores atuais
       avaliacoesGuardadas = avaliacoesGuardadas.map((a: Avaliacao) => {
         if (a.categoria?.toLowerCase() === 'restaurante') {
           a.categoria = 'restaurant';
@@ -59,23 +67,24 @@ export class AvaliacoesPage {
         return a;
       });
       this.avaliacoes = avaliacoesGuardadas;
-      await this._storage?.set('avaliacoes', avaliacoesGuardadas); // Atualiza o storage!
+      await this.storageService.set('avaliacoes', avaliacoesGuardadas); // Atualiza o storage!
     } else {
       this.avaliacoes = [];
     }
   }
 
+  // Devolve as avaliações filtradas pelo termo de pesquisa e categoria
   get avaliacoesFiltradas() {
     let filtradas = this.avaliacoes;
 
-    // Pesquisa por nome
+    // Filtra pelo nome se houver termo de pesquisa
     if (this.searchTerm && this.searchTerm.trim() !== '') {
       filtradas = filtradas.filter(a =>
         a.nome?.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     }
 
-    // Filtro por categoria
+    // Filtra pela categoria selecionada
     if (this.filter === 'restaurant') {
       filtradas = filtradas.filter(a => a.categoria === 'restaurant');
     } else if (this.filter === 'hotel') {
@@ -85,52 +94,55 @@ export class AvaliacoesPage {
     return filtradas;
   }
 
+  // Elimina uma avaliação pelo índice
   async eliminarAvaliacao(index: number) {
     const confirmMsg = this.translate.instant('AVALIACOES.CONFIRM_DELETE');
     if (confirm(confirmMsg)) {
       this.avaliacoes.splice(index, 1);
-      await this._storage?.set('avaliacoes', this.avaliacoes);
+      await this.storageService.set('avaliacoes', this.avaliacoes);
     }
   }
 
-async openFilter() {
-  await firstValueFrom(this.translate.stream('AVALIACOES.FILTER_HEADER'));
+  // Abre o menu de filtro de categoria
+  async openFilter() {
+    await firstValueFrom(this.translate.stream('AVALIACOES.FILTER_HEADER'));
 
-  const translations = await firstValueFrom(
-    this.translate.get([
-      'AVALIACOES.FILTER_HEADER',
-      'AVALIACOES.FILTER_ALL',
-      'AVALIACOES.FILTER_RESTAURANT',
-      'AVALIACOES.FILTER_HOTEL',
-      'AVALIACOES.FILTER_CANCEL'
-    ])
-  );
+    const translations = await firstValueFrom(
+      this.translate.get([
+        'AVALIACOES.FILTER_HEADER',
+        'AVALIACOES.FILTER_ALL',
+        'AVALIACOES.FILTER_RESTAURANT',
+        'AVALIACOES.FILTER_HOTEL',
+        'AVALIACOES.FILTER_CANCEL'
+      ])
+    );
 
-  const actionSheet = await this.actionSheetCtrl.create({
-    header: translations['AVALIACOES.FILTER_HEADER'],
-    buttons: [
-      {
-        text: translations['AVALIACOES.FILTER_ALL'],
-        handler: () => { this.filter = 'all'; }
-      },
-      {
-        text: translations['AVALIACOES.FILTER_RESTAURANT'],
-        handler: () => { this.filter = 'restaurant'; }
-      },
-      {
-        text: translations['AVALIACOES.FILTER_HOTEL'],
-        handler: () => { this.filter = 'hotel'; }
-      },
-      {
-        text: translations['AVALIACOES.FILTER_CANCEL'],
-        role: 'cancel'
-      }
-    ]
-  });
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: translations['AVALIACOES.FILTER_HEADER'],
+      buttons: [
+        {
+          text: translations['AVALIACOES.FILTER_ALL'],
+          handler: () => { this.filter = 'all'; }
+        },
+        {
+          text: translations['AVALIACOES.FILTER_RESTAURANT'],
+          handler: () => { this.filter = 'restaurant'; }
+        },
+        {
+          text: translations['AVALIACOES.FILTER_HOTEL'],
+          handler: () => { this.filter = 'hotel'; }
+        },
+        {
+          text: translations['AVALIACOES.FILTER_CANCEL'],
+          role: 'cancel'
+        }
+      ]
+    });
 
-  await actionSheet.present();
-}
+    await actionSheet.present();
+  }
 
+  // Adiciona uma nova avaliação à lista e ao storage
   async adicionarAvaliacao(avaliacao: Avaliacao) {
     // Corrige categoria antes de guardar
     let categoriaKey = avaliacao.categoria;
@@ -142,11 +154,12 @@ async openFilter() {
     avaliacao.categoria = categoriaKey;
 
     this.avaliacoes.push(avaliacao);
-    await this._storage?.set('avaliacoes', this.avaliacoes);
+    await this.storageService.set('avaliacoes', this.avaliacoes);
   }
 
+  // Exporta as avaliações para um ficheiro JSON (download)
   async exportarAvaliacoes() {
-    const avaliacoes = await this._storage?.get('avaliacoes') || [];
+    const avaliacoes = await this.storageService.get('avaliacoes') || [];
     const dataStr = JSON.stringify(avaliacoes, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = window.URL.createObjectURL(blob);
@@ -159,6 +172,7 @@ async openFilter() {
     window.URL.revokeObjectURL(url);
   }
 
+  // Importa avaliações a partir de um ficheiro JSON selecionado pelo utilizador
   async importarAvaliacoes(event: any) {
     const file = event.target.files[0];
     if (!file) return;
@@ -178,7 +192,7 @@ async openFilter() {
             return a;
           });
           this.avaliacoes = avaliacoesImportadas;
-          await this._storage?.set('avaliacoes', this.avaliacoes);
+          await this.storageService.set('avaliacoes', this.avaliacoes);
         } else {
           alert(this.translate.instant('AVALIACOES.INVALID_FILE'));
         }
@@ -189,6 +203,7 @@ async openFilter() {
     reader.readAsText(file);
   }
 
+  // Abre um alerta para adicionar uma nova avaliação manualmente
   async abrirAdicionarAvaliacao() {
     const header = this.translate.instant('AVALIACOES.NEW_REVIEW');
     const inputCategoria = this.translate.instant('AVALIACOES.INPUT_CATEGORY');
@@ -226,7 +241,7 @@ async openFilter() {
               data: new Date().toISOString()
             };
             this.avaliacoes.push(novaAvaliacao);
-            await this._storage?.set('avaliacoes', this.avaliacoes);
+            await this.storageService.set('avaliacoes', this.avaliacoes);
           }
         }
       ]
@@ -234,6 +249,7 @@ async openFilter() {
     await alert.present();
   }
 
+  // Traduz a categoria para o idioma atual
   getCategoriaTraduzida(categoria: string) {
     if (categoria.toLowerCase() === 'restaurante') {
       return this.translate.instant('AVALIACOES.RESTAURANT');
