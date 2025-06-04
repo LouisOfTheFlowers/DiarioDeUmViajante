@@ -1,0 +1,6 @@
+Username: luis28, Email: luis@gmail, Password: 123
+Username: luis, Email: okok, Password: 1234
+Username: , Email: , Password: 
+Username: , Email: , Password: 
+Username: luis, Email: luis@gmail.com, Password: 1234567
+Username: bruno, Email: luis@gmail.com, Password: 123456
