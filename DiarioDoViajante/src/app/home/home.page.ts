@@ -66,7 +66,7 @@ export class HomePage implements OnInit {
 
       // Mostra um toast de sucesso
       const toast = await this.toastCtrl.create({
-        message: 'Login efetuado com sucesso!',
+        message: this.translate.instant('LOGIN.SUCCESS'),
         duration: 150,
         color: 'success'
       });
