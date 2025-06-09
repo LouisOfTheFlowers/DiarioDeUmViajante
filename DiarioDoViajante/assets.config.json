@@ -1,0 +1,10 @@
+{
+  "resourcesDirectory": "./resources",
+  "icon": {
+    "backgroundColor": "#FFFFFF",
+    "path": "icon.png"
+  },
+  "splash": {
+    "path": "splash.png"
+  }
+}
