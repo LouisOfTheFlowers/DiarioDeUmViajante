@@ -483,3 +483,8 @@ app-registar-avaliacao .custom-input .adicionar-foto-button span {
   --inner-border-width: 0;
   --border-width: 0;
 }
+
+/* Caixote do lixo preto no dark mode */
+.dark-theme ion-button[color="danger"] ion-icon[name="trash-outline"] {
+  color: #000 !important;
+}
