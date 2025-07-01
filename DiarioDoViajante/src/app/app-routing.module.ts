@@ -47,9 +47,10 @@ const routes: Routes = [
     path: 'registar-avaliacao',
     loadChildren: () => import('./registar-avaliacao/registar-avaliacao.module').then( m => m.RegistarAvaliacaoPageModule)
   },
-
-
-
+  {
+    path: 'editar-avaliacao/:index',
+    loadChildren: () => import('./editar-avaliacao/editar-avaliacao.module').then(m => m.EditarAvaliacaoPageModule)
+  },
 
 ];
 

@@ -20,8 +20,8 @@
   "PERFIL": {
     "TITLE": "Perfil",
     "USER": "Utilizador",
-    "REGISTRO_VIAGENS": "Registo de Viagens",
-    "HISTORICO_VIAGENS": "Histórico de Viagens",
+    "REGISTRO_VIAGENS": "Registo de Itinerários",
+    "HISTORICO_VIAGENS": "Histórico de Itinerários",
     "AVALIACOES": "Avaliações",
     "FOTOGRAFIAS": "Fotografias"
   },
@@ -77,14 +77,17 @@
 },
 
 "HISTORICO_VIAGENS": {
-  "TITLE": "Histórico de Viagens",
+  "TITLE": "Histórico de Itinerários",
   "SEARCH_PLACEHOLDER": "Procurar destino...",
-  "EMPTY_ALT": "Sem viagens",
-  "EMPTY_TEXT": "De momento não tem viagens no histórico",
-  "PRECO": "Preço",
-  "TRANSPORTES": "Transportes",
-  "CONFIRM_DELETE": "Tem a certeza que deseja eliminar esta viagem?",
-  "FILTER_HEADER": "Ordenar/Filtrar viagens",
+  "EMPTY_ALT": "Sem itinerários",
+  "EMPTY_TEXT": "De momento não tem itinerários no histórico",
+  "ORIGEM": "Origem",
+  "TRANSPORTE": "Transporte",
+  "PONTOS_TURISTICOS": "Pontos turísticos",
+  "RESTAURANTES": "Restaurantes",
+  "HOTEIS": "Hotéis",
+  "CONFIRM_DELETE": "Tem a certeza que deseja eliminar este itinerário?",
+  "FILTER_HEADER": "Ordenar/Filtrar itinerários",
   "FILTER_NONE": "Nenhum",
   "FILTER_PRICE_ASC": "Preço ↑",
   "FILTER_PRICE_DESC": "Preço ↓",
@@ -111,17 +114,27 @@
   "OK": "OK"
 },
 
+"EDITAR_AVALIACAO": {
+  "TITLE": "Editar Avaliação",
+  "SAVE": "Guardar"
+},
+
 "REGISTAR_VIAGEM": {
-  "TITLE": "Registar Viagem",
-  "DESTINO": "Destino",
-  "PERCURSO": "Percurso",
-  "PRECO": "Preço",
-  "TRANSPORTES": "Transportes",
+  "TITLE": "Registar Itinerário",
+  "ORIGEM": "Origem",
+ "DESTINO": "Destino",
+  "TRANSPORTE": "Transporte",
   "CARRO": "Carro",
   "COMBOIO": "Comboio",
   "AUTOCARRO": "Autocarro",
   "AVIAO": "Avião",
-  "CONFIRMAR": "Confirmar"
+  "PONTOS_TURISTICOS": "Pontos turísticos",
+  "RESTAURANTES": "Restaurantes",
+  "HOTEIS": "Hotéis",
+  "CONFIRMAR": "Guardar Itinerário",
+  "CONFIRMAR_GUARDAR": "Deseja guardar o itinerário?",
+  "SEGUINTE": "Seguinte",
+  "RESUMO_TITULO": "Resumo do Itinerário"
 },
 
 "REGISTO": {

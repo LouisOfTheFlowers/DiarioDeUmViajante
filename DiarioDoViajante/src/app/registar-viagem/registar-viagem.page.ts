@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common'; // Importa para navegação para trás
-import { AlertController } from '@ionic/angular'; // Importa o controlador de alertas do Ionic
+import { Location } from '@angular/common';
+import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core'; // Importa o serviço de tradução
+import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../Services/storage.service'; // Usa o novo serviço
 
 // Define a interface para uma viagem
-interface Viagem {
+interface Itinerario {
+  origem: string;
   destino: string;
-  percurso: string;
-  preco: number | null;
-  transportes: string[];
+  transporte: string;
+  pontos: string[];
+  restaurantes: string[];
+  hoteis: string[];
+  preco?: number | null;
 }
 
 // Declaração do componente da página de registo de viagem
@@ -21,72 +25,146 @@ interface Viagem {
 })
 export class RegistarViagemPage implements OnInit {
 
-  destino: string = ''; // Destino da viagem
-  percurso: string = ''; // Percurso da viagem
-  preco: number | null = null; // Preço da viagem
-  transportes: string[] = []; // Lista de transportes selecionados
+  origem: string = '';
+  destino: string = '';
+  transporte: string = '';
+  outroTransporte: string = '';
 
-  viagens: Viagem[] = []; // Lista de viagens guardadas
+  step: number = 1; // 1: info, 2: escolher pontos, 3: resumo
+
+  pontosSelecionados: string[] = [];
+  restaurantesSelecionados: string[] = [];
+  hoteisSelecionados: string[] = [];
+
+  itinerarios: Itinerario[] = [];
+
+  destinosInfo: Record<string, {pontos: string[]; restaurantes: string[]; hoteis: string[]}> = {};
+
+  opcoes = {pontos: [] as string[], restaurantes: [] as string[], hoteis: [] as string[]};
 
   // Injeta os serviços necessários no construtor
   constructor(
     private storageService: StorageService, // Usa o novo serviço
     private location: Location,
     private alertCtrl: AlertController,
-    private translate: TranslateService // Serviço de tradução
+    private translate: TranslateService, // Serviço de tradução
+    private http: HttpClient
   ) {}
 
-  // Inicializa e carrega as viagens guardadas ao iniciar o componente
+  // Inicializa e carrega os itinerários guardados ao iniciar o componente
   async ngOnInit() {
-    const viagensGuardadas = await this.storageService.get('viagens');
-    if (viagensGuardadas) {
-      this.viagens = viagensGuardadas;
+    const its = await this.storageService.get('itinerarios');
+    if (its) {
+      this.itinerarios = its;
     }
+
+    this.http.get<Record<string, {pontos: string[]; restaurantes: string[]; hoteis: string[]}>>('assets/destinos.json')
+      .subscribe(data => {
+        this.destinosInfo = data;
+      });
   }
 
   // Sempre que a página é apresentada, limpa os campos do formulário
   ionViewWillEnter() {
+    this.origem = '';
     this.destino = '';
-    this.percurso = '';
-    this.preco = null;
-    this.transportes = [];
+    this.transporte = '';
+    this.outroTransporte = '';
+    this.pontosSelecionados = [];
+    this.restaurantesSelecionados = [];
+    this.hoteisSelecionados = [];
+    this.step = 1;
   }
 
-  // Confirma e guarda uma nova viagem no storage e faz download do ficheiro JSON
-  async confirmarViagem() {
-    // Valida se todos os campos obrigatórios estão preenchidos
-    if (
-      !this.destino ||
-      !this.percurso ||
-      this.preco === null ||
-      this.preco === undefined ||
-      this.transportes.length === 0
-    ) {
-      await this.apresentarAlerta(
+  atualizarOpcoes() {
+    const info = this.destinosInfo[this.destino];
+    if (info) {
+      this.opcoes = JSON.parse(JSON.stringify(info));
+    } else {
+      this.opcoes = { pontos: [], restaurantes: [], hoteis: [] };
+    }
+    this.pontosSelecionados = [];
+    this.restaurantesSelecionados = [];
+    this.hoteisSelecionados = [];
+  }
+
+  nextFromInfo() {
+    if (!this.origem || !this.destino || !this.transporte) {
+      this.apresentarAlerta(
         this.translate.instant('REGISTAR_AVALIACAO.PREENCHA_TODOS_OS_CAMPOS')
       );
       return;
     }
 
-    // Cria o objeto da nova viagem
-    const novaViagem: Viagem = {
-      destino: this.destino,
-      percurso: this.percurso,
-      preco: this.preco,
-      transportes: this.transportes
-    };
-    // Adiciona a nova viagem à lista
-    this.viagens.push(novaViagem);
-    // Guarda a lista atualizada no storage
-    await this.storageService.set('viagens', this.viagens);
-    // Exporta as viagens para ficheiro JSON (download automático)
-    await this.exportarViagens();
+    this.atualizarOpcoes();
+    this.step = 2;
+  }
 
-    // Limpa os campos do formulário
-    this.destino = '';
-    this.percurso = '';
-    this.preco = null;
-    this.transportes = [];
+  nextFromPontos() {
+    this.step = 3;
+  }
+
+  async confirmarViagem() {
+
+    const transporteFinal = this.transporte === 'outro' ? this.outroTransporte : this.transporte;
+
+    const novoItinerario: Itinerario = {
+      origem: this.origem,
+      destino: this.destino,
+      transporte: transporteFinal,
+      pontos: this.pontosSelecionados,
+      restaurantes: this.restaurantesSelecionados,
+      hoteis: this.hoteisSelecionados,
+      preco: null
+    };
+    
+  const alert = await this.alertCtrl.create({
+      header: this.translate.instant('REGISTAR_VIAGEM.TITLE'),
+      message: this.translate.instant('REGISTAR_VIAGEM.CONFIRMAR_GUARDAR'),
+      buttons: [
+        {
+          text: this.translate.instant('HISTORICO_VIAGENS.FILTER_CANCEL'),
+          role: 'cancel'
+        },
+        {
+          text: this.translate.instant('REGISTAR_AVALIACAO.OK'),
+          handler: async () => {
+            this.itinerarios.push(novoItinerario);
+            await this.storageService.set('itinerarios', this.itinerarios);
+            this.ionViewWillEnter();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  togglePonto(p: string) {
+    const idx = this.pontosSelecionados.indexOf(p);
+    if (idx > -1) {
+      this.pontosSelecionados.splice(idx, 1);
+    } else {
+      this.pontosSelecionados.push(p);
+    }
+  }
+
+  toggleRestaurante(r: string) {
+    const idx = this.restaurantesSelecionados.indexOf(r);
+    if (idx > -1) {
+      this.restaurantesSelecionados.splice(idx, 1);
+    } else {
+      this.restaurantesSelecionados.push(r);
+    }
+  }
+
+  toggleHotel(h: string) {
+    const idx = this.hoteisSelecionados.indexOf(h);
+    if (idx > -1) {
+      this.hoteisSelecionados.splice(idx, 1);
+    } else {
+      this.hoteisSelecionados.push(h);
+    }
   }
 
   // Volta para a página anterior
@@ -102,10 +180,10 @@ export class RegistarViagemPage implements OnInit {
     const reader = new FileReader();
     reader.onload = async (e: any) => {
       try {
-        const viagensImportadas = JSON.parse(e.target.result);
-        if (Array.isArray(viagensImportadas)) {
-          this.viagens = viagensImportadas;
-          await this.storageService.set('viagens', this.viagens);
+        const itinerariosImportados = JSON.parse(e.target.result);
+        if (Array.isArray(itinerariosImportados)) {
+          this.itinerarios = itinerariosImportados;
+          await this.storageService.set('itinerarios', this.itinerarios);
         } else {
           await this.apresentarAlerta(
             this.translate.instant('HISTORICO_VIAGENS.INVALID_FILE')
@@ -122,14 +200,14 @@ export class RegistarViagemPage implements OnInit {
 
   // Exporta as viagens para um ficheiro JSON (download)
   async exportarViagens() {
-    const viagens = await this.storageService.get('viagens') || [];
+    const viagens = await this.storageService.get('itinerarios') || [];
     const dataStr = JSON.stringify(viagens, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = window.URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'viagens.json';
+    a.download = 'itinerarios.json';
     a.click();
 
     window.URL.revokeObjectURL(url);

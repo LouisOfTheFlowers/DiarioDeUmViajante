@@ -197,6 +197,90 @@ app-registar-avaliacao .custom-input .adicionar-foto-button span {
   font-weight: 400;
 }
 
+app-editar-avaliacao .custom-input .adicionar-foto-button {
+  width: 100%;
+  justify-content: flex-start;
+  --background: transparent !important;
+  background: transparent !important;
+  color: var(--ion-color-primary);
+}
+
+.dark-theme app-editar-avaliacao .custom-input .adicionar-foto-button {
+  --background: transparent !important;
+  background: transparent !important;
+  color: #ffffff;
+}
+
+app-editar-avaliacao .custom-input .adicionar-foto-button ion-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+app-editar-avaliacao .custom-input .adicionar-foto-button span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* =========================
+   EDITAR AVALIACAO INPUTS
+   ========================= */
+app-editar-avaliacao .custom-input {
+  --background: #f5f5f5 !important;
+  background: #f5f5f5 !important;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dark mode */
+.dark-theme app-editar-avaliacao .custom-input {
+  --background: #333333 !important;
+  background: #333333 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Garantir que os ícones fiquem visíveis */
+app-editar-avaliacao .custom-input ion-icon {
+  margin-right: 8px;
+  opacity: 0.8;
+}
+
+/* Melhorar contraste do texto dentro dos inputs */
+app-editar-avaliacao .custom-input ion-input,
+app-editar-avaliacao .custom-input ion-select,
+app-editar-avaliacao .custom-input ion-button {
+  --padding-start: 12px;
+  font-weight: 500;
+}
+
+/* Ajuste para o botão de adicionar foto dentro do input */
+app-editar-avaliacao .custom-input .adicionar-foto-button {
+  width: 100%;
+  justify-content: flex-start;
+  --background: transparent !important;
+  background: transparent !important;
+  color: var(--ion-color-primary);
+}
+
+/* Garantir que no modo escuro também fique adequado */
+.dark-theme app-editar-avaliacao .custom-input .adicionar-foto-button {
+  --background: transparent !important;
+  background: transparent !important;
+  color: #ffffff;
+}
+
+/* Melhorar o visual do ícone da câmera */
+app-editar-avaliacao .custom-input .adicionar-foto-button ion-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+/* Ajustar o texto do botão */
+app-editar-avaliacao .custom-input .adicionar-foto-button span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
 /* =========================
    CARDS
    ========================= */
