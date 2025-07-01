@@ -34,3 +34,21 @@ ion-content {
   color: #000;
   font-weight: 500;
 }
+
+h2 {
+  color: #000;
+}
+
+/* Container das opções de pontos, restaurantes e hotéis */
+.opcao-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e0e0e0;
+  border-radius: 16px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border: 1px solid #c5c5c5;
+  color: #000;
+  font-weight: 500;
+}

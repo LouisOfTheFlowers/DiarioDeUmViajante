@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
+import { firstValueFrom } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../Services/storage.service'; // Usa o novo serviço
 
@@ -31,6 +32,7 @@ export class HistoricoViagemPage implements OnInit {
   // Injeta os serviços necessários no construtor
   constructor(
     private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController,
     private storageService: StorageService, // Usa o novo serviço
     private translate: TranslateService
   ) {}
@@ -55,13 +57,36 @@ export class HistoricoViagemPage implements OnInit {
     }
   }
 
-  // Elimina uma viagem pelo índice
+  // Elimina uma viagem pelo índice com confirmação
   async eliminarViagem(index: number) {
-    const confirmMsg = this.translate.instant('HISTORICO_VIAGENS.CONFIRM_DELETE');
-    if (confirm(confirmMsg)) {
-      this.itinerarios.splice(index, 1);
-      await this.storageService.set('itinerarios', this.itinerarios);
-    }
+    const translations = await firstValueFrom(
+      this.translate.get([
+        'HISTORICO_VIAGENS.CONFIRM_DELETE',
+        'AVALIACOES.CANCEL',
+        'AVALIACOES.DELETE',
+        'REGISTAR_AVALIACAO.ATENCAO'
+      ])
+    );
+
+    const alert = await this.alertCtrl.create({
+      header: translations['REGISTAR_AVALIACAO.ATENCAO'],
+      message: translations['HISTORICO_VIAGENS.CONFIRM_DELETE'],
+      buttons: [
+        {
+          text: translations['AVALIACOES.CANCEL'],
+          role: 'cancel'
+        },
+        {
+          text: translations['AVALIACOES.DELETE'],
+          handler: async () => {
+            this.itinerarios.splice(index, 1);
+            await this.storageService.set('itinerarios', this.itinerarios);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   // Abre o menu de filtro de preço/ordem

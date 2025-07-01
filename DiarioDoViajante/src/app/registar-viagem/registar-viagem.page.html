@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/perfil" text=""></ion-back-button>
-    </ion-buttons>
+    <ion-button fill="clear" (click)="voltarAtras()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
     <ion-title>{{ 'REGISTAR_VIAGEM.TITLE' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -45,31 +45,31 @@
 <!-- Etapa 2 -->
   <ng-container *ngIf="step === 2">
     <div *ngIf="opcoes.pontos.length">
-      <h2>{{ 'REGISTAR_VIAGEM.PONTOS_TURISTICOS' | translate }}</h2>
-      <ion-item *ngFor="let p of opcoes.pontos">
-        {{ p }}
-        <ion-button slot="end" fill="clear" (click)="togglePonto(p)">
+      <h2>{{ 'REGISTAR_VIAGEM.PONTOS_TURISTICOS_DESTINO' | translate:{destino: destino} }}</h2>
+      <div class="opcao-item" *ngFor="let p of opcoes.pontos">
+        <span>{{ p }}</span>
+        <ion-button fill="clear" (click)="togglePonto(p)">
           <ion-icon [name]="pontosSelecionados.includes(p) ? 'checkmark' : 'add'"></ion-icon>
         </ion-button>
-      </ion-item>
+      </div>
     </div>
     <div *ngIf="opcoes.restaurantes.length">
-      <h2>{{ 'REGISTAR_VIAGEM.RESTAURANTES' | translate }}</h2>
-      <ion-item *ngFor="let r of opcoes.restaurantes">
-        {{ r }}
-        <ion-button slot="end" fill="clear" (click)="toggleRestaurante(r)">
+      <h2>{{ 'REGISTAR_VIAGEM.RESTAURANTES_DESTINO' | translate:{destino: destino} }}</h2>
+      <div class="opcao-item" *ngFor="let r of opcoes.restaurantes">
+        <span>{{ r }}</span>
+        <ion-button fill="clear" (click)="toggleRestaurante(r)">
           <ion-icon [name]="restaurantesSelecionados.includes(r) ? 'checkmark' : 'add'"></ion-icon>
         </ion-button>
-      </ion-item>
+      </div>
     </div>
     <div *ngIf="opcoes.hoteis.length">
-      <h2>{{ 'REGISTAR_VIAGEM.HOTEIS' | translate }}</h2>
-      <ion-item *ngFor="let h of opcoes.hoteis">
-        {{ h }}
-        <ion-button slot="end" fill="clear" (click)="toggleHotel(h)">
+      <h2>{{ 'REGISTAR_VIAGEM.HOTEIS_DESTINO' | translate:{destino: destino} }}</h2>
+      <div class="opcao-item" *ngFor="let h of opcoes.hoteis">
+        <span>{{ h }}</span>
+        <ion-button fill="clear" (click)="toggleHotel(h)">
           <ion-icon [name]="hoteisSelecionados.includes(h) ? 'checkmark' : 'add'"></ion-icon>
         </ion-button>
-      </ion-item>
+      </div>
     </div>
 
     <ion-button expand="block" class="confirmar-button" (click)="nextFromPontos()">

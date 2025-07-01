@@ -4,6 +4,8 @@ import { StorageService } from '../Services/storage.service';
 import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { firstValueFrom } from 'rxjs';
+
 
 interface Avaliacao {
   categoria: string;
@@ -74,26 +76,52 @@ export class EditarAvaliacaoPage implements OnInit {
       return;
     }
 
-    let categoriaKey = this.categoria;
-    if (categoriaKey.toLowerCase() === 'restaurante') {
-      categoriaKey = 'restaurant';
-    } else if (categoriaKey.toLowerCase() === 'hotel') {
-      categoriaKey = 'hotel';
-    }
+    const translations = await firstValueFrom(
+      this.translate.get([
+        'EDITAR_AVALIACAO.CONFIRM_SAVE_MESSAGE',
+        'AVALIACOES.CANCEL',
+        'EDITAR_AVALIACAO.SAVE_CHANGES',
+        'REGISTAR_AVALIACAO.ATENCAO'
+      ])
+    );
 
-    const avaliacoes: Avaliacao[] = (await this.storageService.get('avaliacoes')) || [];
-    if (avaliacoes[this.index]) {
-      avaliacoes[this.index] = {
-        ...avaliacoes[this.index],
-        categoria: categoriaKey,
-        nome: this.nome,
-        comentario: this.comentario,
-        rating: this.rating,
-        foto: this.foto,
-      };
-      await this.storageService.set('avaliacoes', avaliacoes);
-    }
+    const alert = await this.alertCtrl.create({
+      header: translations['REGISTAR_AVALIACAO.ATENCAO'],
+      message: translations['EDITAR_AVALIACAO.CONFIRM_SAVE_MESSAGE'],
+      buttons: [
+        {
+          text: translations['AVALIACOES.CANCEL'],
+          role: 'cancel'
+        },
+        {
+          text: translations['EDITAR_AVALIACAO.SAVE_CHANGES'],
+          handler: async () => {
+            let categoriaKey = this.categoria;
+            if (categoriaKey.toLowerCase() === 'restaurante') {
+              categoriaKey = 'restaurant';
+            } else if (categoriaKey.toLowerCase() === 'hotel') {
+              categoriaKey = 'hotel';
+            }
 
-    this.router.navigate(['/avaliacoes']);
+            const avaliacoes: Avaliacao[] = (await this.storageService.get('avaliacoes')) || [];
+            if (avaliacoes[this.index]) {
+              avaliacoes[this.index] = {
+                ...avaliacoes[this.index],
+                categoria: categoriaKey,
+                nome: this.nome,
+                comentario: this.comentario,
+                rating: this.rating,
+                foto: this.foto,
+              };
+              await this.storageService.set('avaliacoes', avaliacoes);
+            }
+
+            this.router.navigate(['/avaliacoes']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }

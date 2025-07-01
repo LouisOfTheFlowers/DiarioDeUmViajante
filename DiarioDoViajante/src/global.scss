@@ -129,6 +129,10 @@ ion-action-sheet {
   --header-color: #ffffff; /* Header text color */
 }
 h2{
+  color: #000000 !important;
+}
+
+.dark-theme h2 {
   color: #ffffff !important;
   
 }
@@ -138,6 +142,10 @@ ion-alert {
 }
 
 
+ion-alert .alert-title.sc-ion-alert-md,
+ion-alert .alert-title.sc-ion-alert-ios {
+  color: #ffffff !important;
+}
 
 
 

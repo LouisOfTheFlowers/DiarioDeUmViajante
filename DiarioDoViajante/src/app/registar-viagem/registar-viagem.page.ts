@@ -42,6 +42,7 @@ export class RegistarViagemPage implements OnInit {
 
   opcoes = {pontos: [] as string[], restaurantes: [] as string[], hoteis: [] as string[]};
 
+
   // Injeta os serviços necessários no construtor
   constructor(
     private storageService: StorageService, // Usa o novo serviço
@@ -51,6 +52,17 @@ export class RegistarViagemPage implements OnInit {
     private http: HttpClient
   ) {}
 
+  private carregarDestinos() {
+    if (Object.keys(this.destinosInfo).length) {
+      return;
+    }
+    this.http
+      .get<Record<string, {pontos: string[]; restaurantes: string[]; hoteis: string[]}>>('assets/destinos.json')
+      .subscribe(data => {
+        this.destinosInfo = data;
+      });
+  }
+
   // Inicializa e carrega os itinerários guardados ao iniciar o componente
   async ngOnInit() {
     const its = await this.storageService.get('itinerarios');
@@ -58,10 +70,7 @@ export class RegistarViagemPage implements OnInit {
       this.itinerarios = its;
     }
 
-    this.http.get<Record<string, {pontos: string[]; restaurantes: string[]; hoteis: string[]}>>('assets/destinos.json')
-      .subscribe(data => {
-        this.destinosInfo = data;
-      });
+    this.carregarDestinos();
   }
 
   // Sempre que a página é apresentada, limpa os campos do formulário
@@ -77,9 +86,11 @@ export class RegistarViagemPage implements OnInit {
   }
 
   atualizarOpcoes() {
-    const info = this.destinosInfo[this.destino];
-    if (info) {
-      this.opcoes = JSON.parse(JSON.stringify(info));
+    const chave = Object.keys(this.destinosInfo).find(
+      d => d.toLowerCase() === this.destino.trim().toLowerCase()
+    );
+    if (chave) {
+      this.opcoes = JSON.parse(JSON.stringify(this.destinosInfo[chave]));
     } else {
       this.opcoes = { pontos: [], restaurantes: [], hoteis: [] };
     }
@@ -96,6 +107,7 @@ export class RegistarViagemPage implements OnInit {
       return;
     }
 
+    this.carregarDestinos();
     this.atualizarOpcoes();
     this.step = 2;
   }
@@ -169,7 +181,11 @@ export class RegistarViagemPage implements OnInit {
 
   // Volta para a página anterior
   voltarAtras() {
-    this.location.back();
+    if (this.step > 1) {
+      this.step--;
+    } else {
+      this.location.back();
+    }
   }
 
   // Importa viagens a partir de um ficheiro JSON selecionado pelo utilizador

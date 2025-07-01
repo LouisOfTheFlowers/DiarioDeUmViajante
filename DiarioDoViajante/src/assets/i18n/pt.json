@@ -48,7 +48,8 @@
   "CANCEL": "Cancelar",
   "ADD": "Adicionar",
   "RESTAURANT": "Restaurante",
-  "HOTEL": "Hotel"
+  "HOTEL": "Hotel",
+  "DELETE": "Eliminar"
 },
 
 "DASHBOARD": {
@@ -116,7 +117,9 @@
 
 "EDITAR_AVALIACAO": {
   "TITLE": "Editar Avaliação",
-  "SAVE": "Guardar"
+  "SAVE": "Guardar",
+  "CONFIRM_SAVE_MESSAGE": "Deseja guardar as alterações?",
+  "SAVE_CHANGES": "Guardar alterações"
 },
 
 "REGISTAR_VIAGEM": {
@@ -134,7 +137,10 @@
   "CONFIRMAR": "Guardar Itinerário",
   "CONFIRMAR_GUARDAR": "Deseja guardar o itinerário?",
   "SEGUINTE": "Seguinte",
-  "RESUMO_TITULO": "Resumo do Itinerário"
+  "RESUMO_TITULO": "Resumo do Itinerário",
+  "PONTOS_TURISTICOS_DESTINO": "Pontos turísticos em {{destino}}",
+  "RESTAURANTES_DESTINO": "Restaurantes em {{destino}}",
+  "HOTEIS_DESTINO": "Hotéis em {{destino}}"
 },
 
 "REGISTO": {

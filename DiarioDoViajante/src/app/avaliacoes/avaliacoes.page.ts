@@ -100,7 +100,7 @@ export class AvaliacoesPage {
       this.translate.get([
         'AVALIACOES.CONFIRM_DELETE',
         'AVALIACOES.CANCEL',
-        'REGISTAR_VIAGEM.CONFIRMAR',
+        'AVALIACOES.DELETE',
         'REGISTAR_AVALIACAO.ATENCAO'
       ])
     );
@@ -114,7 +114,7 @@ export class AvaliacoesPage {
           role: 'cancel'
         },
         {
-          text: translations['REGISTAR_VIAGEM.CONFIRMAR'],
+          text: translations['AVALIACOES.DELETE'],
           handler: async () => {
             this.avaliacoes.splice(index, 1);
             await this.storageService.set('avaliacoes', this.avaliacoes);
