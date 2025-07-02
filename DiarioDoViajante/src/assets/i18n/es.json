@@ -87,12 +87,12 @@
   "RESTAURANTES": "Restaurantes",
   "HOTEIS": "Hoteles",
   "CONFIRM_DELETE": "¿Está seguro de que desea eliminar este itinerario?",
-  "FILTER_HEADER": "Ordenar/Filtrar itinerarios",
-  "FILTER_NONE": "Ninguno",
-  "FILTER_PRICE_ASC": "Precio ↑",
-  "FILTER_PRICE_DESC": "Precio ↓",
-  "FILTER_MOST_RECENT": "Más reciente",
-  "FILTER_OLDEST": "Más antiguo",
+  "FILTER_HEADER": "Filtrar por transporte",
+  "FILTER_ALL": "Todos",
+  "FILTER_CARRO": "Coche",
+  "FILTER_COMBOIO": "Tren",
+  "FILTER_AUTOCARRO": "Autobús",
+  "FILTER_AVIAO": "Avión",
   "FILTER_CANCEL": "Cancelar",
   "INVALID_FILE": "¡Archivo inválido!",
   "READ_ERROR": "¡Error al leer el archivo!"
@@ -119,6 +119,27 @@
   "SAVE": "Guardar",
   "CONFIRM_SAVE_MESSAGE": "¿Desea guardar los cambios?",
   "SAVE_CHANGES": "Guardar cambios"
+},
+
+"EDITAR_VIAGEM": {
+  "TITLE": "Editar Itinerario",
+  "ORIGEM": "Origen",
+  "DESTINO": "Destino",
+  "TRANSPORTE": "Transporte",
+  "CARRO": "Coche",
+  "COMBOIO": "Tren",
+  "AUTOCARRO": "Autobús",
+  "AVIAO": "Avión",
+  "PONTOS_TURISTICOS": "Puntos turísticos",
+  "RESTAURANTES": "Restaurantes",
+  "HOTEIS": "Hoteles",
+  "CONFIRMAR": "Guardar Itinerario",
+  "CONFIRMAR_GUARDAR": "¿Desea guardar los cambios?",
+  "SEGUINTE": "Siguiente",
+  "RESUMO_TITULO": "Resumen del Itinerario",
+  "PONTOS_TURISTICOS_DESTINO": "Puntos turísticos en {{destino}}",
+  "RESTAURANTES_DESTINO": "Restaurantes en {{destino}}",
+  "HOTEIS_DESTINO": "Hoteles en {{destino}}"
 },
 
 "REGISTAR_VIAGEM": {

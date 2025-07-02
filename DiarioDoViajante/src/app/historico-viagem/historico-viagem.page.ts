@@ -26,8 +26,8 @@ export class HistoricoViagemPage implements OnInit {
   itinerarios: Itinerario[] = [];
   // Termo de pesquisa para filtrar itinerários
   searchTerm: string = '';
-  // Filtro de preço ou ordem
-  precoFiltro: 'nenhum' | 'asc' | 'desc' | 'maisRecente' | 'maisAntigo' = 'nenhum';
+  // Filtro por meio de transporte
+  transporteFiltro: 'todos' | 'carro' | 'comboio' | 'autocarro' | 'aviao' = 'todos';
 
   // Injeta os serviços necessários no construtor
   constructor(
@@ -89,38 +89,38 @@ export class HistoricoViagemPage implements OnInit {
     await alert.present();
   }
 
-  // Abre o menu de filtro de preço/ordem
+  // Abre o menu de filtro por transporte
   async abrirFiltro() {
     const header = this.translate.instant('HISTORICO_VIAGENS.FILTER_HEADER');
-    const btnNone = this.translate.instant('HISTORICO_VIAGENS.FILTER_NONE');
-    const btnAsc = this.translate.instant('HISTORICO_VIAGENS.FILTER_PRICE_ASC');
-    const btnDesc = this.translate.instant('HISTORICO_VIAGENS.FILTER_PRICE_DESC');
-    const btnRecent = this.translate.instant('HISTORICO_VIAGENS.FILTER_MOST_RECENT');
-    const btnOld = this.translate.instant('HISTORICO_VIAGENS.FILTER_OLDEST');
+    const btnAll = this.translate.instant('HISTORICO_VIAGENS.FILTER_ALL');
+    const btnCar = this.translate.instant('HISTORICO_VIAGENS.FILTER_CARRO');
+    const btnTrain = this.translate.instant('HISTORICO_VIAGENS.FILTER_COMBOIO');
+    const btnBus = this.translate.instant('HISTORICO_VIAGENS.FILTER_AUTOCARRO');
+    const btnPlane = this.translate.instant('HISTORICO_VIAGENS.FILTER_AVIAO');
     const btnCancel = this.translate.instant('HISTORICO_VIAGENS.FILTER_CANCEL');
 
     const actionSheet = await this.actionSheetCtrl.create({
       header,
       buttons: [
         {
-          text: btnNone,
-          handler: () => { this.precoFiltro = 'nenhum'; }
+          text: btnAll,
+          handler: () => { this.transporteFiltro = 'todos'; }
         },
         {
-          text: btnAsc,
-          handler: () => { this.precoFiltro = 'asc'; }
+          text: btnCar,
+          handler: () => { this.transporteFiltro = 'carro'; }
         },
         {
-          text: btnDesc,
-          handler: () => { this.precoFiltro = 'desc'; }
+          text: btnTrain,
+          handler: () => { this.transporteFiltro = 'comboio'; }
         },
         {
-          text: btnRecent,
-          handler: () => { this.precoFiltro = 'maisRecente'; }
+          text: btnPlane,
+          handler: () => { this.transporteFiltro = 'aviao'; }
         },
         {
-          text: btnOld,
-          handler: () => { this.precoFiltro = 'maisAntigo'; }
+          text: btnBus,
+          handler: () => { this.transporteFiltro = 'autocarro'; }
         },
         {
           text: btnCancel,
@@ -131,7 +131,7 @@ export class HistoricoViagemPage implements OnInit {
     await actionSheet.present();
   }
 
-  // Devolve os itinerários filtrados pelo termo de pesquisa e filtro selecionado
+  // Devolve os itinerários filtrados pelo termo de pesquisa e meio de transporte
   get viagensFiltradas() {
     let filtradas = this.itinerarios;
 
@@ -142,15 +142,9 @@ export class HistoricoViagemPage implements OnInit {
       );
     }
 
-    // Aplica o filtro de preço/ordem
-    if (this.precoFiltro === 'asc') {
-      filtradas = [...filtradas].sort((a, b) => (a.preco ?? 0) - (b.preco ?? 0));
-    } else if (this.precoFiltro === 'desc') {
-      filtradas = [...filtradas].sort((a, b) => (b.preco ?? 0) - (a.preco ?? 0));
-    } else if (this.precoFiltro === 'maisRecente') {
-      filtradas = [...filtradas].reverse();
-    } else if (this.precoFiltro === 'maisAntigo') {
-      filtradas = [...filtradas];
+    // Aplica o filtro de transporte
+    if (this.transporteFiltro !== 'todos') {
+      filtradas = filtradas.filter(v => v.transporte.toLowerCase() === this.transporteFiltro);
     }
 
     return filtradas;

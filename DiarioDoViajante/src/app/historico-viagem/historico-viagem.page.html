@@ -36,6 +36,9 @@
         <p *ngIf="viagem.restaurantes.length"><strong>{{ 'HISTORICO_VIAGENS.RESTAURANTES' | translate }}:</strong> {{ viagem.restaurantes.join(', ') }}</p>
         <p *ngIf="viagem.hoteis.length"><strong>{{ 'HISTORICO_VIAGENS.HOTEIS' | translate }}:</strong> {{ viagem.hoteis.join(', ') }}</p>
         <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <ion-button color="warning" [routerLink]="['/editar-viagem', i]">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
           <ion-button color="danger" (click)="eliminarViagem(i)">
             <ion-icon slot="icon-only" name="trash-outline" style="font-size: 1.5em;"></ion-icon>
           </ion-button>

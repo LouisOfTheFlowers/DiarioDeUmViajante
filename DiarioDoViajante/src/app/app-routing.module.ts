@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: () => import('./registar-viagem/registar-viagem.module').then( m => m.RegistarViagemPageModule)
   },
   {
+    path: 'editar-viagem/:index',
+    loadChildren: () => import('./editar-viagem/editar-viagem.module').then(m => m.EditarViagemPageModule)
+  },
+  {
     path: 'fotografias',
     loadChildren: () => import('./fotografias/fotografias.module').then( m => m.FotografiasPageModule)
   },

@@ -494,6 +494,35 @@ app-registar-viagem .custom-input ion-select {
 }
 
 /* =========================
+   EDITAR VIAGEM INPUTS
+   ========================= */
+app-editar-viagem .custom-input {
+  --background: #f5f5f5 !important;
+  background: #f5f5f5 !important;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme app-editar-viagem .custom-input {
+  --background: #333333 !important;
+  background: #333333 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+app-editar-viagem .custom-input ion-icon {
+  margin-right: 8px;
+  opacity: 0.8;
+}
+
+app-editar-viagem .custom-input ion-input,
+app-editar-viagem .custom-input ion-select {
+  --padding-start: 12px;
+  font-weight: 500;
+}
+
+
+/* =========================
    REGISTAR AVALIACAO INPUTS
    ========================= */
 app-registar-avaliacao .custom-input {
