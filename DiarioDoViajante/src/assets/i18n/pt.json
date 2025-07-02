@@ -20,8 +20,8 @@
   "PERFIL": {
     "TITLE": "Perfil",
     "USER": "Utilizador",
-    "REGISTRO_VIAGENS": "Registo de Viagens",
-    "HISTORICO_VIAGENS": "Histórico de Viagens",
+    "REGISTRO_VIAGENS": "Registo de Itinerários",
+    "HISTORICO_VIAGENS": "Histórico de Itinerários",
     "AVALIACOES": "Avaliações",
     "FOTOGRAFIAS": "Fotografias"
   },
@@ -48,7 +48,8 @@
   "CANCEL": "Cancelar",
   "ADD": "Adicionar",
   "RESTAURANT": "Restaurante",
-  "HOTEL": "Hotel"
+  "HOTEL": "Hotel",
+  "DELETE": "Eliminar"
 },
 
 "DASHBOARD": {
@@ -77,19 +78,22 @@
 },
 
 "HISTORICO_VIAGENS": {
-  "TITLE": "Histórico de Viagens",
+  "TITLE": "Histórico de Itinerários",
   "SEARCH_PLACEHOLDER": "Procurar destino...",
-  "EMPTY_ALT": "Sem viagens",
-  "EMPTY_TEXT": "De momento não tem viagens no histórico",
-  "PRECO": "Preço",
-  "TRANSPORTES": "Transportes",
-  "CONFIRM_DELETE": "Tem a certeza que deseja eliminar esta viagem?",
-  "FILTER_HEADER": "Ordenar/Filtrar viagens",
-  "FILTER_NONE": "Nenhum",
-  "FILTER_PRICE_ASC": "Preço ↑",
-  "FILTER_PRICE_DESC": "Preço ↓",
-  "FILTER_MOST_RECENT": "Mais recente",
-  "FILTER_OLDEST": "Mais antigo",
+  "EMPTY_ALT": "Sem itinerários",
+  "EMPTY_TEXT": "De momento não tem itinerários no histórico",
+  "ORIGEM": "Origem",
+  "TRANSPORTE": "Transporte",
+  "PONTOS_TURISTICOS": "Pontos turísticos",
+  "RESTAURANTES": "Restaurantes",
+  "HOTEIS": "Hotéis",
+  "CONFIRM_DELETE": "Tem a certeza que deseja eliminar este itinerário?",
+  "FILTER_HEADER": "Filtrar por transporte",
+  "FILTER_ALL": "Todos",
+  "FILTER_CARRO": "Carro",
+  "FILTER_COMBOIO": "Comboio",
+  "FILTER_AUTOCARRO": "Autocarro",
+  "FILTER_AVIAO": "Avião",
   "FILTER_CANCEL": "Cancelar",
   "INVALID_FILE": "Ficheiro inválido!",
   "READ_ERROR": "Erro ao ler ficheiro!"
@@ -111,17 +115,53 @@
   "OK": "OK"
 },
 
-"REGISTAR_VIAGEM": {
-  "TITLE": "Registar Viagem",
+"EDITAR_AVALIACAO": {
+  "TITLE": "Editar Avaliação",
+  "SAVE": "Guardar",
+  "CONFIRM_SAVE_MESSAGE": "Deseja guardar as alterações?",
+  "SAVE_CHANGES": "Guardar alterações"
+},
+
+"EDITAR_VIAGEM": {
+  "TITLE": "Editar Itinerário",
+  "ORIGEM": "Origem",
   "DESTINO": "Destino",
-  "PERCURSO": "Percurso",
-  "PRECO": "Preço",
-  "TRANSPORTES": "Transportes",
+  "TRANSPORTE": "Transporte",
   "CARRO": "Carro",
   "COMBOIO": "Comboio",
   "AUTOCARRO": "Autocarro",
   "AVIAO": "Avião",
-  "CONFIRMAR": "Confirmar"
+  "PONTOS_TURISTICOS": "Pontos turísticos",
+  "RESTAURANTES": "Restaurantes",
+  "HOTEIS": "Hotéis",
+  "CONFIRMAR": "Guardar Itinerário",
+  "CONFIRMAR_GUARDAR": "Deseja guardar as alterações?",
+  "SEGUINTE": "Seguinte",
+  "RESUMO_TITULO": "Resumo do Itinerário",
+  "PONTOS_TURISTICOS_DESTINO": "Pontos turísticos em {{destino}}",
+  "RESTAURANTES_DESTINO": "Restaurantes em {{destino}}",
+  "HOTEIS_DESTINO": "Hotéis em {{destino}}"
+},
+
+"REGISTAR_VIAGEM": {
+  "TITLE": "Registar Itinerário",
+  "ORIGEM": "Origem",
+ "DESTINO": "Destino",
+  "TRANSPORTE": "Transporte",
+  "CARRO": "Carro",
+  "COMBOIO": "Comboio",
+  "AUTOCARRO": "Autocarro",
+  "AVIAO": "Avião",
+  "PONTOS_TURISTICOS": "Pontos turísticos",
+  "RESTAURANTES": "Restaurantes",
+  "HOTEIS": "Hotéis",
+  "CONFIRMAR": "Guardar Itinerário",
+  "CONFIRMAR_GUARDAR": "Deseja guardar o itinerário?",
+  "SEGUINTE": "Seguinte",
+  "RESUMO_TITULO": "Resumo do Itinerário",
+  "PONTOS_TURISTICOS_DESTINO": "Pontos turísticos em {{destino}}",
+  "RESTAURANTES_DESTINO": "Restaurantes em {{destino}}",
+  "HOTEIS_DESTINO": "Hotéis em {{destino}}"
 },
 
 "REGISTO": {

@@ -8,4 +8,8 @@ ion-content {
 }
 .filtro {
   background: transparent!important;
+  }
+
+ion-button[color="warning"] ion-icon[name="pencil"] {
+  color: #000 !important;
 }

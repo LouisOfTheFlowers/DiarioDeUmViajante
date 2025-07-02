@@ -19,8 +19,8 @@
   "PERFIL": {
   "TITLE": "Profile",
   "USER": "User",
-  "REGISTRO_VIAGENS": "Trip Registration",
-  "HISTORICO_VIAGENS": "Trip History",
+  "REGISTRO_VIAGENS": "Itinerary Registration",
+  "HISTORICO_VIAGENS": "Itinerary History",
   "AVALIACOES": "Reviews",
   "FOTOGRAFIAS": "Photographs"
 },
@@ -47,7 +47,8 @@
   "CANCEL": "Cancel",
   "ADD": "Add",
   "RESTAURANT": "Restaurant",
-  "HOTEL": "Hotel"
+  "HOTEL": "Hotel",
+  "DELETE": "Delete"
 },
 
 "DASHBOARD": {
@@ -76,19 +77,22 @@
 },
 
 "HISTORICO_VIAGENS": {
-  "TITLE": "Trip History",
+  "TITLE": "Itinerary History",
   "SEARCH_PLACEHOLDER": "Search destination...",
-  "EMPTY_ALT": "No trips",
-  "EMPTY_TEXT": "You currently have no trips in your history",
-  "PRECO": "Price",
-  "TRANSPORTES": "Transports",
-  "CONFIRM_DELETE": "Are you sure you want to delete this trip?",
-  "FILTER_HEADER": "Sort/Filter trips",
-  "FILTER_NONE": "None",
-  "FILTER_PRICE_ASC": "Price ↑",
-  "FILTER_PRICE_DESC": "Price ↓",
-  "FILTER_MOST_RECENT": "Most recent",
-  "FILTER_OLDEST": "Oldest",
+  "EMPTY_ALT": "No itineraries",
+  "EMPTY_TEXT": "You currently have no itineraries in your history",
+  "ORIGEM": "Origin",
+  "TRANSPORTE": "Transport",
+  "PONTOS_TURISTICOS": "Tourist attractions",
+  "RESTAURANTES": "Restaurants",
+  "HOTEIS": "Hotels",
+  "CONFIRM_DELETE": "Are you sure you want to delete this itinerary?",
+  "FILTER_HEADER": "Filter by transport",
+  "FILTER_ALL": "All",
+  "FILTER_CARRO": "Car",
+  "FILTER_COMBOIO": "Train",
+  "FILTER_AUTOCARRO": "Bus",
+  "FILTER_AVIAO": "Plane",
   "FILTER_CANCEL": "Cancel",
   "INVALID_FILE": "Invalid file!",
   "READ_ERROR": "Error reading file!"
@@ -110,17 +114,53 @@
   "OK": "OK"
 },
 
-"REGISTAR_VIAGEM": {
-  "TITLE": "Register Trip",
+"EDITAR_AVALIACAO": {
+  "TITLE": "Edit Review",
+  "SAVE": "Save",
+  "CONFIRM_SAVE_MESSAGE": "Do you want to save the changes?",
+  "SAVE_CHANGES": "Save changes"
+},
+
+"EDITAR_VIAGEM": {
+  "TITLE": "Edit Itinerary",
+  "ORIGEM": "Origin",
   "DESTINO": "Destination",
-  "PERCURSO": "Route",
-  "PRECO": "Price",
-  "TRANSPORTES": "Transport",
+  "TRANSPORTE": "Transport",
   "CARRO": "Car",
   "COMBOIO": "Train",
   "AUTOCARRO": "Bus",
   "AVIAO": "Plane",
-  "CONFIRMAR": "Confirm"
+  "PONTOS_TURISTICOS": "Tourist attractions",
+  "RESTAURANTES": "Restaurants",
+  "HOTEIS": "Hotels",
+  "CONFIRMAR": "Save Itinerary",
+  "CONFIRMAR_GUARDAR": "Do you want to save the changes?",
+  "SEGUINTE": "Next",
+  "RESUMO_TITULO": "Itinerary Summary",
+  "PONTOS_TURISTICOS_DESTINO": "Tourist attractions in {{destino}}",
+  "RESTAURANTES_DESTINO": "Restaurants in {{destino}}",
+  "HOTEIS_DESTINO": "Hotels in {{destino}}"
+},
+
+"REGISTAR_VIAGEM": {
+  "TITLE": "Register Itinerary",
+  "ORIGEM": "Origin",
+  "DESTINO": "Destination",
+  "TRANSPORTE": "Transport",
+  "CARRO": "Car",
+  "COMBOIO": "Train",
+  "AUTOCARRO": "Bus",
+  "AVIAO": "Plane",
+  "PONTOS_TURISTICOS": "Tourist attractions",
+  "RESTAURANTES": "Restaurants",
+  "HOTEIS": "Hotels",
+  "CONFIRMAR": "Save Itinerary",
+  "CONFIRMAR_GUARDAR": "Do you want to save the itinerary?",
+  "SEGUINTE": "Next",
+  "RESUMO_TITULO": "Itinerary Summary",
+  "PONTOS_TURISTICOS_DESTINO": "Tourist attractions in {{destino}}",
+  "RESTAURANTES_DESTINO": "Restaurants in {{destino}}",
+  "HOTEIS_DESTINO": "Hotels in {{destino}}"
 },
 
 "REGISTO": {

@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: () => import('./registar-viagem/registar-viagem.module').then( m => m.RegistarViagemPageModule)
   },
   {
+    path: 'editar-viagem/:index',
+    loadChildren: () => import('./editar-viagem/editar-viagem.module').then(m => m.EditarViagemPageModule)
+  },
+  {
     path: 'fotografias',
     loadChildren: () => import('./fotografias/fotografias.module').then( m => m.FotografiasPageModule)
   },
@@ -47,9 +51,10 @@ const routes: Routes = [
     path: 'registar-avaliacao',
     loadChildren: () => import('./registar-avaliacao/registar-avaliacao.module').then( m => m.RegistarAvaliacaoPageModule)
   },
-
-
-
+  {
+    path: 'editar-avaliacao/:index',
+    loadChildren: () => import('./editar-avaliacao/editar-avaliacao.module').then(m => m.EditarAvaliacaoPageModule)
+  },
 
 ];
 

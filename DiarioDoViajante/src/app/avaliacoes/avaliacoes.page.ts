@@ -96,11 +96,34 @@ export class AvaliacoesPage {
 
   // Elimina uma avaliação pelo índice
   async eliminarAvaliacao(index: number) {
-    const confirmMsg = this.translate.instant('AVALIACOES.CONFIRM_DELETE');
-    if (confirm(confirmMsg)) {
-      this.avaliacoes.splice(index, 1);
-      await this.storageService.set('avaliacoes', this.avaliacoes);
-    }
+    const translations = await firstValueFrom(
+      this.translate.get([
+        'AVALIACOES.CONFIRM_DELETE',
+        'AVALIACOES.CANCEL',
+        'AVALIACOES.DELETE',
+        'REGISTAR_AVALIACAO.ATENCAO'
+      ])
+    );
+
+    const alert = await this.alertCtrl.create({
+      header: translations['REGISTAR_AVALIACAO.ATENCAO'],
+      message: translations['AVALIACOES.CONFIRM_DELETE'],
+      buttons: [
+        {
+          text: translations['AVALIACOES.CANCEL'],
+          role: 'cancel'
+        },
+        {
+          text: translations['AVALIACOES.DELETE'],
+          handler: async () => {
+            this.avaliacoes.splice(index, 1);
+            await this.storageService.set('avaliacoes', this.avaliacoes);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   // Abre o menu de filtro de categoria

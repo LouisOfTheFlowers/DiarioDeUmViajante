@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { AlertController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core'; // Importa o serviço de tradução
+import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-import { StorageService } from '../Services/storage.service'; // Usa o novo serviço
+import { Router, ActivatedRoute } from '@angular/router';
+import { StorageService } from '../Services/storage.service';
 
 // Define a interface para uma viagem
 interface Itinerario {
@@ -18,17 +19,20 @@ interface Itinerario {
 
 // Declaração do componente da página de registo de viagem
 @Component({
-  selector: 'app-registar-viagem', // Seletor do componente
-  templateUrl: './registar-viagem.page.html', // Caminho para o template HTML
-  styleUrls: ['./registar-viagem.page.scss'], // Caminho para o ficheiro de estilos SCSS
-  standalone: false, // Indica se o componente é standalone
+  selector: 'app-editar-viagem',
+  templateUrl: './editar-viagem.page.html',
+  styleUrls: ['./editar-viagem.page.scss'],
+  standalone: false,
 })
-export class RegistarViagemPage implements OnInit {
+export class EditarViagemPage implements OnInit {
+  index: number = 0;
 
   origem: string = '';
   destino: string = '';
   transporte: string = '';
   outroTransporte: string = '';
+
+  destinoAnterior: string = '';
 
   step: number = 1; // 1: info, 2: escolher pontos, 3: resumo
 
@@ -48,8 +52,10 @@ export class RegistarViagemPage implements OnInit {
     private storageService: StorageService, // Usa o novo serviço
     private location: Location,
     private alertCtrl: AlertController,
-    private translate: TranslateService, // Serviço de tradução
-    private http: HttpClient
+    private translate: TranslateService,
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   private carregarDestinos() {
@@ -65,27 +71,34 @@ export class RegistarViagemPage implements OnInit {
 
   // Inicializa e carrega os itinerários guardados ao iniciar o componente
   async ngOnInit() {
-    const its = await this.storageService.get('itinerarios');
-    if (its) {
-      this.itinerarios = its;
+    this.index = Number(this.route.snapshot.paramMap.get('index'));
+    const its: Itinerario[] = (await this.storageService.get('itinerarios')) || [];
+    this.itinerarios = its;
+    const itin = its[this.index];
+    if (itin) {
+      this.origem = itin.origem;
+      this.destino = itin.destino;
+      this.destinoAnterior = itin.destino;
+      this.transporte = itin.transporte;
+      this.pontosSelecionados = [...itin.pontos];
+      this.restaurantesSelecionados = [...itin.restaurantes];
+      this.hoteisSelecionados = [...itin.hoteis];
+      if (!['carro','comboio','autocarro','aviao'].includes(itin.transporte)) {
+        this.outroTransporte = itin.transporte;
+        this.transporte = 'outro';
+      }
     }
 
     this.carregarDestinos();
+    this.atualizarOpcoes();
   }
 
   // Sempre que a página é apresentada, limpa os campos do formulário
   ionViewWillEnter() {
-    this.origem = '';
-    this.destino = '';
-    this.transporte = '';
-    this.outroTransporte = '';
-    this.pontosSelecionados = [];
-    this.restaurantesSelecionados = [];
-    this.hoteisSelecionados = [];
     this.step = 1;
   }
 
-  atualizarOpcoes() {
+  atualizarOpcoes(resetSelecionados = false) {
     const chave = Object.keys(this.destinosInfo).find(
       d => d.toLowerCase() === this.destino.trim().toLowerCase()
     );
@@ -94,9 +107,11 @@ export class RegistarViagemPage implements OnInit {
     } else {
       this.opcoes = { pontos: [], restaurantes: [], hoteis: [] };
     }
-    this.pontosSelecionados = [];
-    this.restaurantesSelecionados = [];
-    this.hoteisSelecionados = [];
+    if (resetSelecionados) {
+      this.pontosSelecionados = [];
+      this.restaurantesSelecionados = [];
+      this.hoteisSelecionados = [];
+    }
   }
 
   nextFromInfo() {
@@ -108,7 +123,11 @@ export class RegistarViagemPage implements OnInit {
     }
 
     this.carregarDestinos();
-    this.atualizarOpcoes();
+    const mudou =
+      this.destino.trim().toLowerCase() !==
+      this.destinoAnterior.trim().toLowerCase();
+    this.atualizarOpcoes(mudou);
+    this.destinoAnterior = this.destino;
     this.step = 2;
   }
 
@@ -131,8 +150,8 @@ export class RegistarViagemPage implements OnInit {
     };
     
   const alert = await this.alertCtrl.create({
-      header: this.translate.instant('REGISTAR_VIAGEM.TITLE'),
-      message: this.translate.instant('REGISTAR_VIAGEM.CONFIRMAR_GUARDAR'),
+      header: this.translate.instant('EDITAR_VIAGEM.TITLE'),
+      message: this.translate.instant('EDITAR_VIAGEM.CONFIRMAR_GUARDAR'),
       buttons: [
         {
           text: this.translate.instant('HISTORICO_VIAGENS.FILTER_CANCEL'),
@@ -141,9 +160,9 @@ export class RegistarViagemPage implements OnInit {
         {
           text: this.translate.instant('REGISTAR_AVALIACAO.OK'),
           handler: async () => {
-            this.itinerarios.push(novoItinerario);
+            this.itinerarios[this.index] = novoItinerario;
             await this.storageService.set('itinerarios', this.itinerarios);
-            this.ionViewWillEnter();
+            this.router.navigate(['/historico-viagem']);
           }
         }
       ]
@@ -184,8 +203,6 @@ export class RegistarViagemPage implements OnInit {
     if (this.step > 1) {
       event?.preventDefault();
       this.step--;
-    } else {
-      this.location.back();
     }
   }
 

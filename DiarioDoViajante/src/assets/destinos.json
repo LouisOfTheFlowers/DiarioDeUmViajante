@@ -1,0 +1,32 @@
+{
+  "Lisboa": {
+    "pontos": ["Torre de Belém", "Mosteiro dos Jerónimos"],
+    "restaurantes": ["Belcanto", "Time Out Market"],
+    "hoteis": ["Hotel Avenida Palace", "Epic Sana"]
+  },
+  "Porto": {
+    "pontos": ["Ribeira", "Livraria Lello"],
+    "restaurantes": ["Cafe Majestic", "Brasão"],
+    "hoteis": ["Yeatman", "Infante Sagres"]
+  },
+  "Madrid": {
+    "pontos": ["Palácio Real", "Museu do Prado"],
+    "restaurantes": ["Botín", "DiverXO"],
+    "hoteis": ["Hotel Riu Plaza España", "Hotel Villa Magna"]
+  },
+  "Roma": {
+    "pontos": ["Coliseu", "Fontana di Trevi"],
+    "restaurantes": ["La Pergola", "Armando al Pantheon"],
+    "hoteis": ["Hotel Eden", "Hotel de Russie"]
+  },
+  "Paris": {
+    "pontos": ["Torre Eiffel", "Louvre"],
+    "restaurantes": ["Le Jules Verne", "L'Ambroisie"],
+    "hoteis": ["Hotel Ritz Paris", "Le Meurice"]
+  },
+  "New York": {
+    "pontos": ["Estátua da Liberdade", "Central Park"],
+    "restaurantes": ["Eleven Madison Park", "Le Bernardin"],
+    "hoteis": ["The Plaza", "The Standard, High Line"]
+  }
+}

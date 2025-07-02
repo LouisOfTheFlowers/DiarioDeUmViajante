@@ -19,21 +19,26 @@
     showClearButton="always">
   </ion-searchbar>
 
-  <div *ngIf="viagens.length === 0" class="empty-state" style="text-align: center; margin-top: 40px;">
+  <div *ngIf="itinerarios.length === 0" class="empty-state" style="text-align: center; margin-top: 40px;">
     <img src="assets/images/sadface.png" alt="{{ 'HISTORICO_VIAGENS.EMPTY_ALT' | translate }}" style="width: 120px; margin-bottom: 16px;" />
     <p style="font-size: 1.1em; color: #444;">{{ 'HISTORICO_VIAGENS.EMPTY_TEXT' | translate }}</p>
   </div>
 
-  <div *ngIf="viagens.length > 0">
+  <div *ngIf="itinerarios.length > 0">
     <ion-card *ngFor="let viagem of viagensFiltradas; let i = index" style="margin-bottom: 18px;">
       <ion-card-header>
         <ion-card-title style="font-size: 1.2em;">{{ viagem.destino }}</ion-card-title>
-        <ion-card-subtitle>{{ viagem.percurso }}</ion-card-subtitle>
+        <ion-card-subtitle>{{ viagem.origem }}</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <p><strong>{{ 'HISTORICO_VIAGENS.PRECO' | translate }}:</strong> {{ viagem.preco }} €</p>
-        <p><strong>{{ 'HISTORICO_VIAGENS.TRANSPORTES' | translate }}:</strong> {{ viagem.transportes.join(', ') }}</p>
+        <p><strong>{{ 'HISTORICO_VIAGENS.TRANSPORTE' | translate }}:</strong> {{ viagem.transporte }}</p>
+        <p *ngIf="viagem.pontos.length"><strong>{{ 'HISTORICO_VIAGENS.PONTOS_TURISTICOS' | translate }}:</strong> {{ viagem.pontos.join(', ') }}</p>
+        <p *ngIf="viagem.restaurantes.length"><strong>{{ 'HISTORICO_VIAGENS.RESTAURANTES' | translate }}:</strong> {{ viagem.restaurantes.join(', ') }}</p>
+        <p *ngIf="viagem.hoteis.length"><strong>{{ 'HISTORICO_VIAGENS.HOTEIS' | translate }}:</strong> {{ viagem.hoteis.join(', ') }}</p>
         <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <ion-button color="warning" [routerLink]="['/editar-viagem', i]">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
           <ion-button color="danger" (click)="eliminarViagem(i)">
             <ion-icon slot="icon-only" name="trash-outline" style="font-size: 1.5em;"></ion-icon>
           </ion-button>

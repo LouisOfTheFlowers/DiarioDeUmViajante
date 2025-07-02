@@ -48,6 +48,9 @@
           <img [src]="avaliacao.foto" alt="{{ 'AVALIACOES.PHOTO_ALT' | translate }}" style="max-width: 180px; border-radius: 12px;" />
         </div>
         <div style="display: flex; gap: 12px; margin-top: 12px;">
+          <ion-button color="warning" [routerLink]="['/editar-avaliacao', i]">
+            <ion-icon slot="icon-only" name="pencil"></ion-icon>
+          </ion-button>
           <ion-button color="danger" (click)="eliminarAvaliacao(i)">
             <ion-icon slot="icon-only" name="trash-outline" style="font-size: 1.5em;"></ion-icon>
           </ion-button>
